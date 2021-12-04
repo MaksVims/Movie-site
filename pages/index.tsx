@@ -1,11 +1,14 @@
 import React from 'react';
 import {NextPage} from "next";
+import MainLayout from "@/components/layouts/MainLayout";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <MainLayout>
+      <main>
 
-    </div>
+      </main>
+    </MainLayout>
   );
 };
 
