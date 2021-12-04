@@ -1,7 +1,7 @@
 import {IFilterOptions, IResponseFilterGenre} from "#/filtersTypes";
 import getStringMonth from "../../helpers/getStringMonth";
 import fetchMovies from "../../helpers/fetchMovies";
-import {IResponseMoviesPremieres} from "#/responseTypes";
+import {IResponseMoviesByFiltersOrTop, IResponseMoviesPremieres} from "#/responseTypes";
 import {IMovie} from "#/movieTypes";
 
 export class MovieService {
@@ -24,7 +24,7 @@ export class MovieService {
 
     try {
       const res = await fetchMovies(url)
-      const result: IResponseMoviesPremieres= await res.json()
+      const result: IResponseMoviesPremieres = await res.json()
       return result
     } catch (e) {
       console.error(e)
@@ -32,7 +32,7 @@ export class MovieService {
   }
 
   static async getMoviesByFilters(filters: IFilterOptions) {
-  //  Todo
+    //  Todo
   }
 
   static async getMovieById(movieId: number) {
@@ -46,11 +46,11 @@ export class MovieService {
     }
   }
 
-  static async getTrendingMovies(page: number = 1) {
+  static async getTopMovies(page: number = 15) {
     try {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`
       const res = await fetchMovies(url)
-      const result: IResponseFilterGenre = await res.json()
+      const result: IResponseMoviesByFiltersOrTop = await res.json()
       return result
     } catch (e) {
       console.error(e)

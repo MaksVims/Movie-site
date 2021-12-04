@@ -1,5 +1,5 @@
 
-export interface IMovieByFilter {
+export interface IMovieByFilterOrTop {
   filmId: number,
   nameRu: string,
   year: string,

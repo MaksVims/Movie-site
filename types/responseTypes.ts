@@ -1,15 +1,15 @@
-import {IMovieByFilter, IMoviePremier} from "#/movieTypes";
+import {IMovieByFilterOrTop, IMoviePremier} from "#/movieTypes";
 
-export interface IResponseMoviesByFilters {
+export interface IResponseMoviesByFiltersOrTop {
   pagesCount: number,
-  films: IMovieByFilter[]
+  films: IMovieByFilterOrTop[]
 }
 
 export interface IResponseSearchByKeyWord {
   keyword: string,
   pagesCount: number,
   searchFilmsCountResult: number,
-  films: IMovieByFilter[]
+  films: IMovieByFilterOrTop[]
 }
 
 export interface IResponseMoviesPremieres {
