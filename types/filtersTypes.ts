@@ -1,4 +1,3 @@
-
 export interface IFilterGenre {
   id: number,
   genre: string
@@ -9,7 +8,7 @@ export interface IFilterCountry {
   country: string
 }
 
-export interface IFilterGenreResponse {
+export interface IResponseFilterGenre {
   genres: IFilterGenre[],
   countries: IFilterCountry[]
 }
