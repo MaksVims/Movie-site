@@ -25,6 +25,7 @@ export async function getStaticProps() {
   try {
     const filters = await MovieService.getFilters()
 
+
     return {
       props: {
         filters

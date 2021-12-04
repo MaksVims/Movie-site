@@ -1,7 +1,8 @@
-import {IResponseFilterGenre} from "#/filtersTypes";
+import {IFilterOptions, IResponseFilterGenre} from "#/filtersTypes";
 import getStringMonth from "../../helpers/getStringMonth";
 import fetchMovies from "../../helpers/fetchMovies";
 import {IResponseMoviesPremieres} from "#/responseTypes";
+import {IMovie} from "#/movieTypes";
 
 export class MovieService {
 
@@ -30,4 +31,29 @@ export class MovieService {
     }
   }
 
+  static async getMoviesByFilters(filters: IFilterOptions) {
+  //  Todo
+  }
+
+  static async getMovieById(movieId: number) {
+    try {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movieId}`
+      const res = await fetchMovies(url)
+      const movie: IMovie = await res.json()
+      return movie
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  static async getTrendingMovies(page: number = 1) {
+    try {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`
+      const res = await fetchMovies(url)
+      const result: IResponseFilterGenre = await res.json()
+      return result
+    } catch (e) {
+      console.error(e)
+    }
+  }
 }
