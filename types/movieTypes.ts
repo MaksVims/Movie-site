@@ -3,26 +3,27 @@ export interface IMovieByFilter {
   filmId: number,
   nameRu: string,
   year: string,
-  rating: number,
+  rating: string,
   posterUrlPreview: string,
   countries: [{country: string}],
   description?: string
 }
 
-export interface IResponseMoviesByFilters {
-  pagesCount: number,
-  films: IMovieByFilter[]
-}
-
-export interface IResponseSearchByKeyWord {
-  keyword: string,
-  pagesCount: number,
-  searchFilmsCountResult: number,
-  films: IMovieByFilter[]
+export interface IMoviePremier {
+  kinopoiskId: number
+  nameRu: string,
+  year: number,
+  rating: number,
+  posterUrlPreview: string,
+  countries: [{country: string}],
+  duration: number,
+  premiereRu: string
+  description?: string
 }
 
 export interface IMovie {
   nameRu: string,
+  kinopoiskId: number
   posterUrl: string,
   reviewsCount: number,
   ratingGoodReview: number,
