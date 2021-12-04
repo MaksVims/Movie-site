@@ -1,6 +1,6 @@
 const API_KEY: string | undefined = process.env.API_KEY
 
-export default function fetchMovies(url: string): Promise<Response> | Error {
+export default function fetchMovies(url: string): Promise<Response>{
   if (!API_KEY) throw new Error('api key not found')
 
   return fetch(url, {
