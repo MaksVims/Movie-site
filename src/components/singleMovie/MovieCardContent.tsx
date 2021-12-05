@@ -18,8 +18,8 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie}) => {
       <h1 className="font-bold text-2xl mb-4">
         {movie.nameRu}
       </h1>
-      <div className="text-sm">
-        <ul>
+      <div className="text-sm flex flex-wrap justify-between items-start">
+        <ul className="md:mr-6">
           <li className="movie_card_content_lh">
             <span className="font-medium">Название: </span>
             <span className="movie_card_content_text_color">{movie.nameRu}</span>
