@@ -3,6 +3,7 @@ import getStringMonth from "../../helpers/getStringMonth";
 import fetchMovies from "../../helpers/fetchMovies";
 import {IResponseMoviesByFiltersOrTop, IResponseMoviesPremieres} from "#/responseTypes";
 import {IMovie} from "#/movieTypes";
+import getUrlFiltersMovies from "../../helpers/getUrlFiltersMovies";
 
 export class MovieService {
 
@@ -24,7 +25,10 @@ export class MovieService {
   }
 
   static async getMoviesByFilters(filters: IFilterOptions) {
-    //  Todo
+    const url = getUrlFiltersMovies(filters)
+    const res = await fetchMovies(url)
+    const result: IResponseMoviesByFiltersOrTop = await res.json()
+    return result
   }
 
   static async getMovieById(movieId: number) {

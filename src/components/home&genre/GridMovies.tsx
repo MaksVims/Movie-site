@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {IMovieByFilterOrTop} from "#/movieTypes";
-import GridMovieItem from "@/components/home/GridMovieItem";
+import GridMovieItem from "@/components/home&genre/GridMovieItem";
 
 interface IGridMovies {
   movies: IMovieByFilterOrTop[]

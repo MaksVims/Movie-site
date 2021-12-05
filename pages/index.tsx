@@ -3,8 +3,8 @@ import {GetStaticProps, NextPage} from "next";
 import MainLayout from "@/components/layouts/MainLayout";
 import {MovieService} from "@/api/MovieService";
 import {IResponseFilterGenre} from "#/filtersTypes";
-import GenreList from "@/components/home/GenreList";
-import GridMovies from "@/components/home/GridMovies";
+import GenreList from "@/components/home&genre/GenreList";
+import GridMovies from "@/components/home&genre/GridMovies";
 import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
 
 
@@ -28,7 +28,7 @@ const Home: NextPage<IHomePageProps> = ({filters, responseResult}) => {
 export default Home;
 
 
-export const getStaticProps: GetStaticProps<IHomePageProps> = async (context) => {
+export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
   try {
     const filters = await MovieService.getFilters()
     const responseResult = await MovieService.getTopMovies()

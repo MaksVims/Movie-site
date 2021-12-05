@@ -2,127 +2,158 @@
   "genres": [
     {
       "id": 6,
-      "genre": "комедия"
+      "genre": "комедия",
+      "title": "comedy"
     },
     {
       "id": 3,
-      "genre": "боевик"
+      "genre": "боевик",
+      "title": "action"
     },
     {
       "id": 4,
-      "genre": "триллер"
+      "genre": "триллер",
+      "title": "thriller"
     },
     {
       "id": 1,
-      "genre": "ужасы"
+      "genre": "ужасы",
+      "title": "horror"
     },
     {
       "id": 2,
-      "genre": "фантастика"
+      "genre": "фантастика",
+      "title": "fantastic"
     },
     {
       "id": 8,
-      "genre": "драма"
+      "genre": "драма",
+      "title": "drama"
     },
     {
       "id": 7,
-      "genre": "мелодрама"
+      "genre": "мелодрама",
+        "title": "melodrama"
     },
     {
       "id": 17,
-      "genre": "детектив"
+      "genre": "детектив",
+        "title": "detective"
     },
     {
       "id": 13,
-      "genre": "вестерн"
+      "genre": "вестерн",
+        "title": "western"
     },
     {
       "id": 5,
-      "genre": "фэнтези"
+      "genre": "фэнтези",
+        "title": "fantasy"
     },
     {
       "id": 19,
-      "genre": "военный"
+      "genre": "военный",
+        "title": "war"
     },
     {
       "id": 1750,
-      "genre": "аниме"
+      "genre": "аниме",
+        "title": "anime"
     },
     {
       "id": 456,
-      "genre": "детский"
+      "genre": "детский",
+        "title": "child"
     },
     {
       "id": 12,
-      "genre": "документальный"
+      "genre": "документальный",
+        "title": "documentary"
     },
     {
       "id": 27,
-      "genre": "игра"
+      "genre": "игра",
+        "title": "game"
     },
     {
       "id": 23,
-      "genre": "история"
+      "genre": "история",
+        "title": "history"
     },
     {
       "id": 1747,
-      "genre": "концерт"
+      "genre": "концерт",
+        "title": "concert"
     },
     {
       "id": 15,
-      "genre": "короткометражка"
+      "genre": "короткометражка",
+        "title": "short_film"
     },
     {
       "id": 16,
-      "genre": "криминал"
+      "genre": "криминал",
+        "title": "crime"
     },
     {
       "id": 22,
-      "genre": "биография"
+      "genre": "биография",
+        "title": "biography"
     },
     {
       "id": 21,
-      "genre": "музыка"
+      "genre": "музыка",
+        "title": "music"
     },
     {
       "id": 14,
-      "genre": "мультфильм"
+      "genre": "мультфильм",
+        "title": "mult"
     },
     {
       "id": 9,
-      "genre": "мюзикл"
+      "genre": "мюзикл",
+        "title": "musical"
     },
     {
       "id": 28,
-      "genre": "новости"
+      "genre": "новости",
+        "title": "news"
     },
     {
       "id": 10,
-      "genre": "приключения"
+      "genre": "приключения",
+        "title": "adventure"
     },
     {
       "id": 25,
-      "genre": "реальное ТВ"
+      "genre": "реальное ТВ",
+        "title": "real_TV"
     },
     {
       "id": 11,
-      "genre": "семейный"
+      "genre": "семейный",
+        "title": "family"
     },
     {
       "id": 24,
-      "genre": "спорт"
+      "genre": "спорт",
+        "title": "sport"
     },
     {
       "id": 26,
-      "genre": "ток-шоу"
+      "genre": "ток-шоу",
+        "title": "talk_show"
     },
     {
       "id": 18,
-      "genre": "фильм-нуар"
+      "genre": "фильм-нуар",
+        "title": "film_noir"
     },
     {
       "id": 1751,
-      "genre": "церемония"
+      "genre": "церемония",
+        "title": "ceremony"
     }
   ],
   "countries": [

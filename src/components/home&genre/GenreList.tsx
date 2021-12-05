@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {IFilterGenre} from "#/filtersTypes";
-import GenreItem from "@/components/home/GenreItem";
+import GenreItem from "@/components/home&genre/GenreItem";
 
 interface IGenreList {
   genres: IFilterGenre[]

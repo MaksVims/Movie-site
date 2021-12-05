@@ -17,7 +17,7 @@ const NavItem: FC<INavItemComponent> = ({item, active}) => {
       <Link href={path}>
         <a className="w-full items-center group w-12 flex flex-col cursor-pointer py-1 sm:w-20">
           <Icon
-            size={35}
+            size={30}
             color={active ? SECONDARY_COLOR : '#fff'}
             className="mb-2 h-6 group-hover:animate-bounce xs:h-10"
           />

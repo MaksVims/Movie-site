@@ -1,6 +1,7 @@
 export interface IFilterGenre {
   id: number,
-  genre: string
+  genre: string,
+  title: string
 }
 
 export interface IFilterCountry {
@@ -15,8 +16,8 @@ export interface IResponseFilterGenre {
 
 export interface IFilterOptions {
   page: number
-  country?: Array<number>,
-  genre?: Array<number>,
+  country?: number,
+  genre?: number,
   ratingFrom?: number,
   ratingTo?: number,
   yearFrom?: number,
