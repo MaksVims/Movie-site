@@ -24,3 +24,9 @@ body {
     @apply bg-primary;
   }
 }
+
+@layer components {
+  .gridMoviesXsGap {
+    @apply xs:gap-x-4
+  }
+}

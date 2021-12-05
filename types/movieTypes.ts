@@ -23,6 +23,7 @@ export interface IMoviePremier {
 
 export interface IMovie {
   nameRu: string,
+  nameOriginal: string,
   kinopoiskId: number
   posterUrl: string,
   reviewsCount: number,
@@ -36,5 +37,7 @@ export interface IMovie {
   filmLength: number,
   description: string,
   shortDescription: string,
-  slogan: string
+  slogan: string,
+  countries: [{country: string}],
+  genres: [{genre: string}],
 }

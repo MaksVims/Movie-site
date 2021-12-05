@@ -1,15 +1,21 @@
 import React, {FC} from 'react';
 import {IMovieByFilterOrTop} from "#/movieTypes";
+import GridMovieItem from "@/components/home/GridMovieItem";
 
 interface IGridMovies {
   movies: IMovieByFilterOrTop[]
 }
 
-const GridMovies:FC<IGridMovies> = ({movies}) => {
+const GridMovies: FC<IGridMovies> = ({movies}) => {
   return (
-    <section>
+    <section
+      className="grid my-12 px-4 gap-y-6 gridMoviesXsGap grid-cols-1 xl:gap-6
+      sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 xl:px-6">
       {movies.map(movie => (
-        <h1 key={movie.filmId}>{movie.nameRu}</h1>
+        <GridMovieItem
+          key={movie.filmId}
+          movie={movie}
+        />
       ))}
     </section>
   );
