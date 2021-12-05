@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
-import {IMovieByFilterOrTop} from "#/movieTypes";
+import {IMovieForGrid} from "#/movieTypes";
 import GridMovieCard from "@/components/home&genre/GridMovieCard";
 
 interface IGridMovies {
-  movies: IMovieByFilterOrTop[]
+  movies: IMovieForGrid[]
 }
 
 const GridMovies: FC<IGridMovies> = ({movies}) => {
@@ -13,7 +13,7 @@ const GridMovies: FC<IGridMovies> = ({movies}) => {
       sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 xl:px-6">
       {movies.map(movie => (
         <GridMovieCard
-          key={movie.filmId}
+          key={movie.movieId}
           movie={movie}
         />
       ))}

@@ -1,23 +1,22 @@
 import React, {useMemo} from 'react';
 import {GetStaticProps, NextPage} from "next";
+import {IResponseFilterGenre} from "#/filtersTypes";
+import {IResponseMoviesPremieres} from "#/responseTypes";
 import MainLayout from "@/components/layouts/MainLayout";
 import {MovieService} from "@/api/MovieService";
-import {IResponseFilterGenre} from "#/filtersTypes";
 import GenreList from "@/components/home&genre/GenreList";
 import GridMovies from "@/components/home&genre/GridMovies";
-import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
-import transformDBMoviesToMoviesGrid from "../helpers/transformDBMoviesToMoviesGrid";
+import transformDBMoviesToMoviesGrid from "+/transformDBMoviesToMoviesGrid";
 
 
-interface IHomePageProps {
+interface IPremieresPageProps {
   filters: IResponseFilterGenre,
-  responseResult: IResponseMoviesByFiltersOrTop
+  responseResult: IResponseMoviesPremieres
 }
 
-const Home: NextPage<IHomePageProps> = ({filters, responseResult}) => {
-
+const PremieresPage: NextPage<IPremieresPageProps> = ({filters, responseResult}) => {
   const moviesForGrid = useMemo(
-    () => transformDBMoviesToMoviesGrid(responseResult.films),
+    () => transformDBMoviesToMoviesGrid(responseResult.items),
     [responseResult])
 
   return (
@@ -30,13 +29,12 @@ const Home: NextPage<IHomePageProps> = ({filters, responseResult}) => {
   );
 };
 
-export default Home;
+export default PremieresPage;
 
-
-export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
+export const getStaticProps: GetStaticProps<IPremieresPageProps> = async () => {
   try {
     const filters = await MovieService.getFilters()
-    const responseResult = await MovieService.getTopMovies()
+    const responseResult = await MovieService.getPremiers()
 
     return {
       props: {
@@ -44,10 +42,9 @@ export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
         responseResult
       }
     }
-  } catch (e) {
+  } catch {
     return {
       notFound: true
     }
   }
 }
-

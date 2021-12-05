@@ -20,6 +20,20 @@ export interface IMoviePremier {
   description?: string
 }
 
+export type TypeMovieDB = IMoviePremier | IMovieByFilterOrTop
+
+export interface IMovieForGrid {
+  movieId: number,
+  nameRu: string,
+  year: string,
+  rating: string,
+  posterUrlPreview: string,
+  countries: [{ country: string }],
+  premiereRu?: string
+  description?: string
+}
+
+
 export interface IMovie {
   nameRu: string,
   nameOriginal: string,

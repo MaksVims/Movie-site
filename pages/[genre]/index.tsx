@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import GenreList from "@/components/home&genre/GenreList";
 import GridMovies from "@/components/home&genre/GridMovies";
 import MainLayout from "@/components/layouts/MainLayout";
@@ -7,6 +7,7 @@ import {IResponseFilterGenre} from "#/filtersTypes";
 import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
 import {MovieService} from "@/api/MovieService";
 import {ParsedUrlQuery} from "querystring";
+import transformDBMoviesToMoviesGrid from "../../helpers/transformDBMoviesToMoviesGrid";
 
 interface IGenrePageProps {
   filters: IResponseFilterGenre,
@@ -14,11 +15,15 @@ interface IGenrePageProps {
 }
 
 const GenrePage: NextPage<IGenrePageProps> = ({filters, responseResult}) => {
+  const moviesForGrid = useMemo(
+    () => transformDBMoviesToMoviesGrid(responseResult.films),
+    [responseResult])
+
   return (
     <MainLayout>
       <main>
         <GenreList genres={filters.genres}/>
-        <GridMovies movies={responseResult.films}/>
+        <GridMovies movies={moviesForGrid}/>
       </main>
     </MainLayout>
   );

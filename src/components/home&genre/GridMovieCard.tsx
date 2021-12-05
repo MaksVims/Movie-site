@@ -1,20 +1,19 @@
 import React, {FC} from 'react';
-import {IMovieByFilterOrTop} from "#/movieTypes";
+import {IMovieForGrid} from "#/movieTypes";
 import Image from "next/image";
 import {MdOutlineStarRate} from "react-icons/md";
 import Link from 'next/link'
 
 interface IGridMoveItem {
-  movie: IMovieByFilterOrTop
+  movie: IMovieForGrid
 }
 
 const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
-
   return (
     <article
       className="group cursor-pointer transform transition-transform duration-200 sm:hover:scale-105"
     >
-      <Link href={`/movies/${movie.filmId}`}>
+      <Link href={`/movies/${movie.movieId}`}>
         <a>
           <Image
             src={movie.posterUrlPreview}
@@ -23,7 +22,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
             layout={"responsive"}
             alt={movie.nameRu}
           />
-          <div className="mt-1 text-white">
+          <div className="mt-1 text-white md:mt-3">
             <h2 className="font-medium mb-2 font-bold text-2xl xs:text-xl sm:text-2xl">
               {movie.nameRu}
             </h2>
