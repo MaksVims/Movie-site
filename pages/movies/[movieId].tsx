@@ -5,12 +5,18 @@ import {IMovie} from "#/movieTypes";
 import {ParsedUrlQuery} from "querystring";
 import {MovieService} from "@/api/MovieService";
 import Image from "next/image";
+import {useFilters} from "@/contexts/FiltersContext";
+import Link from "next/link";
+import {getTitleGenreByRuName} from 'helpers/getTitleGenrebyRuName';
 
 interface IMoviePageProps {
   movie: IMovie
 }
 
 const MovieId: NextPage<IMoviePageProps> = ({movie}) => {
+  const filters = useFilters()
+
+  if (!filters) return <div>Loading...</div>
   return (
     <MainLayout>
       <main>
@@ -64,7 +70,15 @@ const MovieId: NextPage<IMoviePageProps> = ({movie}) => {
               <ul>
                 <li>
                   <span>Категории: </span>
-                  <span>{movie.genres.map(genre => genre.genre).join(' / ')}</span>
+                  <div>
+                    {movie.genres.map(itemGenre => (
+                      <span>
+                        <Link href={`/${getTitleGenreByRuName(filters.genres, itemGenre.genre)}`}>
+                          <a>{itemGenre.genre}</a>
+                        </Link>
+                      </span>
+                    ))}
+                  </div>
                 </li>
                 <li>
                   <span>Описание: </span>
