@@ -4,6 +4,7 @@ import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {IMovie} from "#/movieTypes";
 import {ParsedUrlQuery} from "querystring";
 import {MovieService} from "@/api/MovieService";
+import Image from "next/image";
 
 interface IMoviePageProps {
   movie: IMovie
@@ -13,7 +14,73 @@ const MovieId: NextPage<IMoviePageProps> = ({movie}) => {
   return (
     <MainLayout>
       <main>
-        <h1>{movie.nameRu}</h1>
+        <section className="flex flex-col items-center bg-white pt-4">
+          <Image src={movie.posterUrl}
+                 alt={movie.nameOriginal}
+                 height={280}
+                 width={200}
+          />
+          <div className="mt-2 w-full">
+            <h1 className="font-bold text-2xl mb-4">
+              {movie.nameRu}
+            </h1>
+            <div>
+              <ul>
+                <li>
+                  <span>Название:</span>
+                  <span>{movie.nameRu}</span>
+                </li>
+                <li>
+                  <span>Год выхода:</span>
+                  <span>{movie.year}</span>
+                </li>
+                <li>
+                  <span>Cтрана:</span>
+                  <span>{movie.countries.map(county => county.country).join(', ')}</span>
+                </li>
+                <li>
+                  <span>Оригинальное название:</span>
+                  <span>{movie.nameOriginal}</span>
+                </li>
+              </ul>
+              <ul className="grid grid-cols-2">
+                <li>
+                  <span>КП</span>
+                  <span>{movie.ratingKinopoisk}</span>
+                </li>
+                <li>
+                  <span>IMDB</span>
+                  <span>{movie.ratingImdb}</span>
+                </li>
+                <li>
+                  <span>КП</span>
+                  <span>{movie.ratingKinopoiskVoteCount}</span>
+                </li>
+                <li>
+                  <span>IMDB</span>
+                  <span>{movie.ratingImdbVoteCount}</span>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <span>Категории: </span>
+                  <span>{movie.genres.map(genre => genre.genre).join(' / ')}</span>
+                </li>
+                <li>
+                  <span>Описание: </span>
+                  <span>{movie.description || movie.shortDescription}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <video
+            src="#"
+            controls={true}
+            className="w-full"
+          />
+        </section>
       </main>
     </MainLayout>
   );
