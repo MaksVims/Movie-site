@@ -29,4 +29,20 @@ body {
   .gridMoviesXsGap {
     @apply xs:gap-x-4
   }
+
+  .movie_card_content_kp_rate {
+    @apply border-2 border-solid border-red-400 flex justify-center items-center rounded-sm py-1
+  }
+
+  .movie_card_content_imdb_rate {
+    @apply border-2 border-solid border-yellow-400 flex justify-center items-center rounded-sm py-1
+  }
+
+  .movie_card_content_text_color {
+    @apply text-gray-600
+  }
+
+  .movie_card_content_lh {
+    @apply leading-relaxed
+  }
 }

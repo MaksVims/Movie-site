@@ -8,7 +8,7 @@ interface IGridMoveItem {
   movie: IMovieByFilterOrTop
 }
 
-const GridMovieItem: FC<IGridMoveItem> = ({movie}) => {
+const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
 
   return (
     <article
@@ -38,4 +38,4 @@ const GridMovieItem: FC<IGridMoveItem> = ({movie}) => {
   );
 };
 
-export default GridMovieItem;
+export default GridMovieCard;

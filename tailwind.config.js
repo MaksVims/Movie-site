@@ -8,6 +8,9 @@ module.exports = {
         primary: '#06202A',
         secondary: '#00ED82',
       },
+      boxShadow: {
+        movieCard: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 3px 4px 7px -1px rgba(0, 0, 0, 0.15)',
+      },
       screens: {
         xs: '480px',
       }
