@@ -1,11 +1,10 @@
-
 export interface IMovieByFilterOrTop {
   filmId: number,
   nameRu: string,
   year: string,
   rating: string,
   posterUrlPreview: string,
-  countries: [{country: string}],
+  countries: [{ country: string }],
   description?: string
 }
 
@@ -15,7 +14,7 @@ export interface IMoviePremier {
   year: number,
   rating: number,
   posterUrlPreview: string,
-  countries: [{country: string}],
+  countries: [{ country: string }],
   duration: number,
   premiereRu: string
   description?: string
@@ -38,6 +37,6 @@ export interface IMovie {
   description: string,
   shortDescription: string,
   slogan: string,
-  countries: [{country: string}],
-  genres: [{genre: string}],
+  countries: [{ country: string }],
+  genres: [{ genre: string }],
 }
