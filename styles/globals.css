@@ -41,4 +41,8 @@ body {
   .link_blur_color {
     @apply text-blue-400
   }
+
+  .bubble {
+    @apply absolute text-sm bg-secondary block rounded-sm py-1 px-3 text-white
+  }
 }
