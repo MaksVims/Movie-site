@@ -21,7 +21,11 @@ body {
   }
 
   body {
-    @apply bg-primary;
+    @apply bg-primary-dark min-h-screen min-w-full;
+  }
+
+  main {
+    @apply h-screen w-full
   }
 }
 
@@ -43,6 +47,6 @@ body {
   }
 
   .bubble {
-    @apply absolute text-sm bg-secondary block rounded-sm py-1 px-3 text-white
+    @apply absolute text-sm bg-primary-light block rounded-sm py-1 px-3 text-white
   }
 }

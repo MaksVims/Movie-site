@@ -11,9 +11,9 @@ interface IGenreItem {
 const GenreItem: FC<IGenreItem> = ({item}) => {
   const router = useRouter()
   const itemClass = cn({
-    'text-secondary': router.asPath === `/${item.title}`,
+    'text-primary-light': router.asPath === `/${item.title}`,
     'text-white whitespace-nowrap cursor-pointer text-xl transition-transform': true,
-    'transform duration-100 active:text-secondary hover:scale-125 md:text-2xl': true
+    'transform duration-100 active:text-primary-light hover:scale-125 md:text-2xl': true
   })
 
   return (
