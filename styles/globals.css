@@ -26,23 +26,19 @@ body {
 }
 
 @layer components {
-  .gridMoviesXsGap {
-    @apply xs:gap-x-4
-  }
-
-  .movie_card_content_kp_rate {
+  .red-frame {
     @apply border-2 border-solid border-red-400 flex justify-center items-center rounded-sm py-1  px-1
   }
 
-  .movie_card_content_imdb_rate {
+  .yellow-frame {
     @apply border-2 border-solid border-yellow-400 flex justify-center items-center rounded-sm py-1 px-1
   }
 
-  .movie_card_content_text_color {
+  .text_gray_color {
     @apply text-gray-600
   }
 
-  .movie_card_content_lh {
-    @apply leading-relaxed
+  .link_blur_color {
+    @apply text-blue-400
   }
 }

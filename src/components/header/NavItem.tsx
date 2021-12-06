@@ -12,6 +12,7 @@ interface INavItemComponent {
 const NavItem: FC<INavItemComponent> = ({item, active}) => {
   const {path, Icon, title} = item
 
+
   return (
     <li className="last:mr-0 xs:mr-2">
       <Link href={path}>

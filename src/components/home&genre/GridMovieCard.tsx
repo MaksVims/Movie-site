@@ -23,7 +23,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
             alt={movie.nameRu}
           />
           <div className="mt-1 text-white md:mt-3">
-            <h2 className="font-medium mb-2 font-bold text-2xl xs:text-xl sm:text-2xl">
+            <h2 className="font-medium mb-2 font-bold text-xl sm:text-2xl">
               {movie.nameRu}
             </h2>
             <p className="flex items-center opacity-0 group-hover:opacity-100">

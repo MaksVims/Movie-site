@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {IMovie} from "#/movieTypes";
 import Link from "next/link";
-import {getTitleGenreByRuName} from "../../../helpers/getTitleGenrebyRuName";
 import {useFilters} from "@/contexts";
 import formatFirstToUppercase from 'helpers/formatFirstToUppercase';
+import {getTitleGenreByRuName} from '+/getTitleGenrebyRuName';
 
 interface IMovieCardContent {
   movie: IMovie
@@ -18,47 +18,47 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie}) => {
       <h1 className="font-bold text-2xl mb-4">
         {movie.nameRu}
       </h1>
-      <div className="text-sm flex flex-wrap justify-between items-start">
-        <ul className="md:mr-6">
-          <li className="movie_card_content_lh">
+      <div className="text-sm md:flex md:flex-wrap md:justify-between md:items-start">
+        <ul className="md:mr-6 space-y-1">
+          <li>
             <span className="font-medium">Название: </span>
-            <span className="movie_card_content_text_color">{movie.nameRu}</span>
+            <span className="text_gray_color">{movie.nameRu}</span>
           </li>
-          <li className="movie_card_content_lh">
+          <li>
             <span className="font-medium">Год выхода: </span>
-            <span className="movie_card_content_text_color">{movie.year}</span>
+            <span className="text_gray_color">{movie.year}</span>
           </li>
-          <li className="movie_card_content_lh">
+          <li>
             <span className="font-medium">Cтрана: </span>
             <span
-              className="movie_card_content_text_color">{movie.countries.map(county => county.country).join(', ')}</span>
+              className="text_gray_color">{movie.countries.map(county => county.country).join(', ')}</span>
           </li>
-          <li className="movie_card_content_lh">
+          <li>
             <span className="font-medium">Оригинальное название: </span>
-            <span className="movie_card_content_text_color">{movie.nameOriginal}</span>
+            <span className="text_gray_color">{movie.nameOriginal}</span>
           </li>
         </ul>
-        <ul className="grid grid-cols-2 gap-4 gap-x-8 my-4">
-          <li className="font-medium movie_card_content_kp_rate">
-            <span className="mr-1">КП </span>
+        <ul className="grid grid-cols-2 gap-y-4 gap-x-7 my-4">
+          <li className="font-medium red-frame">
+            <span className="mr-1">КП</span>
             <span>{movie.ratingKinopoisk}</span>
           </li>
           <li
-            className="font-medium movie_card_content_imdb_rate">
-            <span>IMDB </span>
+            className="font-medium yellow-frame">
+            <span className="mr-1">IMDB </span>
             <span>{movie.ratingImdb}</span>
           </li>
-          <li className="movie_card_content_kp_rate">
-            <span className="font-medium mr-1">КП: </span>
+          <li className="red-frame">
+            <span className="font-medium ">КП: </span>
             <span>{movie.ratingKinopoiskVoteCount} оценок</span>
           </li>
-          <li className="movie_card_content_imdb_rate">
+          <li className="yellow-frame">
             <span className="font-medium mr-1">IMDB: </span>
             <span>{movie.ratingImdbVoteCount} оценок</span>
           </li>
         </ul>
-        <ul>
-          <li className="flex items-center movie_card_content_lh">
+        <ul className="space-y-1">
+          <li className="flex items-center">
             <span className="font-medium mr-1">Категории: </span>
             <div>
               {movie.genres.map((itemGenre, idx) => (
@@ -75,9 +75,9 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie}) => {
               ))}
             </div>
           </li>
-          <li className="movie_card_content_lh">
+          <li>
             <span className="font-medium">Описание: </span>
-            <span className="movie_card_content_text_color">{movie.description || movie.shortDescription}</span>
+            <span className="text_gray_color leading-relaxed">{movie.description || movie.shortDescription}</span>
           </li>
         </ul>
       </div>

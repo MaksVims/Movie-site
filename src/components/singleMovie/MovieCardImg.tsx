@@ -5,6 +5,7 @@ import {FaHeart} from 'react-icons/fa'
 import {BiTime} from 'react-icons/bi'
 import cn from "classnames";
 import getFormatTime from 'helpers/getFormatTime';
+import {GRAY_COLOR} from "@/const";
 
 interface IMovieCardImg {
   movie: IMovie,
@@ -28,13 +29,13 @@ const MovieCardImg: FC<IMovieCardImg> = ({movie}) => {
       />
       <div className={imageBottomClass}>
         {movie.filmLength &&
-        <p className="movie_card_content_text_color flex items-center">
+        <p className="text_gray_color flex items-center">
           <BiTime size={20} className="mr-1"/>
           <span className="text-sm">{getFormatTime(movie.filmLength)}</span>
         </p>}
         <FaHeart
           className="cursor-pointer hover:scale-110"
-          color={"#9f9f9f"}
+          color={GRAY_COLOR}
           size={25}
         />
       </div>
