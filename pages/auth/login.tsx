@@ -1,6 +1,37 @@
 import React from 'react';
 import {NextPage} from "next";
 import Link from 'next/link'
+import {Form, Formik} from "formik";
+import FormInput from "@/components/ui/FormInput";
+import {validationErrors} from "@/const/validationErrors";
+
+type LoginValidationErrors = {
+  email?: string,
+  password?: string,
+}
+
+const regexpForEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i
+
+const validation = function ({email, password}: LoginFormValues): LoginValidationErrors {
+  const errors: LoginValidationErrors = {}
+
+  if (!email.length) {
+    errors.email = validationErrors.required
+  } else if (!regexpForEmail.test(email)) {
+    errors.email = validationErrors.noValidEmail
+  }
+
+  if (!password.length) {
+    errors.password = validationErrors.required
+  }
+
+  return errors
+}
+
+type LoginFormValues = {
+  email: string,
+  password: string,
+}
 
 const Login: NextPage = () => {
   return (
@@ -18,32 +49,28 @@ const Login: NextPage = () => {
               </div>
             </div>
 
-            <form className="flex flex-col">
-              <div className="mb-3 relative pb-3 space-y-1">
-                <label className="block font-medium text-lg">Email:</label>
-                <input
-                  className="border border-solid border-gray-400 block w-full py-2 px-2 rounded-md focus:outline-none focus:border-primary-light shadow-md"
-                  type="email"
-                  placeholder="Укажите email"/>
-                <span className="text-red-400 text-xs absolute">Укажите корректный email</span>
-              </div>
-              <div className="mb-5 relative pb-3 space-y-1">
-                <label className="block font-medium text-lg">Пароль:</label>
-                <input
-                  className="border border-solid border-gray-400 block w-full py-2 px-2 rounded-md focus:outline-none focus:border-primary-light shadow-md"
-                  type="password"
-                  placeholder="Введите пароль"/>
-                <span className="text-red-400 text-xs absolute">Заполните поле</span>
-              </div>
-              <button
-                disabled={true}
-                className="mt-2 uppercase rounded-md hover:bg-primary px-6 py-2 hover:text-white tracking-wider font-semibold focus:outline-none bg-primary-light transition duration-100 text-black
-                  sm:w-auto sm:self-end shadow-md"
-                type="submit">Войти на сайт
-              </button>
-            </form>
+            <Formik
+              initialValues={{
+                email: '',
+                password: '',
+              }}
+              validate={validation}
+              onSubmit={values => {
+                alert(JSON.stringify(values, null, 2))
+              }}
+            >
+              <Form className="flex flex-col">
+                <FormInput label="Email:" name="email" type="email" required/>
+                <FormInput label="Пароль:" name="password" type="password" required/>
+                <button
+                  className="mt-2 btn-submit"
+                  type="submit"
+                >
+                  Войти на сайт
+                </button>
+              </Form>
+            </Formik>
           </div>
-
         </section>
       </main>
     </div>

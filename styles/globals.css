@@ -49,4 +49,13 @@ body {
   .bubble {
     @apply absolute text-sm bg-primary-light block rounded-sm py-1 px-3 text-white
   }
+
+  .form-checkbox:checked + span {
+    @apply bg-primary-dark border-transparent
+  }
+
+  .btn-submit {
+    @apply w-full uppercase rounded-md hover:bg-primary px-6 py-2 hover:text-white tracking-wider font-semibold
+    focus:outline-none bg-primary-light transition duration-100 text-black sm:w-auto sm:self-end shadow-md
+  }
 }
