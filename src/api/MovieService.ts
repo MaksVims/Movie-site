@@ -8,7 +8,7 @@ import getUrlFiltersMovies from "+/getUrlFiltersMovies";
 export class MovieService {
 
   static async getFilters() {
-    const res = await fetch('http://localhost:3001/api/filters')
+    const res = await fetch('http://localhost:3010/api/filters')
     const filters: IResponseFilterGenre = await res.json()
     return filters
   }
