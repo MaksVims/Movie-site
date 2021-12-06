@@ -1,37 +1,7 @@
 import React from 'react';
 import {NextPage} from "next";
 import Link from 'next/link'
-import {Form, Formik} from "formik";
-import FormInput from "@/components/ui/FormInput";
-import {validationErrors} from "@/const/validationErrors";
-
-type LoginValidationErrors = {
-  email?: string,
-  password?: string,
-}
-
-const regexpForEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i
-
-const validation = function ({email, password}: LoginFormValues): LoginValidationErrors {
-  const errors: LoginValidationErrors = {}
-
-  if (!email.length) {
-    errors.email = validationErrors.required
-  } else if (!regexpForEmail.test(email)) {
-    errors.email = validationErrors.noValidEmail
-  }
-
-  if (!password.length) {
-    errors.password = validationErrors.required
-  }
-
-  return errors
-}
-
-type LoginFormValues = {
-  email: string,
-  password: string,
-}
+import LoginForm from "@/components/auth/LoginForm";
 
 const Login: NextPage = () => {
   return (
@@ -48,28 +18,7 @@ const Login: NextPage = () => {
                 </Link>
               </div>
             </div>
-
-            <Formik
-              initialValues={{
-                email: '',
-                password: '',
-              }}
-              validate={validation}
-              onSubmit={values => {
-                alert(JSON.stringify(values, null, 2))
-              }}
-            >
-              <Form className="flex flex-col">
-                <FormInput label="Email:" name="email" type="email" required/>
-                <FormInput label="Пароль:" name="password" type="password" required/>
-                <button
-                  className="mt-2 btn-submit"
-                  type="submit"
-                >
-                  Войти на сайт
-                </button>
-              </Form>
-            </Formik>
+          <LoginForm />
           </div>
         </section>
       </main>
