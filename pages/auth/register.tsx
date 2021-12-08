@@ -16,7 +16,7 @@ const Register: NextPage = () => {
 
   return (
     <div className="bg-black">
-      <main className="flex items-center justify-center px-4 py-6 bg-auth bg-no-repeat bg-top relative">
+      <main className="flex items-center justify-center px-4 py-6 bg-auth bg-no-repeat bg-top">
         <section className="mx-auto max-w-2xl w-full bg-white rounded-md shadow-md relative">
           <div className="space-y-12 sm:space-y-20 py-6 px-4 ">
             <div className="space-y-1 text-center">

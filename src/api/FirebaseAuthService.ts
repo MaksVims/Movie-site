@@ -17,5 +17,17 @@ export default class FirebaseAuthService {
       displayName: name || email
     })
   }
+
+  static isLoggedIn() {
+    return !!auth.currentUser
+  }
+
+  async deleteAccount() {
+    if (auth.currentUser) {
+      await auth.currentUser.delete()
+      return true
+    }
+    return false
+  }
 }
 
