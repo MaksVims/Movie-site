@@ -2,8 +2,13 @@ import React, {FC} from 'react';
 import {Form, Formik} from "formik";
 import {validateLoginForm} from "+/validation";
 import FormInput from "@/components/ui/FormInput";
+import {LoginFormValues} from "#/validationTypes";
 
-const LoginForm: FC = () => {
+interface ILoginForm {
+  handlerSubmit: (values: LoginFormValues) => Promise<void> | void
+}
+
+const LoginForm: FC<ILoginForm> = ({handlerSubmit}) => {
   return (
     <Formik
       initialValues={{
@@ -11,9 +16,7 @@ const LoginForm: FC = () => {
         password: '',
       }}
       validate={validateLoginForm}
-      onSubmit={values => {
-        alert(JSON.stringify(values, null, 2))
-      }}
+      onSubmit={handlerSubmit}
     >
       <Form className="flex flex-col">
         <FormInput label="Email:" name="email" type="email" required/>

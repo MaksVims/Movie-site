@@ -1,9 +1,21 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {NextPage} from "next";
 import Link from 'next/link'
 import LoginForm from "@/components/auth/LoginForm";
+import {LoginFormValues} from "#/validationTypes";
+import FirebaseAuthService from "@/api/FirebaseAuthService";
 
 const Login: NextPage = () => {
+
+  const login = useCallback(async (values: LoginFormValues) => {
+    const {email, password} = values
+    try {
+      await FirebaseAuthService.login(email, password)
+    } catch (e) {
+      alert(e)
+    }
+  }, [])
+
   return (
     <div className="bg-black">
       <main className="flex items-center justify-center px-4 py-6 bg-auth bg-no-repeat bg-top">
@@ -18,7 +30,7 @@ const Login: NextPage = () => {
                 </Link>
               </div>
             </div>
-          <LoginForm />
+            <LoginForm handlerSubmit={login}/>
           </div>
         </section>
       </main>

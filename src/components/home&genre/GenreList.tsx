@@ -17,7 +17,7 @@ const GenreList: FC<IGenreList> = ({genres}) => {
           />
         ))}
       </ul>
-      <div className="absolute right-0 top-0 h-14 w-1/12 bg-gradient-to-l from-primary"></div>
+      <div className="absolute right-0 top-0 h-14 w-1/12 bg-gradient-to-l from-primary-dark"></div>
     </div>
   );
 };

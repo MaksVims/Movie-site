@@ -3,12 +3,12 @@ import {IResponseFilterGenre} from "#/filtersTypes";
 import {MovieService} from "@/api/MovieService";
 
 export function useFilters() {
-  return useContext(FiltersContextContainer)
+  return useContext(FiltersContext)
 }
 
-const FiltersContextContainer = React.createContext<IResponseFilterGenre>({} as IResponseFilterGenre)
+const FiltersContext = React.createContext<IResponseFilterGenre>({} as IResponseFilterGenre)
 
-const FiltersContext: FC = ({children}) => {
+const FiltersProvider: FC = ({children}) => {
   const [filters, setFilters] = useState<IResponseFilterGenre>()
 
   useEffect(() => {
@@ -20,10 +20,10 @@ const FiltersContext: FC = ({children}) => {
   }, [])
 
   return (
-    <FiltersContextContainer.Provider value={filters!}>
+    <FiltersContext.Provider value={filters!}>
       {children}
-    </FiltersContextContainer.Provider>
+    </FiltersContext.Provider>
   );
 };
 
-export default FiltersContext;
+export default FiltersProvider;

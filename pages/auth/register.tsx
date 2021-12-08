@@ -2,8 +2,20 @@ import React from 'react';
 import {NextPage} from "next";
 import Link from "next/link";
 import RegisterForm from "@/components/auth/RegisterForm";
+import {RegisterFormValues} from "#/validationTypes";
+import FirebaseAuthService from "@/api/FirebaseAuthService";
 
 const Register: NextPage = () => {
+
+  const register = async (values: RegisterFormValues) => {
+    const {password,email,username} = values
+    try {
+      await FirebaseAuthService.register(email, password, username || '')
+    } catch (e) {
+      alert(e)
+    }
+  }
+
   return (
     <div className="bg-black">
       <main className="flex items-center justify-center px-4 py-6 bg-auth bg-no-repeat bg-top">
@@ -18,7 +30,7 @@ const Register: NextPage = () => {
                 </Link>
               </div>
             </div>
-           <RegisterForm />
+           <RegisterForm submitHandler={register}/>
           </div>
         </section>
       </main>

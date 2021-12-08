@@ -3,6 +3,7 @@ import {INavItem} from "#/headerTypes";
 import Link from 'next/link'
 import {PRIMARY_LIGHT} from "@/const";
 import cn from 'classnames'
+import {useAuth} from "@/contexts/AuthContext";
 
 interface INavItemComponent {
   item: INavItem,
@@ -10,12 +11,12 @@ interface INavItemComponent {
 }
 
 const NavItem: FC<INavItemComponent> = ({item, active}) => {
-  const {path, Icon, title} = item
-
+  const {path, Icon, title, redirect, isAuth} = item
+  const {user} = useAuth()
 
   return (
     <li className="last:mr-0 xs:mr-2">
-      <Link href={path}>
+      <Link href={isAuth && !user ? redirect! : path}>
         <a className="w-full items-center group w-12 flex flex-col cursor-pointer py-1 sm:w-20">
           <Icon
             size={30}

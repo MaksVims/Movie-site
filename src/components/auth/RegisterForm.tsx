@@ -3,8 +3,13 @@ import {Form, Formik} from "formik";
 import {validateRegisterForm} from "+/validation";
 import FormInput from "@/components/ui/FormInput";
 import FormCheckbox from "@/components/ui/FormCheckbox";
+import {RegisterFormValues} from "#/validationTypes";
 
-const RegisterForm:FC = () => {
+interface IRegisterForm {
+  submitHandler: (values: RegisterFormValues) => Promise<void> | void
+}
+
+const RegisterForm: FC<IRegisterForm> = ({submitHandler}) => {
   return (
     <Formik
       initialValues={{
@@ -15,9 +20,7 @@ const RegisterForm:FC = () => {
         isAgree: false
       }}
       validate={validateRegisterForm}
-      onSubmit={values => {
-        alert(JSON.stringify(values, null, 2))
-      }}
+      onSubmit={submitHandler}
     >
       <Form className="flex flex-col">
         <FormInput label="Email:" name="email" type="email" required/>
