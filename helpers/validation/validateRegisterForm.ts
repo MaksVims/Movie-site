@@ -2,7 +2,13 @@ import {RegisterFormValues, RegisterValidationErrors} from "#/validationTypes";
 import {validationErrors} from "@/const/validationErrors";
 import {regexpForEmail} from "@/const/regexp";
 
-export const validateRegisterForm = function ({email, password, repeating, isAgree}: RegisterFormValues): RegisterValidationErrors {
+export const validateRegisterForm = function ({
+                                                email,
+                                                password,
+                                                repeating,
+                                                isAgree
+                                              }: RegisterFormValues): RegisterValidationErrors {
+
   const errors: RegisterValidationErrors = {}
 
   if (!email.length) {
@@ -13,8 +19,8 @@ export const validateRegisterForm = function ({email, password, repeating, isAgr
 
   if (!password.length) {
     errors.password = validationErrors.required
-  } else if (password.length < 4) {
-    errors.password = validationErrors.minLength(4)
+  } else if (password.length < 6) {
+    errors.password = validationErrors.minLength(6)
   }
 
   if (!repeating.length || repeating !== password) {

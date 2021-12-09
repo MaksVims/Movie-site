@@ -21,7 +21,7 @@ body {
   }
 
   body {
-    @apply bg-primary-dark min-h-screen min-w-full;
+    @apply bg-primary-dark ;
   }
 
   main {
