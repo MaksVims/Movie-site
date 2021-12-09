@@ -13,7 +13,7 @@ const Profile: NextPage<IProfileProps> = () => {
   return (
     <MainLayout>
       <main
-        className="flex items-center justify-center px-2 md:py-0 pb-6 pt-60 sm:pt-20 absolute top-0 left-0 bg-no-repeat bg-center bg-profile bg-cover overflow-hidden z-10">
+        className="flex items-center justify-center absolute_main px-2 md:py-0 pb-6 bg-no-repeat bg-center bg-profile bg-cover overflow-hidden">
         <section
           className="bg-transparent relative rounded-md overflow-hidden min-w-full md:min-w-[750px] xl:min-w-[1024px] z-10">
           <div className="absolute bg-gray-100 top-0 left-0 w-full h-full opacity-20"></div>
@@ -30,7 +30,7 @@ const Profile: NextPage<IProfileProps> = () => {
                   </li>
                   <li className="truncate ">
                     <span className="font-medium text-xl">Email:</span>
-                    <span className="xl:text-xl ">111111111111111111111111111111111111111111111</span>
+                    <span className="xl:text-xl ">{user?.email}</span>
                   </li>
                   <li className="truncate">
                     <span className="truncate font-medium text-xl">Phone:</span>
@@ -54,7 +54,7 @@ const Profile: NextPage<IProfileProps> = () => {
                 <li className="text-lg">Фильм 1</li>
               </ul>
             </div>
-            <div className="bg-white p-4 rounded-md ">
+            <div className="bg-white p-4 rounded-md">
               <div className="flex flex-col items-start space-y-4 justify-center">
                 <button className="hover:bg-red-700 rounded-md py-2 px-4 bg-red-500 text-white">Выход</button>
                 <button className="hover:bg-red-700 rounded-md py-2 px-4 bg-red-500 text-white">Удаление аккаунта

@@ -15,17 +15,20 @@ const MovieId: NextPage<IMoviePageProps> = ({movie}) => {
 
   return (
     <MainLayout>
-      <main className="w-full h-full mx-auto mt-2 max-w-[1024px]">
+      <main className="mx-auto my-2 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md overflow-hidden">
         <section
           className="flex flex-col md:mx-auto items-center bg-white py-6 px-2 md:flex-row md:items-start md:px-6">
           <MovieCardImg movie={movie}/>
           <MovieCardContent movie={movie}/>
         </section>
-        <section className="pt-6 bg-white">
+        <section className="pt-6 bg-white flex-1">
+          <div className="px-4">
+            <h2 className="font-medium ">Смотреть видео {movie.nameRu} онлайн бесплатно</h2>
+          </div>
           <video
             src="#"
             controls={true}
-            className="w-full"
+            className="w-full h-full"
           />
         </section>
       </main>

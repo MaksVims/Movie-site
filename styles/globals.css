@@ -25,7 +25,7 @@ body {
   }
 
   main {
-    @apply min-h-screen min-w-full
+    @apply h-screen w-full
   }
 }
 
@@ -57,6 +57,10 @@ body {
   .btn-submit {
     @apply w-full uppercase rounded-md hover:bg-primary px-6 py-2 hover:text-white tracking-wider font-semibold
     focus:outline-none bg-primary-light transition duration-100 text-black sm:w-auto sm:self-end shadow-md
+  }
+
+  .absolute_main {
+    @apply absolute top-0 left-0 pt-60 sm:pt-20 z-10
   }
 }
 

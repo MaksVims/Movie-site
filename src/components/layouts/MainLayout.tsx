@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import Header from "@/components/header/Header";
 
-const MainLayout:FC = ({children}) => {
+const MainLayout: FC = ({children}) => {
   return (
     <div>
-      <Header />
+      <Header/>
       {children}
     </div>
   );
