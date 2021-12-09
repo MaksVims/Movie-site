@@ -4,20 +4,23 @@ import {auth} from "service/firebase";
 
 interface IAuthContext {
   user: User | null,
+  loadingUser: boolean
 }
 
-const AuthContext = React.createContext<IAuthContext>({user: null})
+const AuthContext = React.createContext<IAuthContext>({} as IAuthContext)
 
 const AuthContextProvider: FC = ({children}) => {
   const [user, setUser] = useState<User | null>(null)
+  const [loadingUser, setLoadingUser] = useState(true)
 
   useEffect(() => {
     return onAuthStateChanged(auth, user => {
       setUser(user || null)
+      setLoadingUser(false)
     })
   }, [])
 
-  const credentials: IAuthContext = useMemo(() => ({user}), [user])
+  const credentials: IAuthContext = useMemo(() => ({user, loadingUser}), [user, loadingUser])
 
   return (
     <AuthContext.Provider value={credentials}>
