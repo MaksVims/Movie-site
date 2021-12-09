@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {INavItem} from "#/headerTypes";
 import Link from 'next/link'
-import {PRIMARY_LIGHT} from "@/const";
 import cn from 'classnames'
 import {useAuth} from "@/contexts/AuthContext";
+import theme from "@/const/theme";
 
 interface INavItemComponent {
   item: INavItem,
@@ -20,7 +20,7 @@ const NavItem: FC<INavItemComponent> = ({item, active}) => {
         <a className="w-full items-center group w-14 flex flex-col cursor-pointer py-1 sm:w-20">
           <Icon
             size={30}
-            color={active ? PRIMARY_LIGHT : '#fff'}
+            color={active ? theme.colors.primary.light : '#fff'}
             className="mb-2 h-6 group-hover:animate-bounce xs:h-10"
           />
           <span className={cn('text-sm uppercase tracking-widest opacity-0 group-hover:opacity-100 text-white', {

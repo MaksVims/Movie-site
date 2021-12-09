@@ -43,7 +43,7 @@ body {
   }
 
   .bubble {
-    @apply absolute text-sm bg-primary-light block rounded-sm py-1 px-3 text-white
+    @apply absolute text-sm bg-primary-light block rounded-sm py-1 px-3 text-black
   }
 
   .form-checkbox:checked + span {

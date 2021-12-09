@@ -1,11 +1,9 @@
 import React, {FC} from 'react';
 import {IMovie} from "#/movieTypes";
 import Image from "next/image";
-import {FaHeart} from 'react-icons/fa'
 import {BiTime} from 'react-icons/bi'
 import cn from "classnames";
 import getFormatTime from 'helpers/getFormatTime';
-import {GRAY_COLOR} from "@/const";
 import Like from "@/components/ui/Like";
 
 interface IMovieCardImg {
