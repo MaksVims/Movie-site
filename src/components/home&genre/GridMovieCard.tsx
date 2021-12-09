@@ -1,29 +1,41 @@
-import React, {FC} from 'react';
+import React, {FC, useCallback, useMemo} from 'react';
 import {IMovieForGrid} from "#/movieTypes";
 import Image from "next/image";
 import Link from 'next/link'
-import {useAuth} from "@/contexts/AuthContext";
 import Play from "@/components/ui/Play";
 import RatingMovie from "@/components/ui/RatingMovie";
 import Like from "@/components/ui/Like";
 import {CollectionState} from "@/store";
+import {isCollection} from "+/isCollection";
+import {observer} from "mobx-react-lite";
+import cn from 'classnames'
 
 interface IGridMoveItem {
   movie: IMovieForGrid
 }
 
 const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
-  const {user} = useAuth()
+  const collection = CollectionState.moviesToCollection
+  const mapRecords = CollectionState.mapRecordsToCollection
+  const {movieId} = movie
+  const loading = CollectionState.loading
+  const isActive = useMemo(
+    (): boolean => isCollection(movieId, collection)
+    , [movieId, collection])
 
-  const handlerLikeMove = async () => {
-    await CollectionState.addMovieToCollection(movie.movieId)
-  }
+  const addMovieToCollection = useCallback(async () => {
+    await CollectionState.addMovieToCollection(movieId)
+  }, [movieId])
+
+  const removeMovieToCollection = useCallback(async () => {
+    await CollectionState.removeMovieToCollection(mapRecords[movieId])
+  }, [movieId, mapRecords])
 
   return (
     <article
       className="group cursor-pointer transform transition-transform duration-200 sm:hover:scale-105"
     >
-      <Link href={`/movies/${movie.movieId}`}>
+      <Link href={`/movies/${movieId}`}>
         <a>
           <div className="relative">
             <Image
@@ -49,11 +61,14 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
                 className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 text-xl"
               />
             }
-            {user && <Like
-              onClick={handlerLikeMove}
-              className="hover:scale-110 opacity-0 group-hover:opacity-100 absolute right-2 top-2"
+            <Like
+              onClick={isActive ? removeMovieToCollection : addMovieToCollection}
+              className={cn('hover:scale-110 opacity-0 group-hover:opacity-100 absolute right-2 top-2', {
+                'opacity-100': isActive
+              })}
               size={32}
-            />}
+              active={isActive}
+            />
           </div>
         </a>
       </Link>
@@ -66,4 +81,4 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
   );
 };
 
-export default GridMovieCard;
+export default observer(GridMovieCard);

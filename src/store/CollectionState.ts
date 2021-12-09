@@ -1,26 +1,20 @@
 import {makeAutoObservable} from "mobx";
 import FirebaseCollectionService from "@/api/FirebaseCollectionService";
-import firebase from "firebase/compat";
 import {CustomError} from "@/factory/CustomError";
-import DataSnapshot = firebase.database.DataSnapshot;
 import errorsMessage from "@/const/errorsMessage";
-
-type TCollectionItem = {
-  movieId: number
-}
+import {TCollectionItem, TypeCollection, TypeMapRecordsToCollection} from "#/storeTypes";
 
 class CollectionState {
 
-  collection: TCollectionItem[]
+  collection: TypeCollection
   loading: boolean
   error: null | CustomError
 
   constructor() {
-    makeAutoObservable(this)
-
-    this.collection = []
+    this.collection = {}
     this.loading = false
     this.error = null
+    makeAutoObservable(this)
   }
 
   startAsyncLoad() {
@@ -31,8 +25,7 @@ class CollectionState {
   async loadCollection(userId: string): Promise<void> {
     try {
       this.startAsyncLoad()
-      const result: DataSnapshot = await FirebaseCollectionService.loadCollection(userId)
-      this.collection = Object.values(result)
+      await FirebaseCollectionService.loadCollection(userId)
     } catch {
       this.error = new CustomError(errorsMessage.LOAD_COLLECTION)
     } finally {
@@ -40,16 +33,42 @@ class CollectionState {
     }
   }
 
+  async updateCollection(update: TypeCollection) {
+    this.collection = update === null ? {} : update
+  }
+
   async addMovieToCollection(movieId: number): Promise<void> {
     try {
+      this.startAsyncLoad()
       this.loading = true
       await FirebaseCollectionService.addMovieToCollection(movieId)
-      this.collection.push({movieId})
     } catch {
       this.error = new CustomError(errorsMessage.ADD_MOVIE_TO_COLLECTION)
     } finally {
       this.loading = false
     }
+  }
+
+  async removeMovieToCollection(recordId: string) {
+    try {
+      this.startAsyncLoad()
+      await FirebaseCollectionService.removeMovieToCollection(recordId)
+    } catch {
+      this.error = new CustomError(errorsMessage.REMOVE_MOVIE_TO_COLLECTION)
+    } finally {
+      this.loading = false
+    }
+  }
+
+  get moviesToCollection(): TCollectionItem[] {
+    return Object.values(this.collection)
+  }
+
+  get mapRecordsToCollection(): TypeMapRecordsToCollection {
+    return Object.keys(this.collection).reduce((map: TypeMapRecordsToCollection, recordID: string) => {
+      map[this.collection[recordID].movieId] = recordID
+      return map
+    }, {})
   }
 }
 
