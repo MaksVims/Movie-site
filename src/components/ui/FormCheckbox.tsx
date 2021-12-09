@@ -16,7 +16,7 @@ const FormCheckbox: FC<FormCheckbox> = ({label, required, className, ...props}) 
   return (
     <div className={`mb-5 relative space-y-1 ${className}`}>
       <label
-        className="block text-sm text_gray_color cursor-pointer flex items-center"
+        className="block text-sm text-gray-color cursor-pointer flex items-center"
         onPointerDown={e => e.preventDefault()}
       >
         <input
@@ -29,7 +29,7 @@ const FormCheckbox: FC<FormCheckbox> = ({label, required, className, ...props}) 
           {...props}
         />
         <span
-          className="border border-gray-300 w-4 h-4 inline-block rounded-sm mr-2 flex items-center justify-center">
+          className="border border-gray-300 w-4 h-4 inline-block rounded-sm mr-2 flex-center">
                     <BsCheck className="flex-shrink-0" size={20} color='#fff'/>
                   </span>
         <span>Я принимаю условие пользовательского соглашения</span>

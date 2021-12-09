@@ -29,7 +29,7 @@ const MovieCardImg: FC<IMovieCardImg> = ({movie}) => {
       />
       <div className={imageBottomClass}>
         {movie.filmLength &&
-        <p className="text_gray_color flex items-center">
+        <p className="text-gray-color flex items-center">
           <BiTime size={20} className="mr-1"/>
           <span className="text-sm">{getFormatTime(movie.filmLength)}</span>
         </p>}

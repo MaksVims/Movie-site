@@ -13,10 +13,10 @@ const Profile: NextPage<IProfileProps> = () => {
   return (
     <MainLayout>
       <main
-        className="flex items-center justify-center absolute_main px-2 md:py-0 pb-6 bg-no-repeat bg-center bg-profile bg-cover overflow-hidden">
+        className="flex-center absolute-main min-screen px-2 md:py-0 pb-6 bg-no-repeat bg-center bg-profile bg-cover ">
         <section
           className="bg-transparent relative rounded-md overflow-hidden min-w-full md:min-w-[750px] xl:min-w-[1024px] z-10">
-          <div className="absolute bg-gray-100 top-0 left-0 w-full h-full opacity-20"></div>
+          <div className="absolute bg-gray-100 top-0 left-0 full opacity-20"></div>
           <div className="p-4 md:p-10 min-w-full grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
             <div className="bg-white p-4 rounded-md row-span-2 flex flex-col justify-between space-y-6">
               <div className="flex flex-col space-y-6">

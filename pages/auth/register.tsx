@@ -16,15 +16,15 @@ const Register: NextPage = () => {
 
   return (
     <div className="bg-black">
-      <main className="flex items-center justify-center px-4 py-6 bg-auth bg-no-repeat bg-top">
+      <main className="flex-center px-4 py-6 bg-auth bg-no-repeat bg-top min-screen">
         <section className="mx-auto max-w-2xl w-full bg-white rounded-md shadow-md relative">
           <div className="space-y-12 sm:space-y-20 py-6 px-4 ">
             <div className="space-y-1 text-center">
               <h1 className="text-2xl text-black font-semibold">Регистрация аккаунта</h1>
-              <div className="flex items-center justify-center space-x-1 text-sm">
-                <span className="text_gray_color">Уже есть аккаунт?</span>
+              <div className="flex-center space-x-1 text-sm">
+                <span className="text-gray-color">Уже есть аккаунт?</span>
                 <Link href="/auth/login">
-                  <a className="link_blur_color">Войти</a>
+                  <a className="link-blur-color">Войти</a>
                 </Link>
               </div>
             </div>

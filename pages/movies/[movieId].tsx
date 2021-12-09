@@ -28,7 +28,7 @@ const MovieId: NextPage<IMoviePageProps> = ({movie}) => {
           <video
             src="#"
             controls={true}
-            className="w-full h-full"
+            className="full"
           />
         </section>
       </main>

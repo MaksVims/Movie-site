@@ -21,11 +21,7 @@ body {
   }
 
   body {
-    @apply bg-primary-dark ;
-  }
-
-  main {
-    @apply h-screen w-full
+    @apply bg-primary-dark min-h-screen w-full;
   }
 }
 
@@ -38,11 +34,11 @@ body {
     @apply border-2 border-solid border-yellow-400 flex justify-center items-center rounded-sm py-1 px-1
   }
 
-  .text_gray_color {
+  .text-gray-color {
     @apply text-gray-600
   }
 
-  .link_blur_color {
+  .link-blur-color {
     @apply text-blue-400
   }
 
@@ -59,8 +55,20 @@ body {
     focus:outline-none bg-primary-light transition duration-100 text-black sm:w-auto sm:self-end shadow-md
   }
 
-  .absolute_main {
-    @apply absolute top-0 left-0 pt-60 sm:pt-20 z-10
+  .absolute-main {
+    @apply absolute top-0 left-0 pt-60 sm:pt-40 z-10
+  }
+
+  .min-screen {
+    @apply min-h-screen min-w-full
+  }
+
+  .full {
+    @apply h-full w-full
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center
   }
 }
 

@@ -22,20 +22,20 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie}) => {
         <ul className="md:mr-6 space-y-1">
           <li>
             <span className="font-medium">Название: </span>
-            <span className="text_gray_color">{movie.nameRu}</span>
+            <span className="text-gray-color">{movie.nameRu}</span>
           </li>
           <li>
             <span className="font-medium">Год выхода: </span>
-            <span className="text_gray_color">{movie.year}</span>
+            <span className="text-gray-color">{movie.year}</span>
           </li>
           <li>
             <span className="font-medium">Cтрана: </span>
             <span
-              className="text_gray_color">{movie.countries.map(county => county.country).join(', ')}</span>
+              className="text-gray-color">{movie.countries.map(county => county.country).join(', ')}</span>
           </li>
           <li>
             <span className="font-medium">Оригинальное название: </span>
-            <span className="text_gray_color">{movie.nameOriginal}</span>
+            <span className="text-gray-color">{movie.nameOriginal}</span>
           </li>
         </ul>
         <ul className="grid grid-cols-2 gap-y-4 gap-x-7 my-4">
@@ -77,7 +77,7 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie}) => {
           </li>
           <li>
             <span className="font-medium">Описание: </span>
-            <span className="text_gray_color leading-relaxed">{movie.description || movie.shortDescription}</span>
+            <span className="text-gray-color leading-relaxed">{movie.description || movie.shortDescription}</span>
           </li>
         </ul>
       </div>
