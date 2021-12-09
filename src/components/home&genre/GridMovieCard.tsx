@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useMemo} from 'react';
+import React, {FC} from 'react';
 import {IMovieForGrid} from "#/movieTypes";
 import Image from "next/image";
 import Link from 'next/link'
@@ -6,32 +6,21 @@ import Play from "@/components/ui/Play";
 import RatingMovie from "@/components/ui/RatingMovie";
 import Like from "@/components/ui/Like";
 import {CollectionState} from "@/store";
-import {isCollection} from "+/isCollection";
 import {observer} from "mobx-react-lite";
 import cn from 'classnames'
 import MovieCardLoader from "@/components/ui/MovieCardLoader";
+import useMovieLike from "@/hooks/useMovieLike";
+import {useAuth} from "@/contexts/AuthContext";
 
 interface IGridMoveItem {
   movie: IMovieForGrid
 }
 
 const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
-  const collection = CollectionState.moviesToCollection
-  const mapRecords = CollectionState.mapRecordsToCollection
+  const {user} = useAuth()
   const {movieId} = movie
+  const {removeMovieToCollection, addMovieToCollection, isActive} = useMovieLike(movieId)
   const loading = CollectionState.loading
-
-  const isActive = useMemo(
-    (): boolean => isCollection(movieId, collection)
-    , [movieId, collection])
-
-  const addMovieToCollection = useCallback(async () => {
-    await CollectionState.addMovieToCollection(movieId)
-  }, [movieId])
-
-  const removeMovieToCollection = useCallback(async () => {
-    await CollectionState.removeMovieToCollection(mapRecords[movieId])
-  }, [movieId, mapRecords])
 
   if (loading) {
     return <MovieCardLoader/>
@@ -67,14 +56,14 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
                 className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 text-xl"
               />
             }
-            <Like
+            {user && <Like
               onClick={isActive ? removeMovieToCollection : addMovieToCollection}
               className={cn('hover:scale-110 opacity-0 group-hover:opacity-100 absolute right-2 top-2', {
                 'opacity-100': isActive
               })}
               size={32}
               active={isActive}
-            />
+            />}
           </div>
         </a>
       </Link>

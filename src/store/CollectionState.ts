@@ -12,7 +12,7 @@ class CollectionState {
 
   constructor() {
     this.collection = {}
-    this.loading = true
+    this.loading = false
     this.error = null
     makeAutoObservable(this)
   }

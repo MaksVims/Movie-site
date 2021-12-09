@@ -5,12 +5,17 @@ import {BiTime} from 'react-icons/bi'
 import cn from "classnames";
 import getFormatTime from 'helpers/getFormatTime';
 import Like from "@/components/ui/Like";
+import useMovieLike from "@/hooks/useMovieLike";
+import {observer} from 'mobx-react-lite';
+import {useAuth} from "@/contexts/AuthContext";
 
 interface IMovieCardImg {
   movie: IMovie,
 }
 
 const MovieCardImg: FC<IMovieCardImg> = ({movie}) => {
+  const {user} = useAuth()
+  const {addMovieToCollection, removeMovieToCollection, isActive} = useMovieLike(movie.kinopoiskId)
 
   const imageBottomClass = cn({
     'justify-center': !movie.filmLength,
@@ -32,14 +37,15 @@ const MovieCardImg: FC<IMovieCardImg> = ({movie}) => {
           <BiTime size={20} className="mr-1"/>
           <span className="text-sm">{getFormatTime(movie.filmLength)}</span>
         </p>}
-        <Like
+        {user && <Like
           size={25}
-          onClick={() => {}}
+          onClick={isActive ? removeMovieToCollection : addMovieToCollection}
           className="hover:scale-110"
-        />
+          active={isActive}
+        />}
       </div>
     </div>
   );
 };
 
-export default MovieCardImg;
+export default observer(MovieCardImg);

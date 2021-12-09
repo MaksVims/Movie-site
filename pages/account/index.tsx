@@ -2,6 +2,7 @@ import React from 'react';
 import {NextPage} from "next";
 import {useAuth} from "@/contexts/AuthContext";
 import MainLayout from "@/components/layouts/MainLayout";
+import FirebaseAuthService from '@/api/FirebaseAuthService';
 
 interface IProfileProps {
 
@@ -56,7 +57,9 @@ const Profile: NextPage<IProfileProps> = () => {
             </div>
             <div className="bg-white p-4 rounded-md">
               <div className="flex flex-col items-start space-y-4 justify-center">
-                <button className="hover:bg-red-700 rounded-md py-2 px-4 bg-red-500 text-white">Выход</button>
+                <button onClick={() => FirebaseAuthService.logout()}
+                        className="hover:bg-red-700 rounded-md py-2 px-4 bg-red-500 text-white">Выход
+                </button>
                 <button className="hover:bg-red-700 rounded-md py-2 px-4 bg-red-500 text-white">Удаление аккаунта
                 </button>
               </div>
