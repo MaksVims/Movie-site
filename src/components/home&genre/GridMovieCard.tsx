@@ -6,6 +6,7 @@ import {useAuth} from "@/contexts/AuthContext";
 import Play from "@/components/ui/Play";
 import RatingMovie from "@/components/ui/RatingMovie";
 import Like from "@/components/ui/Like";
+import {CollectionState} from "@/store";
 
 interface IGridMoveItem {
   movie: IMovieForGrid
@@ -13,6 +14,10 @@ interface IGridMoveItem {
 
 const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
   const {user} = useAuth()
+
+  const handlerLikeMove = async () => {
+    await CollectionState.addMovieToCollection(movie.movieId)
+  }
 
   return (
     <article
@@ -44,12 +49,11 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
                 className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 text-xl"
               />
             }
-            <Like
-              onClick={() => {
-              }}
+            {user && <Like
+              onClick={handlerLikeMove}
               className="hover:scale-110 opacity-0 group-hover:opacity-100 absolute right-2 top-2"
               size={32}
-            />
+            />}
           </div>
         </a>
       </Link>

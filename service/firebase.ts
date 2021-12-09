@@ -1,5 +1,6 @@
 import {FirebaseApp, getApp, getApps, initializeApp} from "@firebase/app";
-import {getAuth} from "@firebase/auth";
+import {Auth, getAuth} from "@firebase/auth";
+import {Database, getDatabase} from "firebase/database";
 
 let app: FirebaseApp
 
@@ -19,6 +20,7 @@ if (getApps().length) {
   app = initializeApp(firebaseConfig)
 }
 
-const auth = getAuth(app)
+const auth: Auth = getAuth(app)
+const db: Database = getDatabase()
 
-export {app, auth}
+export {app, auth, db}
