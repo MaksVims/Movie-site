@@ -12,7 +12,7 @@ class CollectionState {
 
   constructor() {
     this.collection = {}
-    this.loading = false
+    this.loading = true
     this.error = null
     makeAutoObservable(this)
   }
@@ -25,7 +25,8 @@ class CollectionState {
   async loadCollection(userId: string): Promise<void> {
     try {
       this.startAsyncLoad()
-      await FirebaseCollectionService.loadCollection(userId)
+      const res = await FirebaseCollectionService.loadCollection(userId)
+      this.collection = res === null ? {} : res
     } catch {
       this.error = new CustomError(errorsMessage.LOAD_COLLECTION)
     } finally {
@@ -39,8 +40,7 @@ class CollectionState {
 
   async addMovieToCollection(movieId: number): Promise<void> {
     try {
-      this.startAsyncLoad()
-      this.loading = true
+      this.error = null
       await FirebaseCollectionService.addMovieToCollection(movieId)
     } catch {
       this.error = new CustomError(errorsMessage.ADD_MOVIE_TO_COLLECTION)
@@ -51,7 +51,7 @@ class CollectionState {
 
   async removeMovieToCollection(recordId: string) {
     try {
-      this.startAsyncLoad()
+      this.error = null
       await FirebaseCollectionService.removeMovieToCollection(recordId)
     } catch {
       this.error = new CustomError(errorsMessage.REMOVE_MOVIE_TO_COLLECTION)

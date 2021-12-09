@@ -9,6 +9,7 @@ import {CollectionState} from "@/store";
 import {isCollection} from "+/isCollection";
 import {observer} from "mobx-react-lite";
 import cn from 'classnames'
+import MovieCardLoader from "@/components/ui/MovieCardLoader";
 
 interface IGridMoveItem {
   movie: IMovieForGrid
@@ -19,6 +20,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
   const mapRecords = CollectionState.mapRecordsToCollection
   const {movieId} = movie
   const loading = CollectionState.loading
+
   const isActive = useMemo(
     (): boolean => isCollection(movieId, collection)
     , [movieId, collection])
@@ -30,6 +32,10 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
   const removeMovieToCollection = useCallback(async () => {
     await CollectionState.removeMovieToCollection(mapRecords[movieId])
   }, [movieId, mapRecords])
+
+  if (loading) {
+    return <MovieCardLoader/>
+  }
 
   return (
     <article
