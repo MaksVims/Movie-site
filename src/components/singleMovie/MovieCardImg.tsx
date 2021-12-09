@@ -6,6 +6,7 @@ import {BiTime} from 'react-icons/bi'
 import cn from "classnames";
 import getFormatTime from 'helpers/getFormatTime';
 import {GRAY_COLOR} from "@/const";
+import Like from "@/components/ui/Like";
 
 interface IMovieCardImg {
   movie: IMovie,
@@ -33,10 +34,10 @@ const MovieCardImg: FC<IMovieCardImg> = ({movie}) => {
           <BiTime size={20} className="mr-1"/>
           <span className="text-sm">{getFormatTime(movie.filmLength)}</span>
         </p>}
-        <FaHeart
-          className="cursor-pointer hover:scale-110"
-          color={GRAY_COLOR}
+        <Like
           size={25}
+          onClick={() => {}}
+          className="hover:scale-110"
         />
       </div>
     </div>
