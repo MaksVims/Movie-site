@@ -70,6 +70,18 @@ body {
   .flex-center {
     @apply flex items-center justify-center
   }
+
+  .btn {
+    @apply py-2 rounded-md px-4 transition delay-100 text-white
+  }
+
+  .btn-success {
+    @apply bg-primary-light hover:bg-primary focus:bg-primary
+  }
+
+  .btn-danger {
+    @apply bg-red-500 hover:bg-red-700 focus:bg-red-700
+  }
 }
 
 .lds-dual-ring {

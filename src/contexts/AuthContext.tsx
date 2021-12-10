@@ -1,4 +1,4 @@
-import React, {FC, useContext, useEffect, useMemo, useState} from 'react';
+import React, {FC, useContext, useEffect, useMemo, useRef, useState} from 'react';
 import {onAuthStateChanged, User} from "@firebase/auth";
 import {auth} from "service/firebase";
 
@@ -11,9 +11,10 @@ const AuthContext = React.createContext<IAuthContext>({} as IAuthContext)
 
 const AuthContextProvider: FC = ({children}) => {
   const [user, setUser] = useState<User | null>(null)
-  const [loadingUser, setLoadingUser] = useState(true)
+  const [loadingUser, setLoadingUser] = useState(false)
 
   useEffect(() => {
+    setLoadingUser(true)
     return onAuthStateChanged(auth, user => {
       setUser(user || null)
       setLoadingUser(false)

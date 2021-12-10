@@ -4,6 +4,7 @@ import {IMovie} from "#/movieTypes";
 import getStringMonth from "+/getStringMonth";
 import fetchMovies from "+/fetchMovies";
 import getUrlFiltersMovies from "+/getUrlFiltersMovies";
+import { TCollectionItem } from "#/storeTypes";
 
 export class MovieService {
 
@@ -29,6 +30,16 @@ export class MovieService {
     const res = await fetchMovies(url)
     const result: IResponseMoviesByFiltersOrTop = await res.json()
     return result
+  }
+
+  static async getFavoriteMovies(moviesId: TCollectionItem[])  {
+    const promises = moviesId.map(movieId => MovieService.getMovieById(movieId.movieId))
+    const result = await Promise.allSettled(promises)
+
+    const favoriteMovies: IMovie[] = result
+      .filter(resolve => resolve.status === 'fulfilled')    // @ts-ignore
+      .map(resolve => resolve.value)
+    return favoriteMovies
   }
 
   static async getMovieById(movieId: number) {
