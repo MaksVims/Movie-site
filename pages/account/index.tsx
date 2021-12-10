@@ -8,15 +8,14 @@ import UserCardProfile from "@/components/profile/UserCardProfile";
 import FavoriteMovieList from "@/components/profile/FavoriteMovieList";
 import {useRouter} from "next/router";
 import BoxLoader from "@/components/ui/BoxLoader";
-import ControlPanel from "@/components/profile/ControlPanel";
+import AccountControlPanel from "@/components/profile/AccountControlPanel";
 
 interface IProfileProps {
 
 }
 
 const Profile: NextPage<IProfileProps> = () => {
-  const {user, loadingUser} = useAuth()
-  const router = useRouter()
+  const {user} = useAuth()
   const collection = CollectionState.moviesToCollection
   const loadCollection = CollectionState.loading
 
@@ -44,7 +43,7 @@ const Profile: NextPage<IProfileProps> = () => {
               )}
             </div>
             <div className="bg-white p-4 rounded-md">
-              <ControlPanel/>
+              <AccountControlPanel/>
             </div>
           </div>
         </section>
