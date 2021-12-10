@@ -22,7 +22,7 @@ export default class FirebaseAuthService {
     return !!auth.currentUser
   }
 
-  async deleteAccount(): Promise<boolean> {
+  static async deleteAccount(): Promise<boolean> {
     if (auth.currentUser) {
       await auth.currentUser.delete()
       return true

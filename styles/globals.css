@@ -23,6 +23,10 @@ body {
   body {
     @apply bg-primary-dark min-h-screen w-full;
   }
+
+  button:disabled {
+    @apply bg-gray-600 cursor-not-allowed hover:bg-gray-600
+  }
 }
 
 @layer components {
@@ -81,6 +85,11 @@ body {
 
   .btn-danger {
     @apply bg-red-500 hover:bg-red-700 focus:bg-red-700
+  }
+
+  .input {
+    @apply border border-solid border-gray-400 block py-2 px-2 rounded-md
+    focus:outline-none focus:border-primary-light shadow-md
   }
 }
 

@@ -6,7 +6,6 @@ import {CollectionState} from "@/store";
 import {useAuth} from "@/contexts/AuthContext";
 import UserCardProfile from "@/components/profile/UserCardProfile";
 import FavoriteMovieList from "@/components/profile/FavoriteMovieList";
-import {useRouter} from "next/router";
 import BoxLoader from "@/components/ui/BoxLoader";
 import AccountControlPanel from "@/components/profile/AccountControlPanel";
 
@@ -42,7 +41,7 @@ const Profile: NextPage<IProfileProps> = () => {
                 />
               )}
             </div>
-            <div className="bg-white p-4 rounded-md">
+            <div className="bg-white p-4 rounded-md flex-center">
               <AccountControlPanel/>
             </div>
           </div>

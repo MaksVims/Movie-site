@@ -1,10 +1,14 @@
 import React, {FC} from 'react';
 import FirebaseAuthService from "@/api/FirebaseAuthService";
+import useToggle from "@/hooks/useToggle";
+import RemoveAccountPopup from "@/components/profile/RemoveAccountPopup";
 
 const AccountControlPanel: FC = () => {
+  const [isOpenRemoveAccountPopup, setRemoveAccountPopupIsOpen, closeRemoveAccountPopup] = useToggle()
+
   return (
     <div
-      className="flex flex-col xs:flex-row xs:flex-wrap space-y-4 xs:space-y-0 items-center space-x-4 justify-center max-h-24"
+      className="flex flex-col space-y-4 items-center justify-center max-h-24"
     >
       <button
         onClick={() => FirebaseAuthService.logout()}
@@ -12,9 +16,13 @@ const AccountControlPanel: FC = () => {
       >
         Выход
       </button>
-      <button className="btn btn-danger">
+      <button className="btn btn-danger" onClick={() => setRemoveAccountPopupIsOpen(true)}>
         Удаление аккаунта
       </button>
+      <RemoveAccountPopup
+        onClose={closeRemoveAccountPopup}
+        isOpened={isOpenRemoveAccountPopup}
+      />
     </div>
   );
 };

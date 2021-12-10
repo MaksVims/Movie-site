@@ -22,8 +22,7 @@ const FormInput: FC<IFormInput> = ({label, required, className, ...props}) => {
         {required && <span className="text-red-400"> *</span>}
       </label>
       <input
-        className="border border-solid border-gray-400 block w-full py-2 px-2 rounded-md
-        focus:outline-none focus:border-primary-light shadow-md"
+        className="input w-full"
         {...props}
         value={field.value}
         onChange={field.onChange}
