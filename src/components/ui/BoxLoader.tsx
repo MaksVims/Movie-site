@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormLoader = () => {
+const BoxLoader = () => {
   return (
     <div
       className="absolute bg-black top-0 left-0 full opacity-60 z-40 flex-center">
@@ -9,4 +9,4 @@ const FormLoader = () => {
   );
 };
 
-export default FormLoader;
+export default BoxLoader;

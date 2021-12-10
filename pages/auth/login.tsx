@@ -4,7 +4,7 @@ import Link from 'next/link'
 import LoginForm from "@/components/auth/LoginForm";
 import {LoginFormValues} from "#/validationTypes";
 import FirebaseAuthService from "@/api/FirebaseAuthService";
-import FormLoader from "@/components/ui/FormLoader";
+import BoxLoader from "@/components/ui/BoxLoader";
 import {useFetch} from "@/hooks/useFetch";
 
 const Login: NextPage = () => {
@@ -29,7 +29,7 @@ const Login: NextPage = () => {
             </div>
             <LoginForm handlerSubmit={login}/>
           </div>
-          {loading && <FormLoader/>}
+          {loading && <BoxLoader/>}
         </section>
       </main>
     </div>

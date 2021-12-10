@@ -4,7 +4,7 @@ import Link from "next/link";
 import RegisterForm from "@/components/auth/RegisterForm";
 import {RegisterFormValues} from "#/validationTypes";
 import FirebaseAuthService from "@/api/FirebaseAuthService";
-import FormLoader from "@/components/ui/FormLoader";
+import BoxLoader from "@/components/ui/BoxLoader";
 import {useFetch} from "@/hooks/useFetch";
 
 const Register: NextPage = () => {
@@ -30,7 +30,7 @@ const Register: NextPage = () => {
             </div>
             <RegisterForm submitHandler={register}/>
           </div>
-          {loading && <FormLoader/>}
+          {loading && <BoxLoader/>}
         </section>
       </main>
     </div>

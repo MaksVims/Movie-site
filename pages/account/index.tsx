@@ -1,14 +1,14 @@
 import React from 'react';
 import {NextPage} from "next";
 import MainLayout from "@/components/layouts/MainLayout";
-import FirebaseAuthService from '@/api/FirebaseAuthService';
 import {observer} from 'mobx-react-lite';
 import {CollectionState} from "@/store";
 import {useAuth} from "@/contexts/AuthContext";
 import UserCardProfile from "@/components/profile/UserCardProfile";
 import FavoriteMovieList from "@/components/profile/FavoriteMovieList";
 import {useRouter} from "next/router";
-import FormLoader from "@/components/ui/FormLoader";
+import BoxLoader from "@/components/ui/BoxLoader";
+import ControlPanel from "@/components/profile/ControlPanel";
 
 interface IProfileProps {
 
@@ -19,7 +19,6 @@ const Profile: NextPage<IProfileProps> = () => {
   const router = useRouter()
   const collection = CollectionState.moviesToCollection
   const loadCollection = CollectionState.loading
-
 
   return (
     <MainLayout>
@@ -35,7 +34,7 @@ const Profile: NextPage<IProfileProps> = () => {
             />
             <div className="bg-white p-4 rounded-md min-h-[200px] max-h-72 relative">
               {loadCollection ? (
-                <FormLoader/>
+                <BoxLoader/>
               ) : (
                 <FavoriteMovieList
                   classNames="scrollbar-hide"
@@ -45,13 +44,7 @@ const Profile: NextPage<IProfileProps> = () => {
               )}
             </div>
             <div className="bg-white p-4 rounded-md">
-              <div className="flex flex-col items-start space-y-4 justify-center">
-                <button onClick={() => FirebaseAuthService.logout()}
-                        className="btn btn-danger">Выход
-                </button>
-                <button className="btn btn-danger">Удаление аккаунта
-                </button>
-              </div>
+              <ControlPanel/>
             </div>
           </div>
         </section>
