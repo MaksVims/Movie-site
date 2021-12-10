@@ -29,9 +29,14 @@ const FormCheckbox: FC<FormCheckbox> = ({label, required, className, ...props}) 
           {...props}
         />
         <span
-          className="border border-gray-300 w-4 h-4 inline-block rounded-sm mr-2 flex-center">
-                    <BsCheck className="flex-shrink-0" size={20} color='#fff'/>
-                  </span>
+          className="border border-gray-300 w-4 h-4 rounded-sm mr-2 flex-center"
+        >
+          <BsCheck
+            className="flex-shrink-0"
+            size={20}
+            color='#fff'
+          />
+        </span>
         <span>Я принимаю условие пользовательского соглашения</span>
         {required && <span className="text-red-400"> *</span>}
       </label>
