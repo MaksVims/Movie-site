@@ -1,31 +1,35 @@
 import React, {FC} from 'react';
-import UserInfo from "@/components/profile/UserInfo";
 import {User} from "@firebase/auth";
-import Avatar from "@/components/profile/Avatar";
+import useToggle from "@/hooks/useToggle";
+import UserCard from "@/components/ui/UserCard";
+import PopupEditUserData from "@/components/profile/PopupEditUserData";
 
 interface UserCardProfileProps {
   user: User
   classNames?: string
 }
 
-const UserCardProfile: FC<UserCardProfileProps> = ({user,classNames}) => {
+const UserCardProfile: FC<UserCardProfileProps> = ({user, classNames}) => {
+  const [isOpenEditPopup, setIsOpenEditPopup, closeEditPopup] = useToggle()
+
   return (
-    <div className={`flex flex-col justify-between space-y-6 h-full ${classNames}`}>
-      <div className="flex flex-col space-y-6">
-        <Avatar
-          width={120}
-          height={120}
-          classNames="self-center"
-        />
-        <UserInfo user={user}/>
-      </div>
+    <div className={`flex flex-col justify-between space-y-6 h-full ${classNames || ''}`}>
+      <UserCard
+        user={user}
+        classNames="sm:space-y-10"
+      />
       <button
-        className="btn btn-success sm:text-sm sm:w-auto sm:self-end w-full sm:w-24!"
+        onClick={() => setIsOpenEditPopup(true)}
+        className="btn btn-success w-full sm:text-sm sm:w-auto sm:self-end sm:w-24!"
       >
-        Save
+        Изменить
       </button>
+      <PopupEditUserData
+        onClose={closeEditPopup}
+        isOpened={isOpenEditPopup}
+      />
     </div>
   );
 };
 
-export default UserCardProfile;
+export default React.memo(UserCardProfile);

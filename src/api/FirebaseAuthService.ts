@@ -1,4 +1,4 @@
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, UserCredential} from "firebase/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword,updateProfile,updatePhoneNumber, UserCredential} from "firebase/auth";
 import {auth} from "service/firebase";
 
 export default class FirebaseAuthService {
@@ -15,6 +15,13 @@ export default class FirebaseAuthService {
     await createUserWithEmailAndPassword(auth, email, password)
     return updateProfile(auth.currentUser!, {
       displayName: name || email
+    })
+  }
+
+  static async updateProfile(name: string, tel: string, photoURL:string) {
+    await updateProfile(auth.currentUser!, {
+      displayName: name,
+      photoURL,
     })
   }
 

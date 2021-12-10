@@ -1,25 +1,24 @@
 import React, {FC} from 'react';
 import {User} from "@firebase/auth";
+import cn from 'classnames'
 
 interface UserInfoProps {
-  user:User
+  user: User
 }
 
-const UserInfo:FC<UserInfoProps> = ({user}) => {
+const UserInfo: FC<UserInfoProps> = ({user}) => {
+
+  const titleClass = cn('font-medium text-xl md:col-span-2')
+  const contentClass = cn('xs:text-xl md:text-lg md:col-span-4')
+
   return (
-    <ul className="space-y-2">
-      <li className="truncate ">
-        <span className="font-medium text-xl ">Имя:</span>
-        <span className="xl:text-xl ">{user?.displayName}</span>
-      </li>
-      <li className="truncate ">
-        <span className="font-medium text-xl">Email:</span>
-        <span className="xl:text-xl ">{user?.email}</span>
-      </li>
-      <li className="truncate">
-        <span className="truncate font-medium text-xl">Phone:</span>
-        <span className="xl:text-xl">89620155660</span>
-      </li>
+    <ul className="space-y-2 grid grid-cols-2 items-baseline md:grid-cols-6 truncate">
+      <span className={titleClass}>Имя:</span>
+      <span className={contentClass}>{user?.displayName || 'Не указан'} </span>
+      <span className={titleClass}>Email:</span>
+      <span className={contentClass}>{user?.email}</span>
+      <span className={titleClass}>Phone:</span>
+      <span className={contentClass}>{user?.phoneNumber || 'Не указан'}</span>
     </ul>
   );
 };
