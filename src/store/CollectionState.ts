@@ -38,10 +38,10 @@ class CollectionState {
     this.collection = update === null ? {} : update
   }
 
-  async addMovieToCollection(movieId: number): Promise<void> {
+  async addMovieToCollection(movieId: number, title:string): Promise<void> {
     try {
       this.error = null
-      await FirebaseCollectionService.addMovieToCollection(movieId)
+      await FirebaseCollectionService.addMovieToCollection(movieId, title)
     } catch {
       this.error = new CustomError(errorsMessage.ADD_MOVIE_TO_COLLECTION)
     } finally {

@@ -23,12 +23,13 @@ export default class FirebaseCollectionService {
     return await remove(collectionListItemRef)
   }
 
-  static async addMovieToCollection(movieId: number): Promise<boolean> {
+  static async addMovieToCollection(movieId: number, title: string): Promise<boolean> {
     const userId = auth.currentUser?.uid
     const collectionListRef = ref(db, `/users/${userId}/collection`)
     const newCollectionItemRef = push(collectionListRef)
     await set(newCollectionItemRef, {
-      movieId
+      movieId,
+      title
     })
     return true
   }

@@ -1,5 +1,6 @@
 export type TCollectionItem = {
-  movieId: number
+  movieId: number,
+  title: string
 }
 
 export type TypeCollection = {

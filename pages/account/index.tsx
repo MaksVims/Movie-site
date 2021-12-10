@@ -1,41 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {NextPage} from "next";
 import MainLayout from "@/components/layouts/MainLayout";
 import FirebaseAuthService from '@/api/FirebaseAuthService';
 import {observer} from 'mobx-react-lite';
 import {CollectionState} from "@/store";
 import {useAuth} from "@/contexts/AuthContext";
-import {IMovie} from "#/movieTypes";
-import {useFetch} from "@/hooks/useFetch";
-import {MovieService} from "@/api/MovieService";
 import UserCardProfile from "@/components/profile/UserCardProfile";
 import FavoriteMovieList from "@/components/profile/FavoriteMovieList";
+import {useRouter} from "next/router";
+import FormLoader from "@/components/ui/FormLoader";
 
 interface IProfileProps {
 
 }
 
 const Profile: NextPage<IProfileProps> = () => {
-  const {user} = useAuth()
+  const {user, loadingUser} = useAuth()
+  const router = useRouter()
   const collection = CollectionState.moviesToCollection
   const loadCollection = CollectionState.loading
-  const [favoriteMovies, setFavoriteMovies] = useState<IMovie[]>([])
 
-  const [fetchFavoriteMovies, loadFavoriteMovies] = useFetch(async () => {
-    const fetchingFavoriteMovies = await MovieService.getFavoriteMovies(collection)
-    setFavoriteMovies(fetchingFavoriteMovies)
-    console.log(fetchingFavoriteMovies)
-  })
-
-  useEffect(() => {
-    if (!loadCollection && collection.length) {
-      fetchFavoriteMovies()
-    }
-  }, [loadCollection])
-
-  if (!user) {
-    return null
-  }
 
   return (
     <MainLayout>
@@ -46,14 +30,20 @@ const Profile: NextPage<IProfileProps> = () => {
           <div className="absolute bg-gray-100 top-0 left-0 full opacity-20"></div>
           <div className="p-4 md:p-10 min-w-full grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
             <UserCardProfile
-              user={user}
+              user={user!}
               classNames="p-4 row-span-2 bg-white rounded-md"
             />
-            <FavoriteMovieList
-              classNames="bg-white p-4 rounded-md max-h-72 scrollbar-hide"
-              title="Любимые фильмы"
-              movies={favoriteMovies}
-            />
+            <div className="bg-white p-4 rounded-md min-h-[200px] max-h-72 relative">
+              {loadCollection ? (
+                <FormLoader/>
+              ) : (
+                <FavoriteMovieList
+                  classNames="scrollbar-hide"
+                  title="Любимые фильмы"
+                  movies={collection}
+                />
+              )}
+            </div>
             <div className="bg-white p-4 rounded-md">
               <div className="flex flex-col items-start space-y-4 justify-center">
                 <button onClick={() => FirebaseAuthService.logout()}

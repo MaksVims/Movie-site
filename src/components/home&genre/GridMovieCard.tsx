@@ -19,7 +19,7 @@ interface IGridMoveItem {
 const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
   const {user} = useAuth()
   const {movieId} = movie
-  const {removeMovieToCollection, addMovieToCollection, isActive} = useMovieLike(movieId)
+  const {removeMovieToCollection, addMovieToCollection, isActive} = useMovieLike(movieId, movie.nameRu)
   const loading = CollectionState.loading
 
   if (loading) {
