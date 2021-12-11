@@ -24,6 +24,10 @@ body {
     @apply bg-primary-dark min-h-screen w-full;
   }
 
+  button {
+    @apply outline-none;
+  }
+
   button:disabled {
     @apply bg-gray-600 cursor-not-allowed hover:bg-gray-600
   }

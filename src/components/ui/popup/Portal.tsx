@@ -9,7 +9,7 @@ const Portal: FC = ({children}) => {
     return () => {
       container.remove()
     }
-  }, [])
+  }, [container])
 
   return createPortal(children, container)
 };
