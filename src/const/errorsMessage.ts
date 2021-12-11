@@ -1,5 +1,9 @@
 export default {
   LOAD_COLLECTION: 'Загрузка коллекций фильмов не удалась',
   ADD_MOVIE_TO_COLLECTION: 'Ошибка добавления фильма',
-  REMOVE_MOVIE_TO_COLLECTION: 'Не удалось удалить'
+  REMOVE_MOVIE_TO_COLLECTION: 'Не удалось удалить',
+  AUTH_LOGIN: 'Ошибка входа, проверьте данные',
+  AUTH_REGISTER: 'Указанный email уже используется',
+  REMOVE_ACCOUNT: 'Ошибка удаления аккаунта',
+  LOGOUT: 'Не удалось выйти',
 }
