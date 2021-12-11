@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {useAuth} from "@/contexts/AuthContext";
 import {Form, Formik} from "formik";
 import FormInput from "@/components/ui/FormInput";
@@ -11,6 +11,11 @@ interface FormEditUserDataProps {
 
 const FormEditUserData: FC<FormEditUserDataProps> = ({submitHandler}) => {
   const {user} = useAuth()
+  const focusRef = useRef<HTMLInputElement | null>(null)
+
+  useEffect(() => {
+    setTimeout(() => focusRef.current?.focus())
+  }, [])
 
   return (
     <Formik
@@ -24,17 +29,24 @@ const FormEditUserData: FC<FormEditUserDataProps> = ({submitHandler}) => {
     >
       <Form className="flex flex-col">
         <FormInput
+          placeholder="Ваше имя или логин"
           label="Имя:"
           name="username"
-          type="text"/>
+          type="text"
+          ref={focusRef}
+        />
         <FormInput
-          label="Контактный телефон:"
+          placeholder="Контактный телефон"
+          label="Номер телефона:"
           name="tel"
-          type="tel"/>
+          type="tel"
+        />
         <FormInput
+          placeholder="Url ссылка на аватарку"
           label="Ссылка на аватарку:"
           name="url"
-          type="url"/>
+          type="url"
+        />
         <button
           className="mt-2 btn-submit"
           type="submit"
