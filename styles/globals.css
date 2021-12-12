@@ -20,6 +20,10 @@ body {
     text-decoration: none;
   }
 
+  #__next {
+    @apply h-screen
+  }
+
   body {
     @apply bg-primary-dark min-h-screen w-full;
   }

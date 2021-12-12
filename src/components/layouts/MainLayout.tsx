@@ -11,7 +11,7 @@ const MainLayout: FC = ({children}) => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
       <Header/>
       {children}
     </div>

@@ -1,22 +1,25 @@
-import React, {useMemo} from 'react';
+import React, {useEffect} from 'react';
 import {GetStaticProps, NextPage} from "next";
 import MainLayout from "@/components/layouts/MainLayout";
 import {MovieService} from "@/api/MovieService";
-import ScrollBarGenre from "@/components/home&genre/ScrollBarGenre";
 import GridMovies from "@/components/home&genre/GridMovies";
 import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
-import transformDBMoviesToMoviesGrid from "../helpers/transformDBMoviesToMoviesGrid";
 import FooterLayout from "@/components/layouts/FooterLayout";
 import Seo from "@/hoc/Seo";
+import {observer} from 'mobx-react-lite';
+import moviesState from "@/store/MoviesState";
+import SelectFilterMovies from "@/components/ui/SelectFilterMovies";
+import ScrollBarGenre from '@/components/home&genre/ScrollBarGenre';
 
 interface IHomePageProps {
   responseResult: IResponseMoviesByFiltersOrTop
 }
 
 const Home: NextPage<IHomePageProps> = ({responseResult}) => {
-  const moviesForGrid = useMemo(
-    () => transformDBMoviesToMoviesGrid(responseResult.films),
-    [responseResult])
+  useEffect(() => {
+    moviesState.setMovies(responseResult.films)
+  }, [])
+  const filteredMovies = moviesState.filteredMovies
 
   return (
     <Seo
@@ -25,9 +28,10 @@ const Home: NextPage<IHomePageProps> = ({responseResult}) => {
     >
       <MainLayout>
         <FooterLayout>
-          <main>
+          <main className="h-full">
             <ScrollBarGenre/>
-            <GridMovies movies={moviesForGrid}/>
+            <SelectFilterMovies/>
+            <GridMovies movies={filteredMovies}/>
           </main>
         </FooterLayout>
       </MainLayout>
@@ -35,7 +39,7 @@ const Home: NextPage<IHomePageProps> = ({responseResult}) => {
   );
 };
 
-export default Home;
+export default observer(Home);
 
 export const getStaticProps: GetStaticProps<IHomePageProps> = async () => {
   try {

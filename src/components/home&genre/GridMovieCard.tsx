@@ -28,16 +28,16 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
 
   return (
     <article
-      className="group cursor-pointer transform transition-transform duration-200 sm:hover:scale-105"
+      className="group cursor-pointer transform transition-transform duration-200 sm:hover:scale-105 "
     >
       <Link href={`/movies/${movieId}`}>
         <a>
           <div className="relative">
             <Image
               src={movie.posterUrlPreview}
-              width={950}
-              height={1200}
-              layout={"responsive"}
+              width={475}
+              height={600}
+              // layout={"responsive"}
               alt={movie.nameRu}
             />
             <div className="absolute left-0 top-0 full bg-black group-hover:opacity-70 opacity-0">
