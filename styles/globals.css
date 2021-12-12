@@ -123,3 +123,12 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  background-color: #f9f9fd;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #c2c2c4;
+}

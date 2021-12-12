@@ -14,7 +14,7 @@ const PopupTermsOfUsers: FC<PopupTermsOfUsersProps> = ({onClose, isOpened}) => {
         isOpened={isOpened}
         title={"Условия пользования"}
       >
-        <div className="overflow-auto scrollbar-hide max-h-[400px]">
+        <div className="overflow-auto max-h-[400px] custom-scrollbar">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, laudantium, minima! Minima non praesentium
           voluptates. A accusamus cupiditate deleniti doloribus ea eum facilis fuga, illo impedit labore laborum magnam
           minima nam, neque nobis provident quaerat quia quidem sapiente soluta temporibus vitae voluptatum. Aliquam
