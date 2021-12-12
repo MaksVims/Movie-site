@@ -27,6 +27,7 @@ const Footer: FC = () => {
           <span className="text-xs">
           Данные взяты с
             <a
+              target="_blank"
               href="https://kinopoiskapiunofficial.tech/"
               className="link-blur-color hover:underline ml-1"
             >
