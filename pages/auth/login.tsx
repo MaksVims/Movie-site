@@ -13,6 +13,7 @@ import successMessage from "@/const/successMessage";
 import {useRouter} from "next/router";
 import {User} from "@firebase/auth";
 import NoAccessUser from "@/hoc/NoAccessUser";
+import Seo from "@/hoc/Seo";
 
 const Login: NextPage = () => {
   const {showAlert} = useAlert()
@@ -30,27 +31,30 @@ const Login: NextPage = () => {
   }, [showAlert]))
 
   return (
-    <NoAccessUser to={'/'}>
-      <div className="bg-black">
-        <main className="flex-center min-screen px-4 py-6 bg-auth bg-no-repeat bg-top">
-          <section className="mx-auto max-w-2xl w-full bg-white rounded-md shadow-md relative">
-            <div className="space-y-12 sm:space-y-20 py-6 px-4">
-              <div className="space-y-1 text-center">
-                <h1 className="text-2xl text-black font-semibold">Авторизация</h1>
-                <div className="flex-center space-x-1 text-sm">
-                  <span className="text-gray-color">Нет аккаунта?</span>
-                  <Link href="/auth/register">
-                    <a className="link-blur-color">Зарегистрироваться</a>
-                  </Link>
+    <Seo title={'Страница входа посетителя'}>
+      <NoAccessUser to={'/'}>
+        <div className="bg-black">
+          <main className="flex-center min-screen px-4 py-6 bg-auth bg-no-repeat bg-top">
+            <section className="mx-auto max-w-2xl w-full bg-white rounded-md shadow-md relative">
+              <div className="space-y-12 sm:space-y-20 py-6 px-4">
+                <div className="space-y-1 text-center">
+                  <h1 className="text-2xl text-black font-semibold">Авторизация</h1>
+                  <div className="flex-center space-x-1 text-sm">
+                    <span className="text-gray-color">Нет аккаунта?</span>
+                    <Link href="/auth/register">
+                      <a className="link-blur-color">Зарегистрироваться</a>
+                    </Link>
+                  </div>
                 </div>
+                <FormLogin handlerSubmit={login}/>
               </div>
-              <FormLogin handlerSubmit={login}/>
-            </div>
-            {loading && <BoxLoader/>}
-          </section>
-        </main>
-      </div>
-    </NoAccessUser>
+              {loading && <BoxLoader/>}
+            </section>
+          </main>
+        </div>
+      </NoAccessUser>
+    </Seo>
+
   );
 };
 

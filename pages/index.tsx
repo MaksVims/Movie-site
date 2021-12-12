@@ -7,6 +7,7 @@ import GridMovies from "@/components/home&genre/GridMovies";
 import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
 import transformDBMoviesToMoviesGrid from "../helpers/transformDBMoviesToMoviesGrid";
 import FooterLayout from "@/components/layouts/FooterLayout";
+import Seo from "@/hoc/Seo";
 
 interface IHomePageProps {
   responseResult: IResponseMoviesByFiltersOrTop
@@ -18,14 +19,19 @@ const Home: NextPage<IHomePageProps> = ({responseResult}) => {
     [responseResult])
 
   return (
-    <MainLayout>
-      <FooterLayout>
-        <main>
-          <ScrollBarGenre/>
-          <GridMovies movies={moviesForGrid}/>
-        </main>
-      </FooterLayout>
-    </MainLayout>
+    <Seo
+      title={"Hulu"}
+      keywords={"Лучшие фильмы, топ фильмов"}
+    >
+      <MainLayout>
+        <FooterLayout>
+          <main>
+            <ScrollBarGenre/>
+            <GridMovies movies={moviesForGrid}/>
+          </main>
+        </FooterLayout>
+      </MainLayout>
+    </Seo>
   );
 };
 

@@ -9,6 +9,7 @@ import MovieCardImg from "@/components/singleMovie/MovieCardImg";
 import {IStaffByMovie} from "#/staffTypes";
 import StaffService from "@/api/StaffService";
 import FooterLayout from "@/components/layouts/FooterLayout";
+import Seo from "@/hoc/Seo";
 
 interface IMoviePageProps {
   movie: IMovie,
@@ -18,27 +19,34 @@ interface IMoviePageProps {
 const MovieId: NextPage<IMoviePageProps> = ({movie, staff}) => {
 
   return (
-    <MainLayout>
-      <FooterLayout>
-        <main className="mx-auto my-2 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md overflow-hidden">
-          <section
-            className="flex flex-col md:mx-auto items-center bg-white py-6 px-2 md:flex-row md:items-start md:px-6">
-            <MovieCardImg movie={movie}/>
-            <MovieCardContent movie={movie} staff={staff}/>
-          </section>
-          <section className="pt-6 bg-white flex-1">
-            <div className="px-4">
-              <h2 className="font-medium ">Смотреть видео {movie.nameRu} онлайн бесплатно</h2>
-            </div>
-            <video
-              src="#"
-              controls={true}
-              className="full"
-            />
-          </section>
-        </main>
-      </FooterLayout>
-    </MainLayout>
+    <Seo
+      title={movie.nameRu}
+      keywords={`${movie.nameRu} ${movie.genres.map(genre => genre.genre).join(',')}`}
+      description={movie.description}
+    >
+      <MainLayout>
+        <FooterLayout>
+          <main className="mx-auto my-2 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md overflow-hidden">
+            <section
+              className="flex flex-col md:mx-auto items-center bg-white py-6 px-2 md:flex-row md:items-start md:px-6">
+              <MovieCardImg movie={movie}/>
+              <MovieCardContent movie={movie} staff={staff}/>
+            </section>
+            <section className="pt-6 bg-white flex-1">
+              <div className="px-4">
+                <h2 className="font-medium ">Смотреть видео {movie.nameRu} онлайн бесплатно</h2>
+              </div>
+              <video
+                src="#"
+                controls={true}
+                className="full"
+              />
+            </section>
+          </main>
+        </FooterLayout>
+      </MainLayout>
+    </Seo>
+
   );
 };
 

@@ -7,6 +7,7 @@ import ScrollBarGenre from "@/components/home&genre/ScrollBarGenre";
 import GridMovies from "@/components/home&genre/GridMovies";
 import transformDBMoviesToMoviesGrid from "+/transformDBMoviesToMoviesGrid";
 import FooterLayout from "@/components/layouts/FooterLayout";
+import Seo from "@/hoc/Seo";
 
 interface IPremieresPageProps {
   responseResult: IResponseMoviesPremieres
@@ -18,14 +19,19 @@ const PremieresPage: NextPage<IPremieresPageProps> = ({responseResult}) => {
     [responseResult])
 
   return (
-    <MainLayout>
-      <FooterLayout>
-        <main>
-          <ScrollBarGenre/>
-          <GridMovies movies={moviesForGrid}/>
-        </main>
-      </FooterLayout>
-    </MainLayout>
+    <Seo
+      title="Ближайшие премьеры"
+      keywords="Премьера, новинки"
+    >
+      <MainLayout>
+        <FooterLayout>
+          <main>
+            <ScrollBarGenre/>
+            <GridMovies movies={moviesForGrid}/>
+          </main>
+        </FooterLayout>
+      </MainLayout>
+    </Seo>
   );
 };
 
