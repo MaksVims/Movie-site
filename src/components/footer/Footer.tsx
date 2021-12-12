@@ -1,8 +1,12 @@
 import React, {FC} from 'react';
 import Logo from 'public/images/logo.png'
 import Image from "next/image";
+import useToggle from "@/hooks/useToggle";
+import PopupTermsOfUsers from "@/components/footer/PopupTermsOfUsers";
 
 const Footer: FC = () => {
+  const [isOpenPopupTerms, setIsOpenPopupTerms, closePopupTerms] = useToggle()
+
   return (
     <footer className="bg-black p-4 text-white xl:px-8">
       <div className="flex flex-col items-center space-y-4 sm:flex-row sm:space-y-0 sm:justify-between">
@@ -13,9 +17,12 @@ const Footer: FC = () => {
           className="flex-shrink-0"
         />
         <div className="flex flex-col items-center space-y-2">
-          <span className=" cursor-pointer hover:underline">
-          Пользовательское соглашение
-        </span>
+          <button
+            className=" cursor-pointer hover:underline"
+            onClick={() => setIsOpenPopupTerms(true)}
+          >
+            Пользовательское соглашение
+          </button>
           <span className="text-xs">Не для коммерческого использования</span>
           <span className="text-xs">
           Данные взяты с
@@ -28,6 +35,10 @@ const Footer: FC = () => {
         </span>
         </div>
       </div>
+      <PopupTermsOfUsers
+        onClose={closePopupTerms}
+        isOpened={isOpenPopupTerms}
+      />
     </footer>
   );
 };
