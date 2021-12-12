@@ -1,6 +1,7 @@
-import React, {FC, useContext, useEffect, useMemo, useRef, useState} from 'react';
+import React, {FC, useContext, useEffect, useMemo, useState} from 'react';
 import {onAuthStateChanged, User} from "@firebase/auth";
 import {auth} from "service/firebase";
+import {TOKEN} from '@/const';
 
 interface IAuthContext {
   user: User | null,
@@ -16,6 +17,13 @@ const AuthContextProvider: FC = ({children}) => {
   useEffect(() => {
     setLoadingUser(true)
     return onAuthStateChanged(auth, user => {
+
+      if (user) {
+        document.cookie = `${TOKEN}=${user?.refreshToken};max-age=3600;path=/`
+      } else {
+        document.cookie = `${TOKEN}=${null};max-age=${-1};path=/`
+      }
+
       setUser(user || null)
       setLoadingUser(false)
     })
