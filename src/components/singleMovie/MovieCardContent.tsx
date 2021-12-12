@@ -1,17 +1,18 @@
 import React, {FC} from 'react';
 import {IMovie} from "#/movieTypes";
-import Link from "next/link";
 import {useFilters} from "@/contexts";
-import formatFirstToUppercase from 'helpers/formatFirstToUppercase';
-import {getTitleGenreByRuName} from '+/getTitleGenrebyRuName';
+import {IStaffByMovie} from "#/staffTypes";
+import RatingTable from "@/components/singleMovie/RatingTable";
+import MovieDescription from "@/components/singleMovie/MovieDescription";
 
 interface IMovieCardContent {
-  movie: IMovie
+  movie: IMovie,
+  staff: IStaffByMovie[]
 }
 
-const MovieCardContent: FC<IMovieCardContent> = ({movie}) => {
+const MovieCardContent: FC<IMovieCardContent> = ({movie, staff}) => {
   const filters = useFilters()
-  if (!filters) return <div>Loading...</div>
+  if (!filters) return <div className="w-screen">Loading...</div>
 
   return (
     <div className="mt-2 w-full">
@@ -38,48 +39,15 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie}) => {
             <span className="text-gray-color">{movie.nameOriginal}</span>
           </li>
         </ul>
-        <ul className="grid grid-cols-2 gap-y-4 gap-x-7 my-4">
-          <li className="font-medium red-frame">
-            <span className="mr-1">КП</span>
-            <span>{movie.ratingKinopoisk}</span>
-          </li>
-          <li
-            className="font-medium yellow-frame">
-            <span className="mr-1">IMDB </span>
-            <span>{movie.ratingImdb}</span>
-          </li>
-          <li className="red-frame">
-            <span className="font-medium ">КП: </span>
-            <span>{movie.ratingKinopoiskVoteCount} оценок</span>
-          </li>
-          <li className="yellow-frame">
-            <span className="font-medium mr-1">IMDB: </span>
-            <span>{movie.ratingImdbVoteCount} оценок</span>
-          </li>
-        </ul>
-        <ul className="space-y-1">
-          <li className="flex items-center">
-            <span className="font-medium mr-1">Категории: </span>
-            <div>
-              {movie.genres.map((itemGenre, idx) => (
-                <React.Fragment key={itemGenre.genre + idx}>
-                  <span>{idx === 0 ? `` : ' / '}</span>
-                  <Link
-                    href={`/${getTitleGenreByRuName(filters.genres, itemGenre.genre)}`}
-                  >
-                    <a className="text-blue-400 underline">
-                      {formatFirstToUppercase(itemGenre.genre)}
-                    </a>
-                  </Link>
-                </React.Fragment>
-              ))}
-            </div>
-          </li>
-          <li>
-            <span className="font-medium">Описание: </span>
-            <span className="text-gray-color leading-relaxed">{movie.description || movie.shortDescription}</span>
-          </li>
-        </ul>
+        <RatingTable
+          className="grid-cols-2 gap-y-4 gap-x-7 my-4"
+          movie={movie}
+        />
+        <MovieDescription
+          movie={movie}
+          staff={staff}
+          filters={filters}
+        />
       </div>
     </div>
   );

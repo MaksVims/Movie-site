@@ -6,12 +6,15 @@ import {ParsedUrlQuery} from "querystring";
 import {MovieService} from "@/api/MovieService";
 import MovieCardContent from "@/components/singleMovie/MovieCardContent";
 import MovieCardImg from "@/components/singleMovie/MovieCardImg";
+import {IStaffByMovie} from "#/staffTypes";
+import StaffService from "@/api/StaffService";
 
 interface IMoviePageProps {
-  movie: IMovie
+  movie: IMovie,
+  staff: IStaffByMovie[]
 }
 
-const MovieId: NextPage<IMoviePageProps> = ({movie}) => {
+const MovieId: NextPage<IMoviePageProps> = ({movie,staff}) => {
 
   return (
     <MainLayout>
@@ -19,7 +22,7 @@ const MovieId: NextPage<IMoviePageProps> = ({movie}) => {
         <section
           className="flex flex-col md:mx-auto items-center bg-white py-6 px-2 md:flex-row md:items-start md:px-6">
           <MovieCardImg movie={movie}/>
-          <MovieCardContent movie={movie}/>
+          <MovieCardContent movie={movie} staff={staff}/>
         </section>
         <section className="pt-6 bg-white flex-1">
           <div className="px-4">
@@ -53,9 +56,12 @@ export const getStaticProps: GetStaticProps<IMoviePageProps, IParams> = async (c
   const {movieId} = context.params!
   try {
     const movie = await MovieService.getMovieById(Number(movieId))
+    const staff = await StaffService.getStaffByMovie(Number(movieId))
+
     return {
       props: {
-        movie
+        movie,
+        staff
       }
     }
   } catch {
