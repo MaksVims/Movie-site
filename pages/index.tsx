@@ -8,8 +8,9 @@ import FooterLayout from "@/components/layouts/FooterLayout";
 import Seo from "@/hoc/Seo";
 import {observer} from 'mobx-react-lite';
 import moviesState from "@/store/MoviesState";
-import SelectFilterMovies from "@/components/ui/SelectFilterMovies";
 import ScrollBarGenre from '@/components/home&genre/ScrollBarGenre';
+import BarSortFilters from "@/components/home&genre/BarSortFilters";
+import installMainHeight from '+/installMainHeight';
 
 interface IHomePageProps {
   responseResult: IResponseMoviesByFiltersOrTop
@@ -18,7 +19,8 @@ interface IHomePageProps {
 const Home: NextPage<IHomePageProps> = ({responseResult}) => {
   useEffect(() => {
     moviesState.setMovies(responseResult.films)
-  }, [])
+    return () => moviesState.reset()
+  }, [responseResult.films])
   const filteredMovies = moviesState.filteredMovies
 
   return (
@@ -28,9 +30,9 @@ const Home: NextPage<IHomePageProps> = ({responseResult}) => {
     >
       <MainLayout>
         <FooterLayout>
-          <main className="h-full">
+          <main className={installMainHeight(filteredMovies.length)}>
             <ScrollBarGenre/>
-            <SelectFilterMovies/>
+            <BarSortFilters/>
             <GridMovies movies={filteredMovies}/>
           </main>
         </FooterLayout>
