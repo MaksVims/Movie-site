@@ -33,7 +33,6 @@ export interface IMovieForGrid {
   description?: string
 }
 
-
 export interface IMovie {
   nameRu: string,
   nameOriginal: string,

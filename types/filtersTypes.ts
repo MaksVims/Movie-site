@@ -9,7 +9,7 @@ export interface IFilterCountry {
   country: string
 }
 
-export interface IResponseFilterGenre {
+export interface IDataFilterGenre {
   genres: IFilterGenre[],
   countries: IFilterCountry[]
 }

@@ -1,4 +1,4 @@
-import {IFilterOptions, IResponseFilterGenre} from "#/filtersTypes";
+import {IFilterOptions} from "#/filtersTypes";
 import {IResponseMoviesByFiltersOrTop, IResponseMoviesPremieres} from "#/responseTypes";
 import {IMovie} from "#/movieTypes";
 import getStringMonth from "+/getStringMonth";
@@ -6,12 +6,6 @@ import fetchMovies from "+/fetchMoviesOrStaff";
 import getUrlFiltersMovies from "+/getUrlFiltersMovies";
 
 export class MovieService {
-
-  static async getFilters() {
-    const res = await fetch('http://localhost:3010/api/filters')
-    const filters: IResponseFilterGenre = await res.json()
-    return filters
-  }
 
   static async getPremiers() {
     const date = new Date()

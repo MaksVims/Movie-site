@@ -1,4 +1,6 @@
-{
+import {IDataFilterGenre} from "#/filtersTypes";
+
+export const DATA_FILTERS: IDataFilterGenre =  {
   "genres": [
     {
       "id": 6,
@@ -33,127 +35,127 @@
     {
       "id": 7,
       "genre": "мелодрама",
-        "title": "melodrama"
+      "title": "melodrama"
     },
     {
       "id": 17,
       "genre": "детектив",
-        "title": "detective"
+      "title": "detective"
     },
     {
       "id": 13,
       "genre": "вестерн",
-        "title": "western"
+      "title": "western"
     },
     {
       "id": 5,
       "genre": "фэнтези",
-        "title": "fantasy"
+      "title": "fantasy"
     },
     {
       "id": 19,
       "genre": "военный",
-        "title": "war"
+      "title": "war"
     },
     {
       "id": 1750,
       "genre": "аниме",
-        "title": "anime"
+      "title": "anime"
     },
     {
       "id": 456,
       "genre": "детский",
-        "title": "child"
+      "title": "child"
     },
     {
       "id": 12,
       "genre": "документальный",
-        "title": "documentary"
+      "title": "documentary"
     },
     {
       "id": 27,
       "genre": "игра",
-        "title": "game"
+      "title": "game"
     },
     {
       "id": 23,
       "genre": "история",
-        "title": "history"
+      "title": "history"
     },
     {
       "id": 1747,
       "genre": "концерт",
-        "title": "concert"
+      "title": "concert"
     },
     {
       "id": 15,
       "genre": "короткометражка",
-        "title": "short_film"
+      "title": "short_film"
     },
     {
       "id": 16,
       "genre": "криминал",
-        "title": "crime"
+      "title": "crime"
     },
     {
       "id": 22,
       "genre": "биография",
-        "title": "biography"
+      "title": "biography"
     },
     {
       "id": 21,
       "genre": "музыка",
-        "title": "music"
+      "title": "music"
     },
     {
       "id": 14,
       "genre": "мультфильм",
-        "title": "mult"
+      "title": "mult"
     },
     {
       "id": 9,
       "genre": "мюзикл",
-        "title": "musical"
+      "title": "musical"
     },
     {
       "id": 28,
       "genre": "новости",
-        "title": "news"
+      "title": "news"
     },
     {
       "id": 10,
       "genre": "приключения",
-        "title": "adventure"
+      "title": "adventure"
     },
     {
       "id": 25,
       "genre": "реальное ТВ",
-        "title": "real_TV"
+      "title": "real_TV"
     },
     {
       "id": 11,
       "genre": "семейный",
-        "title": "family"
+      "title": "family"
     },
     {
       "id": 24,
       "genre": "спорт",
-        "title": "sport"
+      "title": "sport"
     },
     {
       "id": 26,
       "genre": "ток-шоу",
-        "title": "talk_show"
+      "title": "talk_show"
     },
     {
       "id": 18,
       "genre": "фильм-нуар",
-        "title": "film_noir"
+      "title": "film_noir"
     },
     {
       "id": 1751,
       "genre": "церемония",
-        "title": "ceremony"
+      "title": "ceremony"
     }
   ],
   "countries": [

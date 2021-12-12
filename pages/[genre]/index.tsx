@@ -1,20 +1,19 @@
 import React, {useMemo} from 'react';
-import GenreList from "@/components/home&genre/GenreList";
+import ScrollBarGenre from "@/components/home&genre/ScrollBarGenre";
 import GridMovies from "@/components/home&genre/GridMovies";
 import MainLayout from "@/components/layouts/MainLayout";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {IResponseFilterGenre} from "#/filtersTypes";
 import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
 import {MovieService} from "@/api/MovieService";
 import {ParsedUrlQuery} from "querystring";
 import transformDBMoviesToMoviesGrid from "../../helpers/transformDBMoviesToMoviesGrid";
+import {DATA_FILTERS} from "@/const/dataFilters";
 
 interface IGenrePageProps {
-  filters: IResponseFilterGenre,
   responseResult: IResponseMoviesByFiltersOrTop
 }
 
-const GenrePage: NextPage<IGenrePageProps> = ({filters, responseResult}) => {
+const GenrePage: NextPage<IGenrePageProps> = ({responseResult}) => {
   const moviesForGrid = useMemo(
     () => transformDBMoviesToMoviesGrid(responseResult.films),
     [responseResult])
@@ -22,7 +21,7 @@ const GenrePage: NextPage<IGenrePageProps> = ({filters, responseResult}) => {
   return (
     <MainLayout>
       <main>
-        <GenreList genres={filters.genres}/>
+        <ScrollBarGenre/>
         <GridMovies movies={moviesForGrid}/>
       </main>
     </MainLayout>
@@ -37,14 +36,12 @@ interface IParams extends ParsedUrlQuery {
 
 export const getStaticProps: GetStaticProps<IGenrePageProps, IParams> = async (context) => {
   try {
-    const filters = await MovieService.getFilters()
     const {genre} = context.params!
-    const filterItem = filters.genres.find(item => item.title === genre)!
+    const filterItem = DATA_FILTERS.genres.find(item => item.title === genre)!
     const responseResult = await MovieService.getMoviesByFilters({genre: filterItem.id, page: 1})
 
     return {
       props: {
-        filters,
         responseResult
       }
     }
