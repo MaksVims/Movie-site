@@ -23,3 +23,11 @@ export interface IFilterOptions {
   yearFrom?: number,
   yearTo?: number,
 }
+
+export enum SortType {
+  NAME = 'NAME',
+  RATING = 'RATING',
+  YEAR = 'YEAR',
+  FAVORITE = 'FAVORITE',
+  DEFAULT = 'DEFAULT'
+}
