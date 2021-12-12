@@ -6,6 +6,7 @@ import {MovieService} from "@/api/MovieService";
 import ScrollBarGenre from "@/components/home&genre/ScrollBarGenre";
 import GridMovies from "@/components/home&genre/GridMovies";
 import transformDBMoviesToMoviesGrid from "+/transformDBMoviesToMoviesGrid";
+import FooterLayout from "@/components/layouts/FooterLayout";
 
 interface IPremieresPageProps {
   responseResult: IResponseMoviesPremieres
@@ -18,10 +19,12 @@ const PremieresPage: NextPage<IPremieresPageProps> = ({responseResult}) => {
 
   return (
     <MainLayout>
-      <main>
-        <ScrollBarGenre/>
-        <GridMovies movies={moviesForGrid}/>
-      </main>
+      <FooterLayout>
+        <main>
+          <ScrollBarGenre/>
+          <GridMovies movies={moviesForGrid}/>
+        </main>
+      </FooterLayout>
     </MainLayout>
   );
 };

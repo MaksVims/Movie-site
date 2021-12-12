@@ -6,6 +6,7 @@ import ScrollBarGenre from "@/components/home&genre/ScrollBarGenre";
 import GridMovies from "@/components/home&genre/GridMovies";
 import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
 import transformDBMoviesToMoviesGrid from "../helpers/transformDBMoviesToMoviesGrid";
+import FooterLayout from "@/components/layouts/FooterLayout";
 
 interface IHomePageProps {
   responseResult: IResponseMoviesByFiltersOrTop
@@ -18,10 +19,12 @@ const Home: NextPage<IHomePageProps> = ({responseResult}) => {
 
   return (
     <MainLayout>
-      <main>
-        <ScrollBarGenre/>
-        <GridMovies movies={moviesForGrid}/>
-      </main>
+      <FooterLayout>
+        <main>
+          <ScrollBarGenre/>
+          <GridMovies movies={moviesForGrid}/>
+        </main>
+      </FooterLayout>
     </MainLayout>
   );
 };

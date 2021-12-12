@@ -8,6 +8,7 @@ import {MovieService} from "@/api/MovieService";
 import {ParsedUrlQuery} from "querystring";
 import transformDBMoviesToMoviesGrid from "../../helpers/transformDBMoviesToMoviesGrid";
 import {DATA_FILTERS} from "@/const/dataFilters";
+import FooterLayout from "@/components/layouts/FooterLayout";
 
 interface IGenrePageProps {
   responseResult: IResponseMoviesByFiltersOrTop
@@ -20,10 +21,12 @@ const GenrePage: NextPage<IGenrePageProps> = ({responseResult}) => {
 
   return (
     <MainLayout>
-      <main>
-        <ScrollBarGenre/>
-        <GridMovies movies={moviesForGrid}/>
-      </main>
+      <FooterLayout>
+        <main>
+          <ScrollBarGenre/>
+          <GridMovies movies={moviesForGrid}/>
+        </main>
+      </FooterLayout>
     </MainLayout>
   );
 };
