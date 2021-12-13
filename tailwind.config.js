@@ -25,13 +25,13 @@ module.exports = {
       backgroundImage: {
         'auth': "url('/images/auth_bg.jpg')",
         'profile': "url('/images/profile_bg.jpg')"
-      }
+      },
+      gridTemplateColumns: {
+        'info': '150px 1fr',
+      },
     },
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [
-    require('tailwind-scrollbar-hide')
-  ],
+    variants: {
+      extend: {},
+    }
+  }
 }

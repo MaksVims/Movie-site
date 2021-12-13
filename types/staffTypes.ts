@@ -18,6 +18,18 @@ export interface IStaffByMovie {
   professionKey: PROFESSION_KEY
 }
 
+export interface IPersonMovie {
+  filmId: number,
+  nameRu: string,
+  nameEn: string,
+  rating: string,
+  description: string,
+  professionKey: PROFESSION_KEY,
+  posterUrlPreview: string,
+  year: string,
+  countries: [{ country: string }],
+}
+
 export interface ISpecificStaff {
   personId: number,
   webUrl: string,
@@ -29,14 +41,7 @@ export interface ISpecificStaff {
   age: number,
   birthplace: string,
   profession: string,
-  films: [
-    {
-      filmId: number,
-      nameRu: string,
-      nameEn: string,
-      rating: string,
-      description: string,
-      professionKey: PROFESSION_KEY
-    }
-  ]
+  growth: number,
+  facts: [string]
+  films: IPersonMovie[]
 }

@@ -1,3 +1,5 @@
+import {IPersonMovie} from "#/staffTypes";
+
 export interface IMovieByFilterOrTop {
   filmId: number,
   nameRu: string,
@@ -20,7 +22,7 @@ export interface IMoviePremier {
   description?: string
 }
 
-export type TypeMovieDB = IMoviePremier | IMovieByFilterOrTop
+export type TypeMovieDB = IMoviePremier | IMovieByFilterOrTop | IPersonMovie
 
 export interface IMovieForGrid {
   movieId: number,
