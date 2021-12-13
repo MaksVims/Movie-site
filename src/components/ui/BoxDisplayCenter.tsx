@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
 
 interface BoxDisplayCenterProps {
-  title: string
+  title: string,
+  className?: string
 }
 
-const BoxDisplayCenter:FC<BoxDisplayCenterProps> = ({title}) => {
+const BoxDisplayCenter: FC<BoxDisplayCenterProps> = ({title, className}) => {
   return (
-    <div className="full flex-center">
+    <div className={`flex-center absolute inset-0 ${className || ''}`}>
       <span className="font-medium">{title}</span>
     </div>
   );

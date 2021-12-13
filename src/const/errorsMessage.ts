@@ -6,4 +6,5 @@ export default {
   AUTH_REGISTER: 'Указанный email уже используется',
   REMOVE_ACCOUNT: 'Ошибка удаления аккаунта',
   LOGOUT: 'Не удалось выйти',
+  LOAD_NEXT_PAGE_MOVIES: 'Ошибка подгрузки данных'
 }
