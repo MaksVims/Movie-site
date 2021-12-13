@@ -4,7 +4,11 @@ import MoviesState from "@/store/MoviesState";
 import {observer} from 'mobx-react-lite';
 import {useAuth} from "@/contexts/AuthContext";
 
-const SelectSortFiltersMovies: FC = () => {
+interface SelectSortFiltersMoviesProps {
+  className?: string
+}
+
+const SelectSortFiltersMovies: FC<SelectSortFiltersMoviesProps> = ({className}) => {
   const {user} = useAuth()
   const changeFilter = (e: ChangeEvent<HTMLSelectElement>) => {
     // @ts-ignore
@@ -15,8 +19,8 @@ const SelectSortFiltersMovies: FC = () => {
     <select
       value={MoviesState.filter}
       onChange={changeFilter}
-      className="p-2 rounded-md bg-primary-dark text-white border-2 border-solid w-full
-      focus:border-primary-light focus:outline-none focus:rounded-b-none cursor-pointer"
+      className={`p-2 rounded-md w-full
+      focus:border-primary-light focus:outline-none focus:rounded-b-none cursor-pointer ${className || ''}`}
     >
       <option value={SortType.DEFAULT}>
         Все
