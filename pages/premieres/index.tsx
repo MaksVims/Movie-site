@@ -8,20 +8,19 @@ import GridMovies from "@/components/main/GridMovies";
 import FooterLayout from "@/components/layouts/FooterLayout";
 import Seo from "@/hoc/Seo";
 import moviesState from "@/store/MoviesState";
-import installMainHeight from "+/installMainHeight";
 import BarSortFilters from "@/components/main/BarSortFilters";
 import {observer} from 'mobx-react-lite';
+import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
 
 interface IPremieresPageProps {
-  responseResult: IResponseMoviesPremieres
+  dataMovies: IResponseMoviesPremieres
 }
 
-const PremieresPage: NextPage<IPremieresPageProps> = ({responseResult}) => {
-  
+const PremieresPage: NextPage<IPremieresPageProps> = ({dataMovies}) => {
   useEffect(() => {
-    moviesState.setMovies(responseResult.items)
-    return () => moviesState.setMovies([])
-  }, [responseResult.items])
+    moviesState.setMovies(dataMovies.items)
+    return () => moviesState.resetMovies()
+  }, [dataMovies.items])
 
   const filteredMovies = moviesState.filteredMovies
 
@@ -32,10 +31,18 @@ const PremieresPage: NextPage<IPremieresPageProps> = ({responseResult}) => {
     >
       <MainLayout>
         <FooterLayout>
-          <main className={installMainHeight(filteredMovies.length)}>
+          <main className="flex-1 flex flex-col">
             <ScrollBarGenre/>
             <BarSortFilters/>
-            <GridMovies movies={filteredMovies}/>
+            {filteredMovies.length ?
+              <GridMovies movies={filteredMovies}/> : (
+              <div className="relative flex-1">
+                <BoxDisplayCenter
+                  title="Фильмы не найдены"
+                  className="text-white text-xl"
+                />
+              </div>
+              )}
           </main>
         </FooterLayout>
       </MainLayout>
@@ -47,11 +54,11 @@ export default observer(PremieresPage);
 
 export const getStaticProps: GetStaticProps<IPremieresPageProps> = async () => {
   try {
-    const responseResult = await MovieService.getPremiers()
+    const dataMovies = await MovieService.getPremiers()
 
     return {
       props: {
-        responseResult
+        dataMovies
       }
     }
   } catch {

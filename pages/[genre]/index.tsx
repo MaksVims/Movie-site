@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import ScrollBarGenre from "@/components/main/ScrollBarGenre";
 import GridMovies from "@/components/main/GridMovies";
 import MainLayout from "@/components/layouts/MainLayout";
@@ -11,31 +11,73 @@ import FooterLayout from "@/components/layouts/FooterLayout";
 import moviesState from "@/store/MoviesState";
 import {observer} from "mobx-react-lite";
 import BarSortFilters from "@/components/main/BarSortFilters";
-import installMainHeight from "+/installMainHeight";
+import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
+import {MoviesState} from "@/store";
+import usePagination from "@/hooks/usePagination";
+import {SortType} from "#/filtersTypes";
+import BtnLoadNextPage from "@/components/ui/BtnLoadNextPage";
+import Seo from "@/hoc/Seo";
+import formatFirstToUppercase from '+/formatFirstToUppercase';
+import BoxLoader from "@/components/ui/BoxLoader";
 
 interface IGenrePageProps {
-  responseResult: IResponseMoviesByFiltersOrTop
+  dataMovies: IResponseMoviesByFiltersOrTop,
+  genre: string
 }
 
-const GenrePage: NextPage<IGenrePageProps> = ({responseResult}) => {
+const GenrePage: NextPage<IGenrePageProps> = ({dataMovies, genre}) => {
+  const totalPages = dataMovies.pagesCount
+  const filter = MoviesState.filter
 
-  useEffect(() => {
-    moviesState.setMovies(responseResult.films)
-    return () => moviesState.setMovies([])
-  }, [responseResult.films])
+  const [fetchNextPage, loadNextPage, currentPage] = usePagination(
+    totalPages,
+    useCallback(async (page: number) => {
+      const result = await MovieService.getTopMovies(page)
+      moviesState.setMovies(result.films)
+    }, []))
 
   const filteredMovies = moviesState.filteredMovies
 
+  useEffect(() => {
+    moviesState.setMovies(dataMovies.films)
+    return () => moviesState.resetMovies()
+  }, [dataMovies.films])
+
+  const paginationView = currentPage < totalPages && filter !== SortType.FAVORITE && filteredMovies.length && (
+    <BtnLoadNextPage
+      fetching={fetchNextPage}
+      className="text-center my-8"
+    />
+  )
+
+
   return (
-    <MainLayout>
-      <FooterLayout>
-        <main className={installMainHeight(filteredMovies.length)}>
-          <ScrollBarGenre/>
-          <BarSortFilters/>
-          <GridMovies movies={filteredMovies}/>
-        </main>
-      </FooterLayout>
-    </MainLayout>
+    <Seo
+      title={`${formatFirstToUppercase(genre)}`}
+      keywords={"Лучшие фильмы, топ фильмов, коллекции"}
+    >
+      <MainLayout>
+        <FooterLayout>
+          <main className="page-main">
+            <ScrollBarGenre/>
+            <BarSortFilters/>
+            {filteredMovies.length ?
+              <GridMovies movies={filteredMovies}/> : (
+                <div className="flex flex-1">
+                  <BoxDisplayCenter
+                    title="Фильмы не найдены"
+                    className="text-white text-xl"
+                  />
+                </div>
+              )}
+            <div className="relative">
+              {loadNextPage ? <BoxLoader/> : paginationView}
+            </div>
+          </main>
+        </FooterLayout>
+      </MainLayout>
+    </Seo>
+
   );
 };
 
@@ -49,11 +91,12 @@ export const getStaticProps: GetStaticProps<IGenrePageProps, IParams> = async (c
   try {
     const {genre} = context.params!
     const filterItem = DATA_FILTERS.genres.find(item => item.title === genre)!
-    const responseResult = await MovieService.getMoviesByFilters({genre: filterItem.id, page: 1})
+    const dataMovies = await MovieService.getMoviesByFilters({genre: filterItem.id, page: 1})
 
     return {
       props: {
-        responseResult
+        dataMovies,
+        genre: filterItem.genre
       }
     }
   } catch (e) {

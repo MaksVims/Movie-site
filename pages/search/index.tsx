@@ -1,16 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {GetServerSideProps, NextPage} from "next";
 import {IResponseSearchByKeyWord} from "#/responseTypes";
 import {MovieService} from "@/api/MovieService";
 import MainLayout from "@/components/layouts/MainLayout";
 import FooterLayout from "@/components/layouts/FooterLayout";
-import installMainHeight from "+/installMainHeight";
 import ScrollBarGenre from "@/components/main/ScrollBarGenre";
 import BarSortFilters from "@/components/main/BarSortFilters";
 import GridMovies from "@/components/main/GridMovies";
 import Seo from "@/hoc/Seo";
 import moviesState from "@/store/MoviesState";
 import {observer} from 'mobx-react-lite';
+import {MoviesState} from "@/store";
+import usePagination from "@/hooks/usePagination";
+import {SortType} from "#/filtersTypes";
+import BtnLoadNextPage from "@/components/ui/BtnLoadNextPage";
+import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
+import BoxLoader from "@/components/ui/BoxLoader";
 
 
 interface SearchPageProps {
@@ -18,14 +23,29 @@ interface SearchPageProps {
 }
 
 const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
+  const totalPages = Math.ceil(dataMovies.searchFilmsCountResult / 20)
+  const filter = MoviesState.filter
+
+  const [fetchNextPage, loadNextPage, currentPage] = usePagination(
+    totalPages,
+    useCallback(async (page: number) => {
+      const result = await MovieService.getTopMovies(page)
+      moviesState.setMovies(result.films)
+    }, []))
+
+  const filteredMovies = moviesState.filteredMovies
 
   useEffect(() => {
     moviesState.setMovies(dataMovies.films)
     return () => moviesState.setMovies([])
   }, [dataMovies.films])
 
-  const filteredMovies = moviesState.filteredMovies
-  console.log(dataMovies)
+  const paginationView = currentPage < totalPages && filter !== SortType.FAVORITE && filteredMovies.length && (
+    <BtnLoadNextPage
+      fetching={fetchNextPage}
+      className="text-center my-8"
+    />
+  )
 
   return (
     <Seo
@@ -35,13 +55,24 @@ const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
     >
       <MainLayout>
         <FooterLayout>
-          <main className={installMainHeight(filteredMovies.length)}>
+          <main className="page-main">
             <ScrollBarGenre/>
             <BarSortFilters/>
             <div className="text-white text-xl text-center mt-10">
               <h2>Всего найдено: {dataMovies.searchFilmsCountResult} фильмов</h2>
             </div>
-            <GridMovies movies={filteredMovies}/>
+            {filteredMovies.length ?
+              <GridMovies movies={filteredMovies}/> : (
+                <div className="flex flex-1">
+                  <BoxDisplayCenter
+                    title="Фильмы не найдены"
+                    className="text-white text-xl"
+                  />
+                </div>
+              )}
+            <div className="relative">
+              {loadNextPage ? <BoxLoader/> : paginationView}
+            </div>
           </main>
         </FooterLayout>
       </MainLayout>
