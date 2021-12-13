@@ -27,7 +27,7 @@ const MovieId: NextPage<IMoviePageProps> = ({movie, staff}) => {
       <MainLayout>
         <FooterLayout>
           <main
-            className="mx-auto mt-4 xl:mb-10 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md overflow-hidden">
+            className="mx-auto mt-4 xl:mb-10 max-w-[1024px] flex flex-col rounded-tl-md rounded-tr-md">
             <section
               className="flex flex-col md:mx-auto items-center bg-white py-6 px-2 md:flex-row md:items-start md:px-6">
               <MovieCardImg movie={movie}/>

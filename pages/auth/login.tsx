@@ -28,7 +28,7 @@ const Login: NextPage = () => {
     } catch (e) {
       showAlert(errorsMessage.AUTH_LOGIN, AlertType.ERROR)
     }
-  }, [showAlert]))
+  }, [showAlert, router]))
 
   return (
     <Seo title={'Страница входа посетителя'}>

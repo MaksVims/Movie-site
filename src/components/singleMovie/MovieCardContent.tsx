@@ -19,7 +19,7 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie, staff}) => {
       <div className="text-sm md:flex md:flex-wrap md:justify-between md:items-start">
         <ul className="md:mr-6 space-y-1">
           <li>
-            <span className="font-medium">
+            <span className="font-medium mr-1">
               Название:
             </span>
             <span className="text-gray-color">
@@ -27,7 +27,7 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie, staff}) => {
             </span>
           </li>
           <li>
-            <span className="font-medium">
+            <span className="font-medium mr-1">
               Год выхода:
             </span>
             <span className="text-gray-color">
@@ -35,7 +35,7 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie, staff}) => {
             </span>
           </li>
           <li>
-            <span className="font-medium">
+            <span className="font-medium mr-1">
               Cтрана:
             </span>
             <span
@@ -44,7 +44,7 @@ const MovieCardContent: FC<IMovieCardContent> = ({movie, staff}) => {
             </span>
           </li>
           <li>
-            <span className="font-medium">
+            <span className="font-medium mr-1">
               Оригинальное название:
             </span>
             <span className="text-gray-color">

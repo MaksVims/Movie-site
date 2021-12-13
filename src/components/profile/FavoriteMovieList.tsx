@@ -7,6 +7,7 @@ import successMessage from "@/const/successMessage";
 import {AlertType} from "#/alertCtxTypes";
 import errorsMessage from "@/const/errorsMessage";
 import {useAlert} from "@/contexts/AlertContext";
+import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
 
 interface FavoriteMovieListProps {
   title: string,
@@ -17,7 +18,7 @@ interface FavoriteMovieListProps {
 const FavoriteMovieList: FC<FavoriteMovieListProps> = ({title, movies, classNames}) => {
   const mapRecords = CollectionState.mapRecordsToCollection
   const {showAlert} = useAlert()
-  
+
   const removeFavoriteMovie = useCallback(async (record: string) => {
     try {
       await FirebaseCollectionService.removeMovieToCollection(record)
@@ -25,7 +26,7 @@ const FavoriteMovieList: FC<FavoriteMovieListProps> = ({title, movies, className
     } catch {
       showAlert(errorsMessage.REMOVE_MOVIE_TO_COLLECTION, AlertType.ERROR)
     }
-  }, [])
+  }, [showAlert])
 
   return (
     <div className={`overflow-x-auto w-full h-full ${classNames}`}>
@@ -46,9 +47,7 @@ const FavoriteMovieList: FC<FavoriteMovieListProps> = ({title, movies, className
             </ul>
           </>
         ) : (
-          <div className="full flex-center">
-            <span className="font-medium">Фильмы осутствуют</span>
-          </div>
+          <BoxDisplayCenter title="Фильмы осутствуют"/>
         )
       }
     </div>

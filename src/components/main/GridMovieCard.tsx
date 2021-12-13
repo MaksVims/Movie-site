@@ -37,7 +37,6 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
               src={movie.posterUrlPreview}
               width={475}
               height={600}
-              // layout={"responsive"}
               alt={movie.nameRu}
             />
             <div className="absolute left-0 top-0 full bg-black group-hover:opacity-70 opacity-0">
