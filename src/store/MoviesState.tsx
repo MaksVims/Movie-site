@@ -3,6 +3,7 @@ import {MovieForGrid} from "@/factory/MovieForGrid";
 import {TypeMovieDB} from "#/movieTypes";
 import {SortType} from "#/filtersTypes";
 import CollectionState from "@/store/CollectionState";
+import getCleanListMoviesForGrid from "+/getCleanListMoviesForGrid";
 
 class MoviesState {
 
@@ -16,11 +17,16 @@ class MoviesState {
   }
 
   setMovies(movies: TypeMovieDB[]) {
-    this.movies = movies.map(movie => new MovieForGrid(movie))
+    const newMovies = movies.map(movie => new MovieForGrid(movie))
+    this.movies = [...this.movies, ...getCleanListMoviesForGrid(newMovies)]
   }
 
   setFilter(filter: SortType) {
     this.filter = filter
+  }
+
+  resetMovies() {
+    this.movies = []
   }
 
   reset() {
