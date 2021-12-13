@@ -4,6 +4,7 @@ import Link from 'next/link'
 import cn from 'classnames'
 import {useAuth} from "@/contexts/AuthContext";
 import theme from "@/const/theme";
+import BtnSearchHeader from "@/components/header/BtnSearchHeader";
 
 interface INavItemComponent {
   item: INavItem,
@@ -13,6 +14,15 @@ interface INavItemComponent {
 const NavItem: FC<INavItemComponent> = ({item, active}) => {
   const {path, Icon, title, redirect, isAuth} = item
   const {user} = useAuth()
+
+  if (item.path === '/search') {
+
+    return (
+      <li>
+        <BtnSearchHeader/>
+      </li>
+    )
+  }
 
   return (
     <li className="last:mr-0 xs:mr-2">

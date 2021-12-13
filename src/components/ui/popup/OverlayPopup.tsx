@@ -4,10 +4,11 @@ import EscapeTrap from "@/components/traps/EscapeTrap";
 
 interface OverlayPopupProps {
   onClose: () => void,
-  isOpened: boolean
+  isOpened: boolean,
+  className?: string
 }
 
-const OverlayPopup: FC<OverlayPopupProps> = ({children, onClose, isOpened}) => {
+const OverlayPopup: FC<OverlayPopupProps> = ({children, onClose, isOpened, className}) => {
 
   if (!isOpened) {
     return null
@@ -16,7 +17,7 @@ const OverlayPopup: FC<OverlayPopupProps> = ({children, onClose, isOpened}) => {
   return (
     <Portal>
       <EscapeTrap trapHandle={onClose}>
-        <div className="fixed z-30 inset-0 bg-black bg-opacity-70 flex-center p-4">
+        <div className={`fixed z-30 inset-0 bg-black bg-opacity-70 flex-center p-4 ${className || ''}`}>
           <div
             className="absolute inset-0 z-[-1] cursor-pointer"
             onClick={onClose}
