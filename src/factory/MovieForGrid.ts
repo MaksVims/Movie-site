@@ -16,7 +16,7 @@ export class MovieForGrid implements IMovieForGrid {
     this.nameRu = movie.nameRu
     this.year = movie.year + ''
     this.rating = movie.rating === undefined ? '' : movie.rating + ''
-    this.posterUrlPreview = movie.posterUrlPreview
+    this.posterUrlPreview = movie.posterUrlPreview || ''
     this.countries = movie.countries
     // @ts-ignore
     this.premiereRu = movie?.premiereRu || ''

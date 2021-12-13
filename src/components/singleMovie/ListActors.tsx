@@ -14,7 +14,7 @@ const ListActors: FC<ListActorsProps> = ({actors}) => {
         actors.map((actor, idx) => (
           <React.Fragment key={actor.staffId}>
             <Link
-              href={`/search?actor=${actor.staffId}`}
+              href={`/person/${actor.staffId}`}
             >
               <a className="text-blue-400 underline">
                 {actor.nameRu}

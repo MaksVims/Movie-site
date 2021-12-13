@@ -17,9 +17,12 @@ interface IPremieresPageProps {
 }
 
 const PremieresPage: NextPage<IPremieresPageProps> = ({responseResult}) => {
+  
   useEffect(() => {
     moviesState.setMovies(responseResult.items)
+    return () => moviesState.setMovies([])
   }, [responseResult.items])
+
   const filteredMovies = moviesState.filteredMovies
 
   return (

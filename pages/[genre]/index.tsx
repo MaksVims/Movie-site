@@ -11,22 +11,25 @@ import FooterLayout from "@/components/layouts/FooterLayout";
 import moviesState from "@/store/MoviesState";
 import {observer} from "mobx-react-lite";
 import BarSortFilters from "@/components/main/BarSortFilters";
+import installMainHeight from "+/installMainHeight";
 
 interface IGenrePageProps {
   responseResult: IResponseMoviesByFiltersOrTop
 }
 
 const GenrePage: NextPage<IGenrePageProps> = ({responseResult}) => {
+
   useEffect(() => {
     moviesState.setMovies(responseResult.films)
-    return () => moviesState.reset()
+    return () => moviesState.setMovies([])
   }, [responseResult.films])
+
   const filteredMovies = moviesState.filteredMovies
 
   return (
     <MainLayout>
       <FooterLayout>
-        <main>
+        <main className={installMainHeight(filteredMovies.length)}>
           <ScrollBarGenre/>
           <BarSortFilters/>
           <GridMovies movies={filteredMovies}/>

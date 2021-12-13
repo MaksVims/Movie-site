@@ -17,10 +17,12 @@ interface IHomePageProps {
 }
 
 const Home: NextPage<IHomePageProps> = ({responseResult}) => {
+
   useEffect(() => {
     moviesState.setMovies(responseResult.films)
-    return () => moviesState.reset()
+    return () => moviesState.setMovies([])
   }, [responseResult.films])
+  
   const filteredMovies = moviesState.filteredMovies
 
   return (

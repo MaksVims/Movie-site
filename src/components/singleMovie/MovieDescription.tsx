@@ -30,7 +30,7 @@ const MovieDescription: FC<MovieDescriptionProps> = ({movie, staff,}) => {
         <span className="font-medium mr-1">
           Режиссер:
         </span>
-        <Link href={`/search?producer=${producer?.staffId}`}>
+        <Link href={`/person/=${producer?.staffId}`}>
           <a className="text-blue-400 underline">
             {producer?.nameRu!}
           </a>
@@ -41,7 +41,7 @@ const MovieDescription: FC<MovieDescriptionProps> = ({movie, staff,}) => {
 
       </li>
       <li>
-        <span className="font-medium">
+        <span className="font-medium mr-1">
           Описание:
         </span>
         <span className="text-gray-color leading-relaxed">

@@ -24,6 +24,7 @@ class MoviesState {
   }
 
   reset() {
+    this.filter = SortType.DEFAULT
     this.movies = []
   }
 
