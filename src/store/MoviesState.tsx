@@ -36,7 +36,7 @@ class MoviesState {
           return favoriteMovies.find(favorite => favorite.movieId === movie.movieId)
         })
       case SortType.RATING:
-        if (this.movies[0].rating) {
+        if (this.movies[0]?.rating) {
           return this.movies
             .slice()
             .sort((a, b) => Number(b.rating) - Number(a.rating))
