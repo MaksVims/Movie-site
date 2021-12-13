@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {IMovieForGrid} from "#/movieTypes";
-import GridMovieCard from "@/components/home&genre/GridMovieCard";
+import GridMovieCard from "@/components/main/GridMovieCard";
 
 interface IGridMovies {
   movies: IMovieForGrid[]

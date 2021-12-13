@@ -4,11 +4,11 @@ import formatFirstToUppercase from "helpers/formatFirstToUppercase";
 import {useRouter} from "next/router";
 import cn from 'classnames'
 
-interface IGenreItem {
+interface ScrollBarItemProps {
   item: IFilterGenre
 }
 
-const GenreItem: FC<IGenreItem> = ({item}) => {
+const ScrollBarItem: FC<ScrollBarItemProps> = ({item}) => {
   const router = useRouter()
   const itemClass = cn({
     'text-primary-light': router.asPath === `/${item.title}`,
@@ -27,4 +27,4 @@ const GenreItem: FC<IGenreItem> = ({item}) => {
   );
 };
 
-export default GenreItem;
+export default ScrollBarItem;

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import GenreItem from "@/components/home&genre/GenreItem";
+import ScrollBarItem from "@/components/main/ScrollBarItem";
 import {FiltersState} from "@/store";
 import {observer} from "mobx-react-lite";
 import {IFilterGenre} from "#/filtersTypes";
@@ -10,7 +10,7 @@ const ScrollBarGenre: FC = () => {
     <div className="relative">
       <ul className="pt-4 px-8 flex xl:space-x-16 space-x-10 overflow-x-scroll scrollbar-hide ">
         {allGenres.map(genre => (
-          <GenreItem
+          <ScrollBarItem
             key={genre.id}
             item={genre}
           />

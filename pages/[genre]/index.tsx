@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import ScrollBarGenre from "@/components/home&genre/ScrollBarGenre";
-import GridMovies from "@/components/home&genre/GridMovies";
+import ScrollBarGenre from "@/components/main/ScrollBarGenre";
+import GridMovies from "@/components/main/GridMovies";
 import MainLayout from "@/components/layouts/MainLayout";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
@@ -10,7 +10,7 @@ import {DATA_FILTERS} from "@/const/dataFilters";
 import FooterLayout from "@/components/layouts/FooterLayout";
 import moviesState from "@/store/MoviesState";
 import {observer} from "mobx-react-lite";
-import BarSortFilters from "@/components/home&genre/BarSortFilters";
+import BarSortFilters from "@/components/main/BarSortFilters";
 
 interface IGenrePageProps {
   responseResult: IResponseMoviesByFiltersOrTop

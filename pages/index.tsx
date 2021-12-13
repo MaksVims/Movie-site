@@ -2,14 +2,14 @@ import React, {useEffect} from 'react';
 import {GetStaticProps, NextPage} from "next";
 import MainLayout from "@/components/layouts/MainLayout";
 import {MovieService} from "@/api/MovieService";
-import GridMovies from "@/components/home&genre/GridMovies";
+import GridMovies from "@/components/main/GridMovies";
 import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
 import FooterLayout from "@/components/layouts/FooterLayout";
 import Seo from "@/hoc/Seo";
 import {observer} from 'mobx-react-lite';
 import moviesState from "@/store/MoviesState";
-import ScrollBarGenre from '@/components/home&genre/ScrollBarGenre';
-import BarSortFilters from "@/components/home&genre/BarSortFilters";
+import ScrollBarGenre from '@/components/main/ScrollBarGenre';
+import BarSortFilters from "@/components/main/BarSortFilters";
 import installMainHeight from '+/installMainHeight';
 
 interface IHomePageProps {

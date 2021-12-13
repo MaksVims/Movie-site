@@ -3,13 +3,13 @@ import {GetStaticProps, NextPage} from "next";
 import {IResponseMoviesPremieres} from "#/responseTypes";
 import MainLayout from "@/components/layouts/MainLayout";
 import {MovieService} from "@/api/MovieService";
-import ScrollBarGenre from "@/components/home&genre/ScrollBarGenre";
-import GridMovies from "@/components/home&genre/GridMovies";
+import ScrollBarGenre from "@/components/main/ScrollBarGenre";
+import GridMovies from "@/components/main/GridMovies";
 import FooterLayout from "@/components/layouts/FooterLayout";
 import Seo from "@/hoc/Seo";
 import moviesState from "@/store/MoviesState";
 import installMainHeight from "+/installMainHeight";
-import BarSortFilters from "@/components/home&genre/BarSortFilters";
+import BarSortFilters from "@/components/main/BarSortFilters";
 import {observer} from 'mobx-react-lite';
 
 interface IPremieresPageProps {
