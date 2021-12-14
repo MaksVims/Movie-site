@@ -14,6 +14,7 @@ const Seo: FC<SeoProps> =
       <>
         <Head>
           <title>{title} | Смотреть фильмы онлайн в хорошем качестве</title>
+          <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
           <meta name="robots" content={indexed ? 'index,follow' : 'noindex,nofollow'}/>
           <meta name="keywords" content={`Фильмы, смотреть онлайн бесплатно, fullHD, сайт с фильмами, ${keywords}`}/>
           <meta name="description" content={`Сайт с фильмами для бесплатного просмотра. ${description || ''}`}/>

@@ -33,7 +33,7 @@ body {
   }
 
   button:disabled {
-    @apply bg-gray-600 cursor-not-allowed hover:bg-gray-600
+    @apply bg-gray-600 cursor-not-allowed hover:bg-gray-600 hover:text-black
   }
 }
 
