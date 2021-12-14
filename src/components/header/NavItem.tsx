@@ -5,6 +5,7 @@ import cn from 'classnames'
 import {useAuth} from "@/contexts/AuthContext";
 import theme from "@/const/theme";
 import BtnSearchHeader from "@/components/header/BtnSearchHeader";
+import BtnSignOut from './BtnSignOut';
 
 interface INavItemComponent {
   item: INavItem,
@@ -16,10 +17,17 @@ const NavItem: FC<INavItemComponent> = ({item, active}) => {
   const {user} = useAuth()
 
   if (item.path === '/search') {
-
     return (
       <li>
         <BtnSearchHeader/>
+      </li>
+    )
+  }
+
+  if (user && item.path === '/auth/login') {
+    return (
+      <li>
+        <BtnSignOut/>
       </li>
     )
   }
