@@ -24,30 +24,33 @@ const FormLogin: FC<ILoginForm> = ({handlerSubmit}) => {
       validate={validateLoginForm}
       onSubmit={handlerSubmit}
     >
-      <Form className="flex flex-col">
-        <FormInput
-          placeholder="Введите свой email"
-          label="Email:"
-          name="email"
-          type="email"
-          ref={focusRef}
-          required
-        />
-        <FormInput
-          placeholder="Укажите пароль при регистрации"
-          label="Пароль:"
-          name="password"
-          type="password"
-          autoComplete='off'
-          required
-        />
-        <button
-          className="mt-2 btn-submit"
-          type="submit"
-        >
-          Войти на сайт
-        </button>
-      </Form>
+      {({isValid, dirty}) => (
+        <Form className="flex flex-col">
+          <FormInput
+            placeholder="Введите свой email"
+            label="Email:"
+            name="email"
+            type="email"
+            ref={focusRef}
+            required
+          />
+          <FormInput
+            placeholder="Укажите пароль при регистрации"
+            label="Пароль:"
+            name="password"
+            type="password"
+            autoComplete='off'
+            required
+          />
+          <button
+            disabled={!dirty || !isValid}
+            className="mt-2 btn-submit"
+            type="submit"
+          >
+            Войти на сайт
+          </button>
+        </Form>
+      )}
     </Formik>
   );
 };

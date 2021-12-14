@@ -28,50 +28,53 @@ const FormRegister: FC<IRegisterForm> = ({submitHandler}) => {
       validate={validateRegisterForm}
       onSubmit={submitHandler}
     >
-      <Form className="flex flex-col">
-        <FormInput
-          placeholder="Укажите Email"
-          label="Email:"
-          name="email"
-          type="email"
-          ref={focusRef}
-          required
-        />
-        <FormInput
-          placeholder="Ваше имя или логин"
-          label="Логин:"
-          name="username"
-          type="text"
-        />
-        <FormInput
-          placeholder="Пароль"
-          label="Пароль:"
-          name="password"
-          type="password"
-          autoComplete='off'
-          required
-        />
-        <FormInput
-          placeholder="Повторите пароль"
-          className="mb-6"
-          label="Повтор:"
-          name="repeating"
-          type="password"
-          autoComplete='off'
-          required
-        />
-        <FormCheckbox
-          label="Я принимаю условие пользовательского соглашения"
-          name="isAgree"
-          className="pb-3"
-        />
-        <button
-          className="mt-2 btn-submit"
-          type="submit"
-        >
-          Регистрация
-        </button>
-      </Form>
+      {({isValid, dirty}) => (
+        <Form className="flex flex-col">
+          <FormInput
+            placeholder="Укажите Email"
+            label="Email:"
+            name="email"
+            type="email"
+            ref={focusRef}
+            required
+          />
+          <FormInput
+            placeholder="Ваше имя или логин"
+            label="Логин:"
+            name="username"
+            type="text"
+          />
+          <FormInput
+            placeholder="Пароль"
+            label="Пароль:"
+            name="password"
+            type="password"
+            autoComplete='off'
+            required
+          />
+          <FormInput
+            placeholder="Повторите пароль"
+            className="mb-6"
+            label="Повтор:"
+            name="repeating"
+            type="password"
+            autoComplete='off'
+            required
+          />
+          <FormCheckbox
+            label="Я принимаю условие пользовательского соглашения"
+            name="isAgree"
+            className="pb-3"
+          />
+          <button
+            disabled={!dirty || !isValid}
+            className="mt-2 btn-submit"
+            type="submit"
+          >
+            Регистрация
+          </button>
+        </Form>
+      )}
     </Formik>
   );
 };
