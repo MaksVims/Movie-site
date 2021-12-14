@@ -1,13 +1,6 @@
-export enum PROFESSION_KEY {
-  ACTOR = 'ACTOR',
-  DIRECTOR = 'DIRECTOR',
-  PRODUCER = 'PRODUCER',
-  WRITER = 'WRITER',
-  OPERATOR = 'OPERATOR',
-  COMPOSER = 'COMPOSER',
-  DESIGN = 'DESIGN',
-  EDITOR = 'EDITOR',
-}
+import { IPersonMovie } from "./movieTypes";
+
+export type PROFESSION_KEY = 'PRODUCER' | 'ACTOR'
 
 export interface IStaffByMovie {
   staffId: number,
@@ -16,18 +9,6 @@ export interface IStaffByMovie {
   posterUrl: string
   professionText: string,
   professionKey: PROFESSION_KEY
-}
-
-export interface IPersonMovie {
-  filmId: number,
-  nameRu: string,
-  nameEn: string,
-  rating: string,
-  description: string,
-  professionKey: PROFESSION_KEY,
-  posterUrlPreview: string,
-  year: string,
-  countries: [{ country: string }],
 }
 
 export interface ISpecificStaff {
@@ -42,6 +23,6 @@ export interface ISpecificStaff {
   birthplace: string,
   profession: string,
   growth: number,
-  facts: [string]
+  facts: string[]
   films: IPersonMovie[]
 }

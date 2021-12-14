@@ -1,41 +1,36 @@
-import {IPersonMovie} from "#/staffTypes";
-
 export interface IMovieByFilterOrTop {
   filmId: number,
   nameRu: string,
   year: string,
   rating: string,
   posterUrlPreview: string,
-  countries: [{ country: string }],
-  description?: string
 }
 
 export interface IMoviePremier {
   kinopoiskId: number
   nameRu: string,
   year: number,
-  rating: number,
   posterUrlPreview: string,
-  countries: [{ country: string }],
-  duration: number,
-  premiereRu: string
-  description?: string
 }
 
-export type TypeMovieDB = IMoviePremier | IMovieByFilterOrTop | IPersonMovie
+export type MovieDB = IMoviePremier | IMovieByFilterOrTop | IPersonMovie
+
+export interface IPersonMovie {
+  filmId: number,
+  nameRu: string,
+  year: string,
+  rating: string,
+}
 
 export interface IMovieForGrid {
   movieId: number,
   nameRu: string,
   year: string,
-  rating: string,
-  posterUrlPreview: string,
-  countries: [{ country: string }],
-  premiereRu?: string
-  description?: string
+  rating: string | null,
+  posterUrlPreview: string | null,
 }
 
-export interface IMovie {
+export interface ISingleMovie {
   nameRu: string,
   nameOriginal: string,
   kinopoiskId: number

@@ -1,13 +1,13 @@
 import {makeAutoObservable} from "mobx";
 import {MovieForGrid} from "@/factory/MovieForGrid";
-import {TypeMovieDB} from "#/movieTypes";
+import {IMovieForGrid, MovieDB} from "#/movieTypes";
 import {SortType} from "#/filtersTypes";
 import CollectionState from "@/store/CollectionState";
 import getCleanListMoviesForGrid from "+/getCleanListMoviesForGrid";
 
 class MoviesState {
 
-  movies: MovieForGrid[]
+  movies: IMovieForGrid[]
   filter: SortType
 
   constructor() {
@@ -16,7 +16,7 @@ class MoviesState {
     makeAutoObservable(this)
   }
 
-  setMovies(movies: TypeMovieDB[]) {
+  setMovies(movies: MovieDB[]) {
     const newMovies = movies.map(movie => new MovieForGrid(movie))
     this.movies = [...this.movies, ...getCleanListMoviesForGrid(newMovies)]
   }
