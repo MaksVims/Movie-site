@@ -1,20 +1,21 @@
 import {useState} from "react";
+import {CustomError} from "@/factory/CustomError";
 
-export function useFetch(callback: any): [(...args: any) => Promise<void>, boolean, any] {
+export function useFetch(callback: any): [(...args: any) => Promise<void>, boolean] {
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState(null)
 
   const fetch = async (...args: any) => {
     try {
       setLoading(true)
       await callback.apply(null, args)
     } catch (e) {
-      // @ts-ignore
-      setError(e.message)
+      if (e instanceof Error) {
+        throw new CustomError(e.message)
+      }
     } finally {
       setLoading(false)
     }
   }
 
-  return [fetch, loading, error]
+  return [fetch, loading]
 }

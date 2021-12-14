@@ -11,7 +11,6 @@ import errorsMessage from "@/const/errorsMessage";
 import {AlertType} from "#/alertCtxTypes";
 import successMessage from "@/const/successMessage";
 import {useRouter} from "next/router";
-import {User} from "@firebase/auth";
 import NoAccessUser from "@/hoc/NoAccessUser";
 import Seo from "@/hoc/Seo";
 
@@ -22,7 +21,7 @@ const Login: NextPage = () => {
   const [login, loading] = useFetch(useCallback(async (values: LoginFormValues) => {
     try {
       const {email, password} = values
-      const user: User = await FirebaseAuthService.login(email, password)
+      const user = await FirebaseAuthService.login(email, password)
       showAlert(successMessage.AUTH_LOGIN(user.displayName, user.email), AlertType.SUCCESS)
       await router.push('/account')
     } catch (e) {
@@ -38,11 +37,17 @@ const Login: NextPage = () => {
             <section className="mx-auto max-w-2xl w-full bg-white rounded-md shadow-md relative">
               <div className="space-y-12 sm:space-y-20 py-6 px-4">
                 <div className="space-y-1 text-center">
-                  <h1 className="text-2xl text-black font-semibold">Авторизация</h1>
+                  <h1 className="text-2xl text-black font-semibold">
+                    Авторизация
+                  </h1>
                   <div className="flex-center space-x-1 text-sm">
-                    <span className="text-gray-color">Нет аккаунта?</span>
+                    <span className="text-gray-color">
+                      Нет аккаунта?
+                    </span>
                     <Link href="/auth/register">
-                      <a className="link-blur-color">Зарегистрироваться</a>
+                      <a className="link-blur-color">
+                        Зарегистрироваться
+                      </a>
                     </Link>
                   </div>
                 </div>

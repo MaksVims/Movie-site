@@ -1,7 +1,7 @@
 import React from 'react';
 import MainLayout from "@/components/layouts/MainLayout";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {IMovie} from "#/movieTypes";
+import {ISingleMovie} from "#/movieTypes";
 import {ParsedUrlQuery} from "querystring";
 import {MovieService} from "@/api/MovieService";
 import MovieCardContent from "@/components/singleMovie/MovieCardContent";
@@ -12,7 +12,7 @@ import FooterLayout from "@/components/layouts/FooterLayout";
 import Seo from "@/hoc/Seo";
 
 interface IMoviePageProps {
-  movie: IMovie,
+  movie: ISingleMovie,
   staff: IStaffByMovie[]
 }
 

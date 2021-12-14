@@ -7,11 +7,11 @@ import AlertContext from "@/contexts/AlertContext";
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <AuthContext>
-      <CollectionContext>
-        <AlertContext>
+      <AlertContext>
+        <CollectionContext>
           <Component {...pageProps} />
-        </AlertContext>
-      </CollectionContext>
+        </CollectionContext>
+      </AlertContext>
     </AuthContext>
   )
 }

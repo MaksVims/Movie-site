@@ -22,19 +22,20 @@ import BoxLoader from "@/components/ui/BoxLoader";
 
 interface IGenrePageProps {
   dataMovies: IResponseMoviesByFiltersOrTop,
-  genre: string
+  genre: string,
+  genreId: number
 }
 
-const GenrePage: NextPage<IGenrePageProps> = ({dataMovies, genre}) => {
+const GenrePage: NextPage<IGenrePageProps> = ({dataMovies, genre, genreId}) => {
   const totalPages = dataMovies.pagesCount
   const filter = MoviesState.filter
 
   const [fetchNextPage, loadNextPage, currentPage] = usePagination(
     totalPages,
     useCallback(async (page: number) => {
-      const result = await MovieService.getTopMovies(page)
+      const result = await MovieService.getMoviesByFilters({page, genre: genreId})
       moviesState.setMovies(result.films)
-    }, []))
+    }, [genreId]))
 
   const filteredMovies = moviesState.filteredMovies
 
@@ -49,7 +50,6 @@ const GenrePage: NextPage<IGenrePageProps> = ({dataMovies, genre}) => {
       className="text-center my-8"
     />
   )
-
 
   return (
     <Seo
@@ -96,7 +96,8 @@ export const getStaticProps: GetStaticProps<IGenrePageProps, IParams> = async (c
     return {
       props: {
         dataMovies,
-        genre: filterItem.genre
+        genre: filterItem.genre,
+        genreId: filterItem.id
       }
     }
   } catch (e) {

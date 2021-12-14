@@ -2,8 +2,14 @@ import {SortType} from "#/filtersTypes";
 import {User} from "firebase/auth";
 import MoviesState from "@/store/MoviesState";
 
-export default function getListActionsForBarFilters(filter: SortType, user: User | null, notIncluded: SortType | undefined)
-  : { title: string, isActive: boolean, type: SortType, action: () => void }[] {
+type SortFilterItem = { title: string, isActive: boolean, type: SortType, action: () => void }
+
+export default function getListActionsForBarFilters(
+  filter: SortType,
+  user: User | null,
+  notIncluded: SortType | undefined
+): SortFilterItem[] {
+
   const set = MoviesState.setFilter.bind(MoviesState)
   const actions = [
     {

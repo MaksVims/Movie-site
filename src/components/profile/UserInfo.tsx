@@ -13,12 +13,24 @@ const UserInfo: FC<UserInfoProps> = ({user}) => {
 
   return (
     <ul className="space-y-2 grid grid-cols-2 items-baseline md:grid-cols-6 truncate">
-      <span className={titleClass}>Имя:</span>
-      <span className={contentClass}>{user?.displayName || 'Не указан'} </span>
-      <span className={titleClass}>Email:</span>
-      <span className={contentClass}>{user?.email}</span>
-      <span className={titleClass}>Phone:</span>
-      <span className={contentClass}>{user?.phoneNumber || 'Не указан'}</span>
+      <span className={titleClass}>
+        Имя
+        :</span>
+      <span className={contentClass}>
+        {user?.displayName || 'Не указан'}
+      </span>
+      <span className={titleClass}>
+        Email:
+      </span>
+      <span className={contentClass}>
+        {user?.email}
+      </span>
+      <span className={titleClass}>
+        Phone:
+      </span>
+      <span className={contentClass}>
+        {user?.phoneNumber || 'Не указан'}
+      </span>
     </ul>
   );
 };

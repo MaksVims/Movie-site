@@ -11,8 +11,7 @@ interface SelectSortFiltersMoviesProps {
 const SelectSortFiltersMovies: FC<SelectSortFiltersMoviesProps> = ({className}) => {
   const {user} = useAuth()
   const changeFilter = (e: ChangeEvent<HTMLSelectElement>) => {
-    // @ts-ignore
-    MoviesState.setFilter(e.target.value)
+    MoviesState.setFilter(e.target.value as SortType)
   }
 
   return (

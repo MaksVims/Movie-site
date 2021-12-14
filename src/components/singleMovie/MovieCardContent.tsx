@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
-import {IMovie} from "#/movieTypes";
+import {ISingleMovie} from "#/movieTypes";
 import {IStaffByMovie} from "#/staffTypes";
 import RatingTable from "@/components/singleMovie/RatingTable";
 import MovieDescription from "@/components/singleMovie/MovieDescription";
 
 interface IMovieCardContent {
-  movie: IMovie,
+  movie: ISingleMovie,
   staff: IStaffByMovie[]
 }
 

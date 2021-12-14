@@ -43,11 +43,12 @@ const PersonInfo: FC<PersonInfoProps> = ({person, countMovies}) => {
         />
       </div>
       {isFacts && (
-        <div className="pt-4 xl:!pt-12">
+        <div className="mt-4 xl:self-center ">
           <h3 className="font-medium mb-2">
             Знали ли вы что?
           </h3>
-          <ul className="space-y-2 text-gray-color leading-normal px-2">
+          <ul
+            className="space-y-2 text-gray-color leading-normal pr-2 max-h-[300px] xl:max-h-[200px] overflow-y-auto custom-scrollbar">
             {person.facts.map(fact => (
               <li
                 key={fact}

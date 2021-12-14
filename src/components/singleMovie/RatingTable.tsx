@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
-import {IMovie} from "#/movieTypes";
+import {ISingleMovie} from "#/movieTypes";
 
 interface RatingTableProps {
+  movie: ISingleMovie
   className?: string,
-  movie: IMovie
 }
 
 const RatingTable:FC<RatingTableProps> = ({movie,className}) => {
@@ -13,8 +13,7 @@ const RatingTable:FC<RatingTableProps> = ({movie,className}) => {
         <span className="mr-1">КП</span>
         <span>{movie.ratingKinopoisk}</span>
       </li>
-      <li
-        className="font-medium yellow-frame">
+      <li className="font-medium yellow-frame">
         <span className="mr-1">IMDB </span>
         <span>{movie.ratingImdb}</span>
       </li>

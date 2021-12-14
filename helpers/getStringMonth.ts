@@ -14,7 +14,7 @@ const months: Array<string> = [
 ]
 
 
-export default function getStringMonth(month: number): string {
+export default function getStringMonth(month: number) {
   if (month > 0 && month < months.length) {
     return months[month]
   }

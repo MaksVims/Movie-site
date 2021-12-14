@@ -34,7 +34,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
         <a>
           <div className="relative">
             <Image
-              src={movie.posterUrlPreview}
+              src={movie.posterUrlPreview || '/images/no_image.png'}
               width={475}
               height={600}
               alt={movie.nameRu}
@@ -43,14 +43,14 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
             </div>
             <Play className="group-hover:opacity-100 opacity-0 flex-center"/>
             {
-              movie?.year &&
+              movie.year &&
               <span className="bubble top-2 left-2">
                 {movie.year}
               </span>
             }
             {
               movie.rating && <RatingMovie
-                rating={movie.rating}
+                rating={movie.rating || ''}
                 size={20}
                 className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 text-xl"
               />

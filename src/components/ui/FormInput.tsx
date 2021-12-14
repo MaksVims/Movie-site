@@ -1,8 +1,6 @@
 import React, {HTMLProps} from 'react';
 import {useField} from "formik";
 
-// type FormInputProps = HTMLProps<HTMLInputElement>
-
 interface FormInputProps extends HTMLProps<HTMLInputElement> {
   placeholder?: string
 }

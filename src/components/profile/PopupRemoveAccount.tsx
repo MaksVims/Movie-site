@@ -15,7 +15,9 @@ const PopupRemoveAccount: FC<RemoveAccountPopupProps> = ({onClose, isOpened}) =>
       isOpened={isOpened}
     >
       <div className="space-y-4">
-        <p className="text-gray-color">Для подтверждения удаления аккаунта введите свой email</p>
+        <p className="text-gray-color">
+          Для подтверждения удаления аккаунта введите свой email
+        </p>
         <FormRemoveAccount onClose={onClose}/>
       </div>
     </MainPopup>

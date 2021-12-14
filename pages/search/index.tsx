@@ -17,7 +17,6 @@ import BtnLoadNextPage from "@/components/ui/BtnLoadNextPage";
 import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
 import BoxLoader from "@/components/ui/BoxLoader";
 
-
 interface SearchPageProps {
   dataMovies: IResponseSearchByKeyWord
 }
@@ -29,7 +28,7 @@ const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
   const [fetchNextPage, loadNextPage, currentPage] = usePagination(
     totalPages,
     useCallback(async (page: number) => {
-      const result = await MovieService.getTopMovies(page)
+      const result = await MovieService.getMoviesByKeyWord(dataMovies.keyword, page)
       moviesState.setMovies(result.films)
     }, []))
 
@@ -37,7 +36,7 @@ const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
 
   useEffect(() => {
     moviesState.setMovies(dataMovies.films)
-    return () => moviesState.setMovies([])
+    return () => moviesState.resetMovies()
   }, [dataMovies.films])
 
   const paginationView = currentPage < totalPages && filter !== SortType.FAVORITE && filteredMovies.length && (

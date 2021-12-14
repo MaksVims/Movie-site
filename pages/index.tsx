@@ -58,7 +58,7 @@ const Home: NextPage<IHomePageProps> = ({dataMovies}) => {
             <BarSortFilters/>
             {filteredMovies.length ?
               <GridMovies movies={filteredMovies}/> : (
-                <div className="flex flex-1">
+                <div className="flex flex-1 relative">
                   <BoxDisplayCenter
                     title="Фильмы не найдены"
                     className="text-white text-xl"

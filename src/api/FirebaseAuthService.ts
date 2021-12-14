@@ -1,19 +1,23 @@
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, UserCredential} from "firebase/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {auth} from "service/firebase";
-import {deleteUser, User} from "@firebase/auth";
+import {deleteUser} from "@firebase/auth";
 
 export default class FirebaseAuthService {
 
-  static async login(email: string, password: string): Promise<User> {
-    const credential: UserCredential = await signInWithEmailAndPassword(auth, email, password)
+  static async login(email: string, password: string) {
+    const credential = await signInWithEmailAndPassword(auth, email, password)
     return credential.user
   }
 
-  static async logout(): Promise<void> {
+  static async logout() {
     return auth.signOut()
   }
 
-  static async register(email: string, password: string, name?: string): Promise<User> {
+  static async register(
+    email: string,
+    password: string,
+    name?: string
+  ) {
     const credential = await createUserWithEmailAndPassword(auth, email, password)
     await updateProfile(auth.currentUser!, {
       displayName: name || email
@@ -21,18 +25,22 @@ export default class FirebaseAuthService {
     return credential.user
   }
 
-  static async updateProfile(name: string, tel: string, photoURL: string) {
+  static async updateProfile(
+    name: string,
+    tel: string,
+    photoURL: string
+  ) {
     await updateProfile(auth.currentUser!, {
       displayName: name,
       photoURL,
     })
   }
 
-  static isLoggedIn(): boolean {
+  static isLoggedIn() {
     return !!auth.currentUser
   }
 
-  static async deleteAccount(): Promise<boolean> {
+  static async deleteAccount() {
     if (auth.currentUser) {
       await deleteUser(auth.currentUser)
       return true

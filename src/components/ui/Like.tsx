@@ -1,4 +1,4 @@
-import React, {FC, MouseEventHandler, SyntheticEvent, useRef} from 'react';
+import React, {FC, SyntheticEvent, useRef} from 'react';
 import {FaHeart} from "react-icons/fa";
 import theme from "@/const/theme";
 import useHover from "@/hooks/useHover";

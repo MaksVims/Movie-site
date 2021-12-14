@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import getProducerFromList from "+/getProducerFromList";
 import getActorsFromList from "+/getActorsFromList";
 import getEnGenresMovie from "+/getEnGenresMovie";
-import {IMovie} from "#/movieTypes";
+import {ISingleMovie} from "#/movieTypes";
 import {IStaffByMovie} from "#/staffTypes";
 import ListGenres from "@/components/singleMovie/ListGenres";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import {FiltersState} from "@/store";
 import {observer} from 'mobx-react-lite';
 
 interface MovieDescriptionProps {
-  movie: IMovie,
+  movie: ISingleMovie,
   staff: IStaffByMovie[],
 }
 

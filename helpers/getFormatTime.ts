@@ -1,4 +1,4 @@
-export default function getFormatTime(time: number | string): string {
+export default function getFormatTime(time: number | string) {
   const number = Number(time)
   if (!number && number !== 0) return ''
 

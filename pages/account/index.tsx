@@ -12,7 +12,6 @@ import {ParsedUrlQuery} from 'querystring';
 import {TOKEN} from "@/const";
 import Seo from "@/hoc/Seo";
 
-
 const Profile: NextPage = () => {
   const {user} = useAuth()
   const collection = CollectionState.moviesToCollection
@@ -59,7 +58,7 @@ const Profile: NextPage = () => {
 export default observer(Profile);
 
 export const getServerSideProps: GetServerSideProps<ParsedUrlQuery> = async (context) => {
-  const token: string = context.req.cookies[TOKEN]
+  const token = context.req.cookies[TOKEN]
 
   if (token) {
     return {

@@ -31,7 +31,7 @@ const PopupSearch: FC<PopupSearchProps> = ({onClose, isOpened}) => {
           <input
             type="search"
             value={query}
-            className="input w-[500px] h-12 text-2xl p-4 mt-10"
+            className="input text-lg w-[260px] sm:w-[500px] h-12 sm:text-2xl p-4 mt-10"
             placeholder="Введите название"
             onChange={e => setQuery(e.target.value)}
           />

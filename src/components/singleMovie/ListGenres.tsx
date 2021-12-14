@@ -10,7 +10,8 @@ const ListGenres: FC<ListGenresProps> = ({genres}) => {
   return (
     <div className="inline">
       <span className="font-medium mr-1">Категории: </span>
-      {genres.map((genre, idx) => (
+      {
+        genres.map((genre, idx) => (
         <React.Fragment key={genre.en + idx}>
           <span>{idx === 0 ? `` : ' / '}</span>
           <Link
@@ -21,7 +22,8 @@ const ListGenres: FC<ListGenresProps> = ({genres}) => {
             </a>
           </Link>
         </React.Fragment>
-      ))}
+      ))
+      }
     </div>
   );
 };

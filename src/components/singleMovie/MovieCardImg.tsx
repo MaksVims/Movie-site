@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {IMovie} from "#/movieTypes";
+import {ISingleMovie} from "#/movieTypes";
 import Image from "next/image";
 import {BiTime} from 'react-icons/bi'
 import cn from "classnames";
@@ -10,7 +10,7 @@ import {observer} from 'mobx-react-lite';
 import {useAuth} from "@/contexts/AuthContext";
 
 interface IMovieCardImg {
-  movie: IMovie,
+  movie: ISingleMovie,
 }
 
 const MovieCardImg: FC<IMovieCardImg> = ({movie}) => {
@@ -32,17 +32,24 @@ const MovieCardImg: FC<IMovieCardImg> = ({movie}) => {
              className="flex-grow-0"
       />
       <div className={imageBottomClass}>
-        {movie.filmLength &&
-        <p className="text-gray-color flex items-center">
-          <BiTime size={20} className="mr-1"/>
-          <span className="text-sm">{getFormatTime(movie.filmLength)}</span>
-        </p>}
-        {user && <Like
-          size={25}
-          onClick={isActive ? removeMovieToCollection : addMovieToCollection}
-          className="hover:scale-110"
-          active={isActive}
-        />}
+        {
+          movie.filmLength && (
+            <p className="text-gray-color flex items-center">
+              <BiTime size={20} className="mr-1"/>
+              <span className="text-sm">{getFormatTime(movie.filmLength)}</span>
+            </p>
+          )
+        }
+        {
+          user && (
+            <Like
+              size={25}
+              onClick={isActive ? removeMovieToCollection : addMovieToCollection}
+              className="hover:scale-110"
+              active={isActive}
+            />
+          )
+        }
       </div>
     </div>
   );

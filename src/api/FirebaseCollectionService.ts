@@ -1,19 +1,27 @@
 import {auth, db} from 'service/firebase'
 import {DatabaseReference, get, onValue, push, ref, remove, set} from 'firebase/database'
-import {CollectionState} from "@/store";
+import {TypeCollection} from "#/storeTypes";
+
+type updateResolver = (update: TypeCollection) => Promise<void>
 
 export default class FirebaseCollectionService {
 
-  static async loadCollection(userId: string) {
+  static async loadCollection(
+    userId: string,
+    updateResolver: updateResolver
+  ) {
     const collectionListRef = ref(db, `/users/${userId}/collection`)
-    await FirebaseCollectionService.createObserverUpdate(collectionListRef)
+    await FirebaseCollectionService.createObserverUpdate(collectionListRef, updateResolver)
     return await get(collectionListRef).then(snapshot => snapshot.val())
   }
 
-  static async createObserverUpdate(observeRef: DatabaseReference) {
+  static async createObserverUpdate(
+    observeRef: DatabaseReference,
+    updateResolver: updateResolver
+  ) {
     onValue(observeRef, snapshot => {
       const data = snapshot.val()
-      CollectionState.updateCollection(data)
+      updateResolver(data)
     })
   }
 
@@ -23,7 +31,10 @@ export default class FirebaseCollectionService {
     return await remove(collectionListItemRef)
   }
 
-  static async addMovieToCollection(movieId: number, title: string): Promise<boolean> {
+  static async addMovieToCollection(
+    movieId: number,
+    title: string
+  ) {
     const userId = auth.currentUser?.uid
     const collectionListRef = ref(db, `/users/${userId}/collection`)
     const newCollectionItemRef = push(collectionListRef)

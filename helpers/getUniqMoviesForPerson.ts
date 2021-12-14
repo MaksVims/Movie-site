@@ -1,6 +1,7 @@
-import {IPersonMovie, ISpecificStaff} from "#/staffTypes";
+import {IPersonMovie} from "#/movieTypes";
+import {ISpecificStaff} from "#/staffTypes";
 
-export default function getUniqMoviesForPerson(person: ISpecificStaff): IPersonMovie[] {
+export default function getUniqMoviesForPerson(person: ISpecificStaff) {
   const films = person.films.slice()
   const uniqFilms: { [key: string]: IPersonMovie } = {}
 

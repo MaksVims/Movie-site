@@ -4,5 +4,6 @@ export default {
   LOGOUT: 'Вы вышли из системы',
   REMOVE_ACCOUNT: 'Аккаунт удален',
   ADD_MOVIE_TO_COLLECTION: 'Добавлено в коллекцию',
-  REMOVE_MOVIE_TO_COLLECTION: 'Удалено из коллекции'
+  REMOVE_MOVIE_TO_COLLECTION: 'Удалено из коллекции',
+  UPDATE_PROFILE: 'Профиль обновлен'
 }

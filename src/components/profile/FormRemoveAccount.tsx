@@ -24,13 +24,12 @@ const FormRemoveAccount: FC<FormRemoveAccountProps> = ({onClose}) => {
     setTimeout(() => focusRef.current?.focus())
   }, [])
 
-  const handlerRemoveAccount = async (): Promise<void> => {
+  const handlerRemoveAccount = async () => {
     try {
       await FirebaseAuthService.deleteAccount()
       showAlert(successMessage.REMOVE_ACCOUNT, AlertType.SUCCESS)
       await router.push('/')
     } catch (e) {
-      alert(e)
       showAlert(errorsMessage.REMOVE_ACCOUNT, AlertType.ERROR)
     }
   }
