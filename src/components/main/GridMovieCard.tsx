@@ -67,7 +67,7 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
         </a>
       </Link>
       <div className="mt-2 text-white md:mt-3 flex justify-between">
-        <h2 className="font-medium font-bold text-xl xl:text-2xl">
+        <h2 className="font-medium font-bold">
           {movie.nameRu}
         </h2>
       </div>

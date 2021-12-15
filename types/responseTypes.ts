@@ -1,4 +1,4 @@
-import {IMovieByFilterOrTop, IMoviePremier} from "#/movieTypes";
+import {IMovieByFilterOrTop, IMoviePremier, IReview} from "#/movieTypes";
 
 export interface IResponseMoviesByFiltersOrTop {
   pagesCount: number,
@@ -15,4 +15,11 @@ export interface IResponseSearchByKeyWord {
 export interface IResponseMoviesPremieres {
   total: number,
   items: IMoviePremier[]
+}
+
+export interface IResponseReviewsByMovie {
+  page: number,
+  reviewAllCount: number,
+  pagesCount: number,
+  reviews: IReview[]
 }

@@ -1,5 +1,10 @@
 import {IFilterOptions} from "#/filtersTypes";
-import {IResponseMoviesByFiltersOrTop, IResponseMoviesPremieres, IResponseSearchByKeyWord} from "#/responseTypes";
+import {
+  IResponseMoviesByFiltersOrTop,
+  IResponseMoviesPremieres,
+  IResponseReviewsByMovie,
+  IResponseSearchByKeyWord
+} from "#/responseTypes";
 import {ISingleMovie} from "#/movieTypes";
 import getStringMonth from "+/getStringMonth";
 import fetchMovies from "+/fetchMoviesOrStaff";
@@ -35,5 +40,10 @@ export class MovieService {
     const encodeWord = encodeURIComponent(keyword)
     const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${encodeWord}&page=${page}`
     return await fetchMovies(url) as IResponseSearchByKeyWord
+  }
+
+  static async getReviewsByMovie(movieId:number, page:number = 1) {
+    const url = `https://kinopoiskapiunofficial.tech/api/v1/reviews?filmId=${movieId}&page=${page}`
+    return await fetchMovies(url) as IResponseReviewsByMovie
   }
 }
