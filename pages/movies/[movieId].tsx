@@ -10,13 +10,16 @@ import {IStaffByMovie} from "#/staffTypes";
 import StaffService from "@/api/StaffService";
 import FooterLayout from "@/components/layouts/FooterLayout";
 import Seo from "@/hoc/Seo";
+import {IResponseReviewsByMovie} from "#/responseTypes";
+import ReviewItem from "@/components/singleMovie/ReviewItem";
 
 interface IMoviePageProps {
   movie: ISingleMovie,
   staff: IStaffByMovie[]
+  responseReviews: IResponseReviewsByMovie
 }
 
-const MovieId: NextPage<IMoviePageProps> = ({movie, staff}) => {
+const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews}) => {
 
   return (
     <Seo
@@ -40,8 +43,18 @@ const MovieId: NextPage<IMoviePageProps> = ({movie, staff}) => {
               <video
                 src="#"
                 controls={true}
-                className="full flex-1"
+                className="flex-1 h-[400px] w-full"
               />
+              <ul className="p-4 space-y-4">
+                <h2 className="text-xl font-semibold my-4">Рецензии на фильм</h2>
+                {responseReviews.reviews
+                  ?.filter(review => review.reviewTitle)
+                  .map(review => (
+                    <li key={review.reviewId}>
+                      <ReviewItem review={review}/>
+                    </li>
+                  ))}
+              </ul>
             </section>
           </main>
         </FooterLayout>
@@ -69,11 +82,13 @@ export const getStaticProps: GetStaticProps<IMoviePageProps, IParams> = async (c
   try {
     const movie = await MovieService.getMovieById(Number(movieId))
     const staff = await StaffService.getStaffByMovie(Number(movieId))
+    const responseReviews = await MovieService.getReviewsByMovie(Number(movieId))
 
     return {
       props: {
         movie,
-        staff
+        staff,
+        responseReviews
       }
     }
   } catch {

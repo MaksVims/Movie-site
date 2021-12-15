@@ -150,3 +150,7 @@ body {
   overflow: auto;
   -ms-overflow-style: none;
 }
+
+.smooth-height {
+  transition: max-height .9s;
+}
