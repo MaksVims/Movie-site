@@ -3,6 +3,7 @@ import {IReview} from "#/movieTypes";
 import cn from 'classnames'
 import getFormatDate from '+/getFormatDate';
 import useToggle from "@/hooks/useToggle";
+import LikeAndDislikeBar from "@/components/ui/LikeAndDislikeBar";
 
 export interface ReviewItemProps {
   review: IReview
@@ -43,13 +44,20 @@ const ReviewItem: FC<ReviewItemProps> = ({review}) => {
         className={contentClass}
         ref={containerRef}
       >
-        <div className="text-left text-xs space-y-2 text-gray-color">
-          <h4>
-            <i>Автор: {review.reviewAutor}</i>
-          </h4>
-          <data>
-            {getFormatDate(review.reviewData)}
-          </data>
+        <div className="text-left text-xs space-y-2 text-gray-color flex items-center justify-between">
+          <div>
+            <h4>
+              <i>Автор: {review.reviewAutor}</i>
+            </h4>
+            <data>
+              {getFormatDate(review.reviewData)}
+            </data>
+          </div>
+
+          <LikeAndDislikeBar
+            dislikeValue={review.userNegativeRating}
+            likeValue={review.userPositiveRating}
+          />
         </div>
         <p className="text-gray-color text-xs text-justify">
           {review.reviewDescription}

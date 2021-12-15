@@ -45,7 +45,7 @@ const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews}) => 
                 controls={true}
                 className="flex-1 h-[400px] w-full"
               />
-              <ul className="p-4 space-y-4">
+              <ul className="px-2 p-4 sm:!px-4 space-y-4">
                 <h2 className="text-xl font-semibold my-4">Рецензии на фильм</h2>
                 {responseReviews.reviews
                   ?.filter(review => review.reviewTitle)
