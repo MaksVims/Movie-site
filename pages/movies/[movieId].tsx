@@ -10,16 +10,17 @@ import {IStaffByMovie} from "#/staffTypes";
 import StaffService from "@/api/StaffService";
 import FooterLayout from "@/components/layouts/FooterLayout";
 import Seo from "@/hoc/Seo";
-import {IResponseReviewsByMovie} from "#/responseTypes";
+import {IResponseReviewsByMovie, IResponseTrailer} from "#/responseTypes";
 import ReviewItem from "@/components/singleMovie/ReviewItem";
 
 interface IMoviePageProps {
   movie: ISingleMovie,
   staff: IStaffByMovie[]
   responseReviews: IResponseReviewsByMovie
+  responseTrailer: IResponseTrailer
 }
 
-const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews}) => {
+const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews, responseTrailer}) => {
 
   return (
     <Seo
@@ -38,7 +39,17 @@ const MovieId: NextPage<IMoviePageProps> = ({movie, staff, responseReviews}) => 
             </section>
             <section className="pt-6 bg-white flex-1 text-center">
               <div className="px-4">
-                <h2 className="font-medium ">Смотреть видео {movie.nameRu} онлайн бесплатно</h2>
+                <h2 className="font-medium mb-2 space-x-1">
+                  <span>Смотреть трейлер {movie.nameRu} онлайн</span>
+                  <a
+                    href={`${responseTrailer.items[0].url}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="link-blur-color"
+                  >
+                    тут
+                  </a>
+                </h2>
               </div>
               <video
                 src="#"
@@ -83,12 +94,14 @@ export const getStaticProps: GetStaticProps<IMoviePageProps, IParams> = async (c
     const movie = await MovieService.getMovieById(Number(movieId))
     const staff = await StaffService.getStaffByMovie(Number(movieId))
     const responseReviews = await MovieService.getReviewsByMovie(Number(movieId))
+    const responseTrailer = await MovieService.getTrailer(Number(movieId))
 
     return {
       props: {
         movie,
         staff,
-        responseReviews
+        responseReviews,
+        responseTrailer
       }
     }
   } catch {
