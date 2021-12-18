@@ -23,3 +23,14 @@ export interface IResponseReviewsByMovie {
   pagesCount: number,
   reviews: IReview[]
 }
+
+export interface IResponseTrailer {
+  total: number,
+  items: [
+    {
+      url: string,
+      name: string,
+      site: string
+    }
+  ]
+}

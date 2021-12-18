@@ -3,7 +3,7 @@ import {
   IResponseMoviesByFiltersOrTop,
   IResponseMoviesPremieres,
   IResponseReviewsByMovie,
-  IResponseSearchByKeyWord
+  IResponseSearchByKeyWord, IResponseTrailer
 } from "#/responseTypes";
 import {ISingleMovie} from "#/movieTypes";
 import getStringMonth from "+/getStringMonth";
@@ -45,5 +45,10 @@ export class MovieService {
   static async getReviewsByMovie(movieId:number, page:number = 1) {
     const url = `https://kinopoiskapiunofficial.tech/api/v1/reviews?filmId=${movieId}&page=${page}`
     return await fetchMovies(url) as IResponseReviewsByMovie
+  }
+
+  static async getTrailer(movieId:number) {
+    const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movieId}/videos`
+    return await fetchMovies(url) as IResponseTrailer
   }
 }
