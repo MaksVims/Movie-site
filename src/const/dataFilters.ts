@@ -1,4 +1,4 @@
-import {IDataFilterGenre} from "#/filtersTypes";
+import {IDataFilterGenre} from "types";
 
 export const DATA_FILTERS: IDataFilterGenre =  {
   "genres": [

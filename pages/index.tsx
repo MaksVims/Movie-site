@@ -1,21 +1,14 @@
 import React, {useCallback, useEffect} from 'react';
 import {GetStaticProps, NextPage} from "next";
-import MainLayout from "@/components/layouts/MainLayout";
-import {MovieService} from "@/api/MovieService";
-import GridMovies from "@/components/main/GridMovies";
-import {IResponseMoviesByFiltersOrTop} from "#/responseTypes";
-import FooterLayout from "@/components/layouts/FooterLayout";
-import Seo from "@/hoc/Seo";
 import {observer} from 'mobx-react-lite';
-import moviesState from "@/store/MoviesState";
-import ScrollBarGenre from '@/components/main/ScrollBarGenre';
-import BarSortFilters from "@/components/main/BarSortFilters";
-import usePagination from "@/hooks/usePagination";
-import BtnLoadNextPage from "@/components/ui/BtnLoadNextPage";
-import BoxLoader from '@/components/ui/BoxLoader';
+import {IResponseMoviesByFiltersOrTop, SortType} from "types";
+import {MovieService} from "@/api";
 import {MoviesState} from "@/store";
-import {SortType} from "#/filtersTypes";
-import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
+import {usePagination} from "@/hooks";
+import Seo from "@/hoc/Seo";
+import {GridMovies, ScrollBarGenre, BarSortFilters} from "@/components/main";
+import {MainLayout, FooterLayout} from "@/components/layouts";
+import {BtnLoadNextPage, BoxLoader, BoxDisplayCenter} from "@/components/ui";
 
 interface IHomePageProps {
   dataMovies: IResponseMoviesByFiltersOrTop
@@ -29,14 +22,14 @@ const Home: NextPage<IHomePageProps> = ({dataMovies}) => {
     totalPages,
     useCallback(async (page: number) => {
       const result = await MovieService.getTopMovies(page)
-      moviesState.setMovies(result.films)
+      MoviesState.setMovies(result.films)
     }, []))
 
-  const filteredMovies = moviesState.filteredMovies
+  const filteredMovies = MoviesState.filteredMovies
 
   useEffect(() => {
-    moviesState.setMovies(dataMovies.films)
-    return () => moviesState.resetMovies()
+    MoviesState.setMovies(dataMovies.films)
+    return () => MoviesState.resetMovies()
   }, [dataMovies.films])
 
   const paginationView = currentPage < totalPages && filter !== SortType.FAVORITE && filteredMovies.length && (

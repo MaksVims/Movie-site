@@ -1,21 +1,14 @@
 import React, {useCallback, useEffect} from 'react';
 import {GetServerSideProps, NextPage} from "next";
-import {IResponseSearchByKeyWord} from "#/responseTypes";
-import {MovieService} from "@/api/MovieService";
-import MainLayout from "@/components/layouts/MainLayout";
-import FooterLayout from "@/components/layouts/FooterLayout";
-import ScrollBarGenre from "@/components/main/ScrollBarGenre";
-import BarSortFilters from "@/components/main/BarSortFilters";
-import GridMovies from "@/components/main/GridMovies";
-import Seo from "@/hoc/Seo";
-import moviesState from "@/store/MoviesState";
 import {observer} from 'mobx-react-lite';
+import {IResponseSearchByKeyWord, SortType} from "types";
+import {MovieService} from "@/api";
 import {MoviesState} from "@/store";
-import usePagination from "@/hooks/usePagination";
-import {SortType} from "#/filtersTypes";
-import BtnLoadNextPage from "@/components/ui/BtnLoadNextPage";
-import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
-import BoxLoader from "@/components/ui/BoxLoader";
+import {usePagination} from "@/hooks";
+import Seo from "@/hoc/Seo";
+import {FooterLayout, MainLayout} from "@/components/layouts";
+import {BarSortFilters, GridMovies, ScrollBarGenre} from "@/components/main";
+import {BoxDisplayCenter, BoxLoader, BtnLoadNextPage} from "@/components/ui";
 
 interface SearchPageProps {
   dataMovies: IResponseSearchByKeyWord
@@ -29,14 +22,14 @@ const SearchPage: NextPage<SearchPageProps> = ({dataMovies}) => {
     totalPages,
     useCallback(async (page: number) => {
       const result = await MovieService.getMoviesByKeyWord(dataMovies.keyword, page)
-      moviesState.setMovies(result.films)
+      MoviesState.setMovies(result.films)
     }, []))
 
-  const filteredMovies = moviesState.filteredMovies
+  const filteredMovies = MoviesState.filteredMovies
 
   useEffect(() => {
-    moviesState.setMovies(dataMovies.films)
-    return () => moviesState.resetMovies()
+    MoviesState.setMovies(dataMovies.films)
+    return () => MoviesState.resetMovies()
   }, [dataMovies.films])
 
   const paginationView = currentPage < totalPages && filter !== SortType.FAVORITE && filteredMovies.length && (

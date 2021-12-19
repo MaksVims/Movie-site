@@ -1,15 +1,13 @@
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {ISpecificStaff} from "#/staffTypes";
-import {ParsedUrlQuery} from "querystring";
-import StaffService from "@/api/StaffService";
-import MainLayout from "@/components/layouts/MainLayout";
-import FooterLayout from "@/components/layouts/FooterLayout";
-import getUniqMoviesForPerson from "+/getUniqMoviesForPerson";
 import {useEffect, useMemo} from "react";
-import {MoviesState} from "@/store";
+import {ParsedUrlQuery} from "querystring";
 import {observer} from "mobx-react-lite";
-import PersonInfo from "@/components/person/PersonInfo";
-import PersonMovies from "@/components/person/PersonMovies";
+import {ISpecificStaff} from "types";
+import {MoviesState} from "@/store";
+import {StaffService} from "@/api";
+import {getUniqMoviesForPerson} from "helpers";
+import {FooterLayout, MainLayout} from "@/components/layouts";
+import {PersonInfo, PersonMovies} from "@/components/person";
 
 interface PersonPageProps {
   person: ISpecificStaff

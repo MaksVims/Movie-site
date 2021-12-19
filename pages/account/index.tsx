@@ -1,16 +1,14 @@
 import React from 'react';
 import {GetServerSideProps, NextPage} from "next";
-import MainLayout from "@/components/layouts/MainLayout";
 import {observer} from 'mobx-react-lite';
-import {CollectionState} from "@/store";
-import {useAuth} from "@/contexts/AuthContext";
-import UserCardProfile from "@/components/profile/UserCardProfile";
-import FavoriteMovieList from "@/components/profile/FavoriteMovieList";
-import BoxLoader from "@/components/ui/BoxLoader";
-import AccountControlPanel from "@/components/profile/AccountControlPanel";
 import {ParsedUrlQuery} from 'querystring';
+import {useAuth} from '@/contexts';
+import {CollectionState} from '@/store';
+import {MainLayout} from '@/components/layouts';
+import {BoxLoader} from '@/components/ui';
+import {AccountControlPanel, FavoriteMovieList, UserCardProfile} from '@/components/profile';
+import Seo from '@/hoc/Seo';
 import {TOKEN} from "@/const";
-import Seo from "@/hoc/Seo";
 
 const Profile: NextPage = () => {
   const {user} = useAuth()

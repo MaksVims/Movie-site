@@ -3,9 +3,9 @@ import {ParsedUrlQuery} from "querystring";
 
 import {IResponseReviewsByMovie, IResponseTrailer, ISingleMovie, IStaffByMovie} from "types";
 import {MovieService, StaffService} from "@/api";
+import {Seo} from "@/hoc";
 import {FooterLayout, MainLayout} from "@/components/layouts";
 import {MovieCardContent, MovieCardImg, ReviewItem} from "@/components/singleMovie";
-import {Seo} from "@/hoc";
 
 
 interface IMoviePageProps {

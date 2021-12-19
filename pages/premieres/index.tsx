@@ -1,16 +1,13 @@
 import React, {useEffect} from 'react';
 import {GetStaticProps, NextPage} from "next";
-import {IResponseMoviesPremieres} from "#/responseTypes";
-import MainLayout from "@/components/layouts/MainLayout";
-import {MovieService} from "@/api/MovieService";
-import ScrollBarGenre from "@/components/main/ScrollBarGenre";
-import GridMovies from "@/components/main/GridMovies";
-import FooterLayout from "@/components/layouts/FooterLayout";
-import Seo from "@/hoc/Seo";
-import moviesState from "@/store/MoviesState";
-import BarSortFilters from "@/components/main/BarSortFilters";
 import {observer} from 'mobx-react-lite';
-import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
+import {MovieService} from "@/api";
+import {IResponseMoviesPremieres} from "types";
+import {MoviesState} from "@/store";
+import Seo from "@/hoc/Seo";
+import {FooterLayout, MainLayout} from "@/components/layouts";
+import {BarSortFilters, GridMovies, ScrollBarGenre} from "@/components/main";
+import {BoxDisplayCenter} from "@/components/ui";
 
 interface IPremieresPageProps {
   dataMovies: IResponseMoviesPremieres
@@ -18,11 +15,11 @@ interface IPremieresPageProps {
 
 const PremieresPage: NextPage<IPremieresPageProps> = ({dataMovies}) => {
   useEffect(() => {
-    moviesState.setMovies(dataMovies.items)
-    return () => moviesState.resetMovies()
+    MoviesState.setMovies(dataMovies.items)
+    return () => MoviesState.resetMovies()
   }, [dataMovies.items])
 
-  const filteredMovies = moviesState.filteredMovies
+  const filteredMovies = MoviesState.filteredMovies
 
   return (
     <Seo
@@ -36,12 +33,12 @@ const PremieresPage: NextPage<IPremieresPageProps> = ({dataMovies}) => {
             <BarSortFilters/>
             {filteredMovies.length ?
               <GridMovies movies={filteredMovies}/> : (
-              <div className="relative flex-1">
-                <BoxDisplayCenter
-                  title="Фильмы не найдены"
-                  className="text-white text-xl"
-                />
-              </div>
+                <div className="relative flex-1">
+                  <BoxDisplayCenter
+                    title="Фильмы не найдены"
+                    className="text-white text-xl"
+                  />
+                </div>
               )}
           </main>
         </FooterLayout>

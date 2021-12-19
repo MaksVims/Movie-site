@@ -1,18 +1,15 @@
 import React from 'react';
 import {NextPage} from "next";
 import Link from "next/link";
-import FormRegister from "@/components/auth/FormRegister";
-import {RegisterFormValues} from "#/validationTypes";
-import FirebaseAuthService from "@/api/FirebaseAuthService";
-import BoxLoader from "@/components/ui/BoxLoader";
-import {useFetch} from "@/hooks/useFetch";
-import successMessage from "@/const/successMessage";
-import {AlertType} from "#/alertCtxTypes";
-import {useAlert} from "@/contexts/AlertContext";
-import errorsMessage from "@/const/errorsMessage";
-import NoAccessUser from "@/hoc/NoAccessUser";
 import {useRouter} from "next/router";
-import Seo from "@/hoc/Seo";
+import {FirebaseAuthService} from "@/api";
+import {AlertType, RegisterFormValues} from "types";
+import {useFetch} from "@/hooks";
+import {errorsMessage, successMessage} from "@/const";
+import {useAlert} from "@/contexts/AlertContext";
+import {NoAccessUser, Seo} from "@/hoc";
+import {FormRegister} from "@/components/auth";
+import {BoxLoader} from "@/components/ui";
 
 const Register: NextPage = () => {
   const {showAlert} = useAlert()
