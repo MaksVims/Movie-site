@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import {IFilterGenre} from "#/filtersTypes";
-import formatFirstToUppercase from "helpers/formatFirstToUppercase";
 import {useRouter} from "next/router";
 import cn from 'classnames'
+import {IFilterGenre} from "types";
+import {formatFirstToUppercase} from "helpers";
 
 interface ScrollBarItemProps {
   item: IFilterGenre

@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import {ImExit} from "react-icons/im";
-import FirebaseAuthService from "@/api/FirebaseAuthService";
+import {FirebaseAuthService} from "@/api";
 import successMessage from "@/const/successMessage";
-import {AlertType} from "#/alertCtxTypes";
 import errorsMessage from "@/const/errorsMessage";
 import {useAlert} from "@/contexts";
+import {AlertType} from 'types';
 
 const BtnSignOut: FC = () => {
   const {showAlert} = useAlert()

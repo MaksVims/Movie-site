@@ -1,14 +1,10 @@
 import React, {FC} from 'react';
-import getProducerFromList from "+/getProducerFromList";
-import getActorsFromList from "+/getActorsFromList";
-import getEnGenresMovie from "+/getEnGenresMovie";
-import {ISingleMovie} from "#/movieTypes";
-import {IStaffByMovie} from "#/staffTypes";
-import ListGenres from "@/components/singleMovie/ListGenres";
 import Link from "next/link";
-import ListActors from "@/components/singleMovie/ListActors";
-import {FiltersState} from "@/store";
 import {observer} from 'mobx-react-lite';
+import {FiltersState} from "@/store";
+import {ISingleMovie, IStaffByMovie} from 'types';
+import {getActorsFromList, getEnGenresMovie, getProducerFromList} from "helpers";
+import {ListActors, ListGenres} from "@/components/singleMovie";
 
 interface MovieDescriptionProps {
   movie: ISingleMovie,

@@ -1,6 +1,6 @@
 import React, {FC, useRef} from 'react';
 import {AiFillPlayCircle} from "react-icons/ai";
-import useHover from "@/hooks/useHover";
+import {useHover} from "@/hooks";
 import theme from "@/const/theme";
 
 interface IPlay {

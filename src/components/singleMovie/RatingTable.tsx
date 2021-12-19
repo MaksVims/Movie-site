@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {ISingleMovie} from "#/movieTypes";
+import {ISingleMovie} from "types";
 
 interface RatingTableProps {
   movie: ISingleMovie

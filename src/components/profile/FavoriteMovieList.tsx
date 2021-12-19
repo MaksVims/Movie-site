@@ -1,13 +1,11 @@
 import React, {FC, useCallback} from 'react';
-import FavoriteMovieListItem from "@/components/profile/FavoriteMovieListItem";
-import {TCollectionItem} from "#/storeTypes";
-import FirebaseCollectionService from "@/api/FirebaseCollectionService";
+import {errorsMessage, successMessage} from "@/const";
+import {AlertType, TCollectionItem} from "types";
+import {FirebaseCollectionService} from "@/api";
 import {CollectionState} from "@/store";
-import successMessage from "@/const/successMessage";
-import {AlertType} from "#/alertCtxTypes";
-import errorsMessage from "@/const/errorsMessage";
 import {useAlert} from "@/contexts/AlertContext";
-import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
+import {FavoriteMovieListItem} from "@/components/profile";
+import {BoxDisplayCenter} from "@/components/ui";
 
 interface FavoriteMovieListProps {
   title: string,

@@ -1,12 +1,10 @@
 import React, {FC, useCallback} from 'react';
-import MainPopup from "@/components/ui/popup/MainPopup";
-import FormEditUserData from "@/components/profile/FormEditUserData";
-import {EditUserDataFormValues} from "#/validationTypes";
-import FirebaseAuthService from "@/api/FirebaseAuthService";
+import {errorsMessage, successMessage} from "@/const";
 import {useAlert} from "@/contexts";
-import successMessage from "@/const/successMessage";
-import {AlertType} from "#/alertCtxTypes";
-import errorsMessage from "@/const/errorsMessage";
+import {AlertType, EditUserDataFormValues} from "types";
+import {FirebaseAuthService} from "@/api";
+import {MainPopup} from "@/components/ui/popup";
+import {FormEditUserData} from "@/components/profile";
 
 interface PopupEditUserData {
   onClose: () => void,

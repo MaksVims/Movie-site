@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {RiCloseFill} from 'react-icons/ri'
 import Link from 'next/link'
 import theme from "@/const/theme";
-import {TCollectionItem} from "#/storeTypes";
+import {TCollectionItem} from "types";
 
 interface IFavoriteMovieListItem {
   movie: TCollectionItem,

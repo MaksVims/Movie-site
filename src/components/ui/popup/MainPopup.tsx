@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
-import OverlayPopup from "@/components/ui/popup/OverlayPopup";
-import HeaderPopup from "@/components/ui/popup/HeaderPopup";
+import {OverlayPopup, HeaderPopup} from "@/components/ui/popup";
 
 interface MainPopupProps {
   onClose: () => void

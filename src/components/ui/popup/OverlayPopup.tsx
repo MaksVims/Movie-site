@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import Portal from "@/components/ui/popup/Portal";
-import EscapeTrap from "@/components/traps/EscapeTrap";
+import {Portal} from "@/components/ui/popup";
+import {EscapeTrap} from "@/components/traps";
 
 interface OverlayPopupProps {
   onClose: () => void,

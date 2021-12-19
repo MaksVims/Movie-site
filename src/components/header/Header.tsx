@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {NAV_ITEMS} from "@/const/header";
-import NavItem from "@/components/header/NavItem";
+import {NavItem} from "@/components/header";
 import Image from "next/image";
 import {useRouter} from "next/router";
 

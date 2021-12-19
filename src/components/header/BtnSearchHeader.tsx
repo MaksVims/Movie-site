@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {BsSearch} from "react-icons/bs";
-import PopupSearch from "@/components/ui/popup/PopupSearch";
-import useToggle from '@/hooks/useToggle';
+import {PopupSearch} from "@/components/ui/popup";
+import {useToggle} from '@/hooks';
 
 const BtnSearchHeader: FC = () => {
   const [isOpenPopupSearch, setIsOpenPopupSearch, closePopupSearch] = useToggle()

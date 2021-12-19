@@ -1,11 +1,10 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
-import FirebaseAuthService from "@/api/FirebaseAuthService";
+import {useRouter} from "next/router";
+import {FirebaseAuthService} from "@/api";
 import {useAuth} from "@/contexts/AuthContext";
 import {useAlert} from '@/contexts/AlertContext';
-import errorsMessage from "@/const/errorsMessage";
-import {AlertType} from "#/alertCtxTypes";
-import {useRouter} from "next/router";
-import successMessage from "@/const/successMessage";
+import {errorsMessage, successMessage} from "@/const";
+import {AlertType} from "types";
 
 interface FormRemoveAccountProps {
   onClose: () => void

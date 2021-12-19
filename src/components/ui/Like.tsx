@@ -1,7 +1,7 @@
 import React, {FC, SyntheticEvent, useRef} from 'react';
 import {FaHeart} from "react-icons/fa";
 import theme from "@/const/theme";
-import useHover from "@/hooks/useHover";
+import {useHover} from "@/hooks";
 
 interface ILike {
   className: string,

@@ -1,6 +1,6 @@
 import React, {FC, FormEvent, useState} from 'react';
-import OverlayPopup from "@/components/ui/popup/OverlayPopup";
 import {useRouter} from "next/router";
+import {OverlayPopup} from "@/components/ui/popup";
 
 interface PopupSearchProps {
   onClose: () => void,

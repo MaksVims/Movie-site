@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {observer} from 'mobx-react-lite';
-import SelectSortFiltersMovies from "@/components/ui/SelectSortFiltersMovies";
-import PanelSortFilters from "@/components/ui/PanelSortFilters";
+import {PanelSortFilters, SelectSortFiltersMovies} from "@/components/ui";
 
 const BarSortFilters: FC = () => {
   return (

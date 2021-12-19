@@ -1,6 +1,5 @@
 import React, {FC} from 'react';
-import Avatar from "@/components/profile/Avatar";
-import UserInfo from "@/components/profile/UserInfo";
+import {Avatar, UserInfo} from "@/components/profile";
 import {User} from "@firebase/auth";
 
 interface UserCardProps {

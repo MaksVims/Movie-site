@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
-import {ISpecificStaff} from "#/staffTypes";
 import Image from "next/image";
-import PersonGridInfo from "@/components/person/PersonGridInfo";
+import {ISpecificStaff} from "types";
+import {PersonGridInfo} from "@/components/person";
 
 interface PersonInfoProps {
   person: ISpecificStaff,

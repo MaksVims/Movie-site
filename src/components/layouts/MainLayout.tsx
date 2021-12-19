@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
-import Header from "@/components/header/Header";
+import {Header} from "@/components/header";
 import {useAuth} from "@/contexts/AuthContext";
-import MainSiteLoader from "@/components/ui/MainSiteLoader";
+import {MainSiteLoader} from "@/components/ui";
 
 const MainLayout: FC = ({children}) => {
   const {loadingUser} = useAuth()

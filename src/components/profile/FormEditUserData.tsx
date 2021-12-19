@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useRef} from 'react';
-import {useAuth} from "@/contexts/AuthContext";
 import {Form, Formik} from "formik";
-import FormInput from "@/components/ui/FormInput";
-import {EditUserDataFormValues} from "#/validationTypes";
-import {validateEditUserDataForm} from '+/validation/validateEditUserDataForm';
+import {useAuth} from "@/contexts/AuthContext";
+import {FormInput} from "@/components/ui";
+import {EditUserDataFormValues} from 'types';
+import {validateEditUserDataForm} from 'helpers';
 
 interface FormEditUserDataProps {
   submitHandler: (values: EditUserDataFormValues) => Promise<void> | void

@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
-import {ISingleMovie} from "#/movieTypes";
 import Image from "next/image";
 import {BiTime} from 'react-icons/bi'
 import cn from "classnames";
-import getFormatTime from 'helpers/getFormatTime';
-import Like from "@/components/ui/Like";
-import useMovieLike from "@/hooks/useMovieLike";
 import {observer} from 'mobx-react-lite';
+import {ISingleMovie} from "types";
+import {getFormatTime} from 'helpers';
+import {Like} from "@/components/ui";
+import {useMovieLike} from "@/hooks";
 import {useAuth} from "@/contexts/AuthContext";
 
 interface IMovieCardImg {

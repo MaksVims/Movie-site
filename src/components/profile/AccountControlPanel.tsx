@@ -1,12 +1,11 @@
 import React, {FC} from 'react';
-import FirebaseAuthService from "@/api/FirebaseAuthService";
-import useToggle from "@/hooks/useToggle";
-import PopupRemoveAccount from "@/components/profile/PopupRemoveAccount";
 import {useRouter} from "next/router";
+import {FirebaseAuthService} from "@/api";
+import {useToggle} from "@/hooks";
 import {useAlert} from "@/contexts/AlertContext";
-import successMessage from "@/const/successMessage";
-import errorsMessage from "@/const/errorsMessage";
-import {AlertType} from "#/alertCtxTypes";
+import {PopupRemoveAccount} from "@/components/profile";
+import {successMessage, errorsMessage} from "@/const";
+import {AlertType} from "types";
 
 const AccountControlPanel: FC = () => {
   const [isOpenRemoveAccountPopup, setRemoveAccountPopupIsOpen, closeRemoveAccountPopup] = useToggle()

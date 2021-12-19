@@ -1,10 +1,10 @@
 import React, {FC, useMemo} from 'react';
-import MoviesState from "@/store/MoviesState";
-import {useAuth} from "@/contexts/AuthContext";
 import {observer} from 'mobx-react-lite';
-import getListActionsForBarFilters from '+/getListActionsForBarFilters';
 import cn from 'classnames'
-import {SortType} from "#/filtersTypes";
+import {useAuth} from "@/contexts/AuthContext";
+import {MoviesState} from "@/store";
+import {SortType} from "types";
+import {getListActionsForBarFilters} from 'helpers';
 
 interface PanelSortFiltersProps {
   type?: 'default' | 'gray',

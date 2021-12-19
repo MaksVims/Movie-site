@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import BarSortFiltersPerson from "@/components/person/BarSortFiltersPerson";
 import Link from "next/link";
-import BoxDisplayCenter from "@/components/ui/BoxDisplayCenter";
 import {MovieForGrid} from '@/factory/MovieForGrid';
+import {BarSortFiltersPerson} from "@/components/person";
+import {BoxDisplayCenter} from "@/components/ui";
 
 interface PersonMoviesProps {
   filteredMovies: MovieForGrid[]

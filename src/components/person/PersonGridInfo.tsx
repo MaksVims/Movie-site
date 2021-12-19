@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import {ISpecificStaff} from "#/staffTypes";
-import getFormatBirthdayDate from "+/getFormatBirthdayDate";
+import {ISpecificStaff} from "types";
+import {getFormatBirthdayDate} from "helpers";
 
 interface PersonGridInfoProps {
   person: ISpecificStaff,

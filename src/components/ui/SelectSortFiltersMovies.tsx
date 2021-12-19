@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC} from 'react';
-import {SortType} from "#/filtersTypes";
-import MoviesState from "@/store/MoviesState";
 import {observer} from 'mobx-react-lite';
+import {SortType} from "types";
+import {MoviesState} from "@/store";
 import {useAuth} from "@/contexts/AuthContext";
 
 interface SelectSortFiltersMoviesProps {

@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useRef} from 'react';
-import {IReview} from "#/movieTypes";
 import cn from 'classnames'
-import getFormatDate from '+/getFormatDate';
-import useToggle from "@/hooks/useToggle";
-import LikeAndDislikeBar from "@/components/ui/LikeAndDislikeBar";
+import {IReview} from "types";
+import {getFormatDate} from 'helpers';
+import {useToggle} from "@/hooks";
+import {LikeAndDislikeBar} from "@/components/ui";
 
 export interface ReviewItemProps {
   review: IReview

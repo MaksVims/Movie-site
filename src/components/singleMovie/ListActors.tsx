@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import Link from "next/link";
-import {IStaffByMovie} from "#/staffTypes";
+import {IStaffByMovie} from "types";
 
 interface ListActorsProps {
   actors: IStaffByMovie[]

@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {User} from "@firebase/auth";
-import useToggle from "@/hooks/useToggle";
-import UserCard from "@/components/ui/UserCard";
-import PopupEditUserData from "@/components/profile/PopupEditUserData";
+import {useToggle} from "@/hooks";
+import {UserCard} from "@/components/ui";
+import {PopupEditUserData} from "@/components/profile";
 
 interface UserCardProfileProps {
   user: User

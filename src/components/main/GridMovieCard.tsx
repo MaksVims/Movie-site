@@ -1,15 +1,12 @@
 import React, {FC} from 'react';
-import {IMovieForGrid} from "#/movieTypes";
 import Image from "next/image";
-import Link from 'next/link'
-import Play from "@/components/ui/Play";
-import RatingMovie from "@/components/ui/RatingMovie";
-import Like from "@/components/ui/Like";
-import {CollectionState} from "@/store";
 import {observer} from "mobx-react-lite";
+import Link from 'next/link'
 import cn from 'classnames'
-import MovieCardLoader from "@/components/ui/MovieCardLoader";
-import useMovieLike from "@/hooks/useMovieLike";
+import {IMovieForGrid} from "types";
+import {Like, MovieCardLoader, Play, RatingMovie} from "@/components/ui";
+import {CollectionState} from "@/store";
+import {useMovieLike} from "@/hooks";
 import {useAuth} from "@/contexts/AuthContext";
 
 interface IGridMoveItem {

@@ -1,11 +1,10 @@
 import React, {FC} from 'react';
-import {INavItem} from "#/headerTypes";
+import {INavItem} from "types";
 import Link from 'next/link'
 import cn from 'classnames'
 import {useAuth} from "@/contexts/AuthContext";
 import theme from "@/const/theme";
-import BtnSearchHeader from "@/components/header/BtnSearchHeader";
-import BtnSignOut from './BtnSignOut';
+import {BtnSearchHeader, BtnSignOut} from "@/components/header";
 
 interface INavItemComponent {
   item: INavItem,

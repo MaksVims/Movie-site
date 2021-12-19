@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import ScrollBarItem from "@/components/main/ScrollBarItem";
-import {FiltersState} from "@/store";
 import {observer} from "mobx-react-lite";
-import {IFilterGenre} from "#/filtersTypes";
+import {IFilterGenre} from "types";
+import {FiltersState} from "@/store";
+import {ScrollBarItem} from "@/components/main";
 
 const ScrollBarGenre: FC = () => {
   const allGenres: IFilterGenre[] = FiltersState.allGenres

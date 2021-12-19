@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import Footer from "@/components/footer/Footer";
+import {Footer} from "@/components/footer";
 
 const FooterLayout: FC = ({children}) => {
   return (

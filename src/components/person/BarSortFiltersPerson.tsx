@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import PanelSortFilters from "@/components/ui/PanelSortFilters";
-import {SortType} from "#/filtersTypes";
+import {PanelSortFilters} from "@/components/ui";
+import {SortType} from "types";
 
 const BarSortFiltersPerson: FC = () => {
   return (

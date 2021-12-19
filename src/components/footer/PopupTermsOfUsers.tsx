@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import MainPopup from "@/components/ui/popup/MainPopup";
+import {MainPopup} from "@/components/ui/popup";
 
 interface PopupTermsOfUsersProps {
   onClose: () => void,

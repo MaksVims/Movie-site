@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import MainPopup from "@/components/ui/popup/MainPopup";
-import FormRemoveAccount from "@/components/profile/FormRemoveAccount";
+import {MainPopup} from "@/components/ui/popup";
+import {FormRemoveAccount} from "@/components/profile";
 
 interface RemoveAccountPopupProps {
   onClose: () => void,

@@ -1,8 +1,6 @@
 import React, {FC} from 'react';
-import {ISingleMovie} from "#/movieTypes";
-import {IStaffByMovie} from "#/staffTypes";
-import RatingTable from "@/components/singleMovie/RatingTable";
-import MovieDescription from "@/components/singleMovie/MovieDescription";
+import {ISingleMovie, IStaffByMovie} from "types";
+import {MovieDescription, RatingTable} from "@/components/singleMovie";
 
 interface IMovieCardContent {
   movie: ISingleMovie,
