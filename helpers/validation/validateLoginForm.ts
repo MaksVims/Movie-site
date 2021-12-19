@@ -1,4 +1,4 @@
-import {LoginFormValues, LoginValidationErrors} from "#/validationTypes";
+import {LoginFormValues, LoginValidationErrors} from "types";
 import {validationErrors} from "@/const/validationErrors";
 import {regexpForEmail} from "@/const/regexp";
 

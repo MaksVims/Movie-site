@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {Form, Formik} from "formik";
-import {validateLoginForm} from "+/validation";
-import FormInput from "@/components/ui/FormInput";
-import {LoginFormValues} from "#/validationTypes";
+import {LoginFormValues} from "types";
+import {FormInput} from '@/components/ui';
+import {validateLoginForm} from 'helpers';
 
 interface ILoginForm {
   handlerSubmit: (values: LoginFormValues) => Promise<void> | void

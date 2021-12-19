@@ -1,6 +1,6 @@
-import {IFilterGenre} from "#/filtersTypes";
+import { IFilterGenre } from "types"
 
-export function getTitleGenreByRuName(allGenres: IFilterGenre[], genre: string): string {
+export default function getTitleGenreByRuName(allGenres: IFilterGenre[], genre: string): string {
   const filterGenre = allGenres.find(genreItem => genreItem.genre.toLowerCase() === genre.toLowerCase())
   if (filterGenre) return filterGenre.title
   return ''

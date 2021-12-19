@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import Logo from 'public/images/logo.png'
 import Image from "next/image";
-import useToggle from "@/hooks/useToggle";
-import PopupTermsOfUsers from "@/components/footer/PopupTermsOfUsers";
+import PopupTermsOfUsers from './PopupTermsOfUsers';
+import {useToggle} from '@/hooks';
 
 const Footer: FC = () => {
   const [isOpenPopupTerms, setIsOpenPopupTerms, closePopupTerms] = useToggle()

@@ -1,5 +1,5 @@
-import {TCollectionItem} from "#/storeTypes";
+import { TCollectionItem } from "types";
 
-export function isCollection(movieId: number, collection: TCollectionItem[]) {
+export default function isCollection(movieId: number, collection: TCollectionItem[]) {
   return !!collection.find(item => item.movieId === movieId)
 }

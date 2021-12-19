@@ -1,5 +1,5 @@
-import fetchStaff from "+/fetchMoviesOrStaff";
-import {ISpecificStaff, IStaffByMovie} from "#/staffTypes";
+import {ISpecificStaff, IStaffByMovie} from "types"
+import {fetchMoviesOrStaff as fetchStaff} from "helpers";
 
 export default class StaffService {
 

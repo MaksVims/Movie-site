@@ -1,4 +1,4 @@
-import {IStaffByMovie} from "#/staffTypes";
+import {IStaffByMovie} from "types";
 
 export default function getActorsFromList(persons: IStaffByMovie[], limit: number) {
   const actors = persons.filter(person => {

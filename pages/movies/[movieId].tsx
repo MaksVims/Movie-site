@@ -1,17 +1,12 @@
-import React from 'react';
-import MainLayout from "@/components/layouts/MainLayout";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {ISingleMovie} from "#/movieTypes";
 import {ParsedUrlQuery} from "querystring";
-import {MovieService} from "@/api/MovieService";
-import MovieCardContent from "@/components/singleMovie/MovieCardContent";
-import MovieCardImg from "@/components/singleMovie/MovieCardImg";
-import {IStaffByMovie} from "#/staffTypes";
-import StaffService from "@/api/StaffService";
-import FooterLayout from "@/components/layouts/FooterLayout";
-import Seo from "@/hoc/Seo";
-import {IResponseReviewsByMovie, IResponseTrailer} from "#/responseTypes";
-import ReviewItem from "@/components/singleMovie/ReviewItem";
+
+import {IResponseReviewsByMovie, IResponseTrailer, ISingleMovie, IStaffByMovie} from "types";
+import {MovieService, StaffService} from "@/api";
+import {FooterLayout, MainLayout} from "@/components/layouts";
+import {MovieCardContent, MovieCardImg, ReviewItem} from "@/components/singleMovie";
+import {Seo} from "@/hoc";
+
 
 interface IMoviePageProps {
   movie: ISingleMovie,

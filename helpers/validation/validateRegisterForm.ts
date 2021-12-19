@@ -1,4 +1,4 @@
-import {RegisterFormValues, RegisterValidationErrors} from "#/validationTypes";
+import {RegisterFormValues, RegisterValidationErrors} from "types";
 import {validationErrors} from "@/const/validationErrors";
 import {regexpForEmail} from "@/const/regexp";
 

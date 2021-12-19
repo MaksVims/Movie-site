@@ -1,6 +1,6 @@
-import {SortType} from "#/filtersTypes";
+import {SortType} from "types";
 import {User} from "firebase/auth";
-import MoviesState from "@/store/MoviesState";
+import {MoviesState} from "@/store";
 
 type SortFilterItem = { title: string, isActive: boolean, type: SortType, action: () => void }
 

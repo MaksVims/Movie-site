@@ -1,6 +1,6 @@
-import {EditUserDataFormValues, EditUserDataValidationErrors} from "#/validationTypes";
 import {validationErrors} from "@/const/validationErrors";
 import {regexpTel, regexpUsername} from "@/const/regexp";
+import {EditUserDataFormValues, EditUserDataValidationErrors} from "types";
 
 
 export const validateEditUserDataForm = function ({

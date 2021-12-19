@@ -1,9 +1,8 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {Form, Formik} from "formik";
-import {validateRegisterForm} from "+/validation";
-import FormInput from "@/components/ui/FormInput";
-import FormCheckbox from "@/components/ui/FormCheckbox";
-import {RegisterFormValues} from "#/validationTypes";
+import { RegisterFormValues } from 'types';
+import { validateRegisterForm } from 'helpers';
+import {FormCheckbox, FormInput } from '@/components/ui';
 
 interface IRegisterForm {
   submitHandler: (values: RegisterFormValues) => Promise<void> | void

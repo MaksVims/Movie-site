@@ -1,16 +1,15 @@
-import {IFilterOptions} from "#/filtersTypes";
+import {fetchMoviesOrStaff as fetchMovies, getStringMonth, getUrlFiltersMovies} from "helpers"
 import {
+  IFilterOptions,
   IResponseMoviesByFiltersOrTop,
   IResponseMoviesPremieres,
   IResponseReviewsByMovie,
-  IResponseSearchByKeyWord, IResponseTrailer
-} from "#/responseTypes";
-import {ISingleMovie} from "#/movieTypes";
-import getStringMonth from "+/getStringMonth";
-import fetchMovies from "+/fetchMoviesOrStaff";
-import getUrlFiltersMovies from "+/getUrlFiltersMovies";
+  IResponseSearchByKeyWord,
+  IResponseTrailer,
+  ISingleMovie
+} from "types"
 
-export class MovieService {
+export default class MovieService {
 
   static async getPremiers() {
     const date = new Date()
@@ -42,12 +41,12 @@ export class MovieService {
     return await fetchMovies(url) as IResponseSearchByKeyWord
   }
 
-  static async getReviewsByMovie(movieId:number, page:number = 1) {
+  static async getReviewsByMovie(movieId: number, page: number = 1) {
     const url = `https://kinopoiskapiunofficial.tech/api/v1/reviews?filmId=${movieId}&page=${page}`
     return await fetchMovies(url) as IResponseReviewsByMovie
   }
 
-  static async getTrailer(movieId:number) {
+  static async getTrailer(movieId: number) {
     const url = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movieId}/videos`
     return await fetchMovies(url) as IResponseTrailer
   }

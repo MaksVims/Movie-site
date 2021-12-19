@@ -1,6 +1,6 @@
 import {auth, db} from 'service/firebase'
 import {DatabaseReference, get, onValue, push, ref, remove, set} from 'firebase/database'
-import {TypeCollection} from "#/storeTypes";
+import {TypeCollection} from "types";
 
 type updateResolver = (update: TypeCollection) => Promise<void>
 
