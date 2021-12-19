@@ -2,7 +2,7 @@ import {makeAutoObservable} from "mobx";
 import FirebaseCollectionService from "@/api/FirebaseCollectionService";
 import {CustomError} from "@/factory/CustomError";
 import errorsMessage from "@/const/errorsMessage";
-import {TypeCollection, TypeMapRecordsToCollection} from "#/storeTypes";
+import {TypeCollection, TypeMapRecordsToCollection} from "types";
 
 class CollectionState {
 
@@ -63,9 +63,9 @@ class CollectionState {
   get mapRecordsToCollection() {
     return Object.keys(this.collection)
       .reduce((map: TypeMapRecordsToCollection, recordID: string) => {
-      map[this.collection[recordID].movieId] = recordID
-      return map
-    }, {})
+        map[this.collection[recordID].movieId] = recordID
+        return map
+      }, {})
   }
 }
 
