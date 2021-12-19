@@ -1,7 +1,7 @@
 import {useCallback, useState} from "react";
 import {useAlert} from "@/contexts";
 import errorsMessage from "@/const/errorsMessage";
-import {AlertType} from "#/alertCtxTypes";
+import {AlertType} from "types";
 
 export default function usePagination(totalPage: number, callback: (page: number) => Promise<void>)
   : [() => Promise<void>, boolean, number] {

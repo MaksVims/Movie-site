@@ -1,10 +1,10 @@
 import {CollectionState} from "@/store";
 import {useCallback, useEffect, useState} from "react";
-import {isCollection} from "+/isCollection";
 import {useAlert} from "@/contexts/AlertContext";
-import {AlertType} from "#/alertCtxTypes";
 import successMessage from "@/const/successMessage";
 import {CustomError} from "@/factory/CustomError";
+import {isCollection} from "helpers";
+import {AlertType} from "types";
 
 export default function useMovieLike(movieId: number, title: string) {
   const collection = CollectionState.moviesToCollection
