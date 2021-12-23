@@ -1,4 +1,4 @@
-import { IPersonMovie } from "./movieTypes";
+import { IPersonMovie } from 'types';
 
 export type PROFESSION_KEY = 'PRODUCER' | 'ACTOR'
 

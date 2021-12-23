@@ -1,11 +1,10 @@
-import React, {FC, useEffect} from 'react';
+import React, { FC, useEffect } from 'react';
 
 interface EscapeTrapProps {
   trapHandle: () => void | Promise<void>
 }
 
-const EscapeTrap: FC<EscapeTrapProps> = ({children, trapHandle}) => {
-
+const EscapeTrap: FC<EscapeTrapProps> = ({ children, trapHandle }) => {
   useEffect(() => {
     const pressEscapeHandler = (e: KeyboardEvent) => {
       if (e.code === 'Escape') {

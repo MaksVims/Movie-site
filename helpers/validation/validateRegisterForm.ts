@@ -1,14 +1,13 @@
-import {RegisterFormValues, RegisterValidationErrors} from "types";
-import {validationErrors} from "@/const/validationErrors";
-import {regexpForEmail} from "@/const/regexp";
+import { RegisterFormValues, RegisterValidationErrors } from 'types';
+import { validationErrors } from '@/const/validationErrors';
+import { regexpForEmail } from '@/const/regexp';
 
-export const validateRegisterForm = function ({
-                                                email,
-                                                password,
-                                                repeating,
-                                                isAgree
-                                              }: RegisterFormValues): RegisterValidationErrors {
-
+export const validateRegisterForm = ({
+  email,
+  password,
+  repeating,
+  isAgree,
+}: RegisterFormValues): RegisterValidationErrors => {
   const errors: RegisterValidationErrors = {}
 
   if (!email.length) {

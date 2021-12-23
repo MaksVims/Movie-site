@@ -1,10 +1,14 @@
-import {IMovieForGrid, MovieDB} from "#/movieTypes";
+import { IMovieForGrid, MovieDB } from 'types';
 
 export class MovieForGrid implements IMovieForGrid {
   public movieId: number
+
   public nameRu: string
+
   public year: string
+
   public rating: string | null
+
   public posterUrlPreview: string | null
 
   constructor(movie: MovieDB) {
@@ -27,6 +31,6 @@ export class MovieForGrid implements IMovieForGrid {
     }
 
     this.nameRu = movie.nameRu
-    this.year = movie.year + ''
+    this.year = `${movie.year}`
   }
 }

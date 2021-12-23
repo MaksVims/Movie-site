@@ -1,1 +1,1 @@
-export {default as EscapeTrap} from './EscapeTrap'
+export { default as EscapeTrap } from './EscapeTrap'

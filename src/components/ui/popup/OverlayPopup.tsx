@@ -1,6 +1,6 @@
-import React, {FC} from 'react';
-import {Portal} from "@/components/ui/popup";
-import {EscapeTrap} from "@/components/traps";
+import React, { FC } from 'react';
+import { Portal } from '@/components/ui/popup';
+import { EscapeTrap } from '@/components/traps';
 
 interface OverlayPopupProps {
   onClose: () => void,
@@ -8,8 +8,9 @@ interface OverlayPopupProps {
   className?: string
 }
 
-const OverlayPopup: FC<OverlayPopupProps> = ({children, onClose, isOpened, className}) => {
-
+const OverlayPopup: FC<OverlayPopupProps> = ({
+  children, onClose, isOpened, className,
+}) => {
   if (!isOpened) {
     return null
   }

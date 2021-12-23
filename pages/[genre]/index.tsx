@@ -1,17 +1,17 @@
-import {useCallback, useEffect} from "react";
-import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {ParsedUrlQuery} from "querystring";
-import {observer} from "mobx-react-lite";
-import {IFilterGenre, IResponseMoviesByFiltersOrTop, SortType} from "types";
-import {DATA_FILTERS} from "@/const/dataFilters";
-import {MoviesState} from "@/store";
-import {usePagination} from "@/hooks";
-import {MovieService} from "@/api";
-import {BoxDisplayCenter, BoxLoader, BtnLoadNextPage} from "@/components/ui";
-import {FooterLayout, MainLayout} from "@/components/layouts";
-import {BarSortFilters, GridMovies, ScrollBarGenre} from "@/components/main";
-import {formatFirstToUppercase} from "helpers";
-import {Seo} from "@/hoc";
+import { useCallback, useEffect } from 'react';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import { observer } from 'mobx-react-lite';
+import { IFilterGenre, IResponseMoviesByFiltersOrTop, SortType } from 'types';
+import { formatFirstToUppercase } from 'helpers';
+import { DATA_FILTERS } from '@/const/dataFilters';
+import { MoviesState } from '@/store';
+import { usePagination } from '@/hooks';
+import { MovieService } from '@/api';
+import { BoxDisplayCenter, BoxLoader, BtnLoadNextPage } from '@/components/ui';
+import { FooterLayout, MainLayout } from '@/components/layouts';
+import { BarSortFilters, GridMovies, ScrollBarGenre } from '@/components/main';
+import { Seo } from '@/hoc';
 
 interface IGenrePageProps {
   dataMovies: IResponseMoviesByFiltersOrTop,
@@ -19,18 +19,19 @@ interface IGenrePageProps {
   genreId: number
 }
 
-const GenrePage: NextPage<IGenrePageProps> = ({dataMovies, genre, genreId}) => {
+const GenrePage: NextPage<IGenrePageProps> = ({ dataMovies, genre, genreId }) => {
   const totalPages = dataMovies.pagesCount
-  const filter = MoviesState.filter
+  const { filter } = MoviesState
 
   const [fetchNextPage, loadNextPage, currentPage] = usePagination(
     totalPages,
     useCallback(async (page: number) => {
-      const result = await MovieService.getMoviesByFilters({page, genre: genreId})
+      const result = await MovieService.getMoviesByFilters({ page, genre: genreId })
       MoviesState.setMovies(result.films)
-    }, [genreId]))
+    }, [genreId]),
+  )
 
-  const filteredMovies = MoviesState.filteredMovies
+  const { filteredMovies } = MoviesState
 
   useEffect(() => {
     MoviesState.setMovies(dataMovies.films)
@@ -47,15 +48,15 @@ const GenrePage: NextPage<IGenrePageProps> = ({dataMovies, genre, genreId}) => {
   return (
     <Seo
       title={`${formatFirstToUppercase(genre)}`}
-      keywords={"Лучшие фильмы, топ фильмов, коллекции"}
+      keywords="Лучшие фильмы, топ фильмов, коллекции"
     >
       <MainLayout>
         <FooterLayout>
           <main className="page-main">
-            <ScrollBarGenre/>
-            <BarSortFilters/>
-            {filteredMovies.length ?
-              <GridMovies movies={filteredMovies}/> : (
+            <ScrollBarGenre />
+            <BarSortFilters />
+            {filteredMovies.length
+              ? <GridMovies movies={filteredMovies} /> : (
                 <div className="flex flex-1 relative">
                   <BoxDisplayCenter
                     title="Фильмы не найдены"
@@ -64,7 +65,7 @@ const GenrePage: NextPage<IGenrePageProps> = ({dataMovies, genre, genreId}) => {
                 </div>
               )}
             <div className="relative">
-              {loadNextPage ? <BoxLoader/> : paginationView}
+              {loadNextPage ? <BoxLoader /> : paginationView}
             </div>
           </main>
         </FooterLayout>
@@ -82,27 +83,25 @@ interface IParams extends ParsedUrlQuery {
 
 export const getStaticProps: GetStaticProps<IGenrePageProps, IParams> = async (context) => {
   try {
-    const {genre} = context.params!
+    const { genre } = context.params!
     const filterItem = DATA_FILTERS.genres.find((item: IFilterGenre) => item.title === genre)!
-    const dataMovies = await MovieService.getMoviesByFilters({genre: filterItem.id, page: 1})
+    const dataMovies = await MovieService.getMoviesByFilters({ genre: filterItem.id, page: 1 })
 
     return {
       props: {
         dataMovies,
         genre: filterItem.genre,
-        genreId: filterItem.id
-      }
+        genreId: filterItem.id,
+      },
     }
   } catch (e) {
     return {
-      notFound: true
+      notFound: true,
     }
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: 'blocking'
-  }
-}
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: 'blocking',
+})

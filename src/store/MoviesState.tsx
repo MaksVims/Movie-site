@@ -1,13 +1,12 @@
-import {makeAutoObservable} from "mobx";
-import {MovieForGrid} from "@/factory/MovieForGrid";
-import {IMovieForGrid, MovieDB} from "#/movieTypes";
-import {SortType} from "#/filtersTypes";
-import CollectionState from "@/store/CollectionState";
-import getCleanListMoviesForGrid from "+/getCleanListMoviesForGrid";
+import { makeAutoObservable } from 'mobx';
+import { IMovieForGrid, MovieDB, SortType } from 'types';
+import { getCleanListMoviesForGrid } from 'helpers';
+import { MovieForGrid } from '@/factory/MovieForGrid';
+import CollectionState from '@/store/CollectionState';
 
 class MoviesState {
-
   movies: IMovieForGrid[]
+
   filter: SortType
 
   constructor() {
@@ -17,7 +16,7 @@ class MoviesState {
   }
 
   setMovies(movies: MovieDB[]) {
-    const newMovies = movies.map(movie => new MovieForGrid(movie))
+    const newMovies = movies.map((movie) => new MovieForGrid(movie))
     this.movies = [...this.movies, ...getCleanListMoviesForGrid(newMovies)]
   }
 
@@ -35,20 +34,21 @@ class MoviesState {
   }
 
   get filteredMovies(): MovieForGrid[] {
+    const favoriteMovies = CollectionState.moviesToCollection
+
     switch (this.filter) {
       case SortType.FAVORITE:
-        const favoriteMovies = CollectionState.moviesToCollection
-        return this.movies.filter(movie => {
-          return favoriteMovies.find(favorite => favorite.movieId === movie.movieId)
-        })
+        return this.movies
+          .filter((movie) => favoriteMovies
+            .find((favorite) => favorite.movieId === movie.movieId))
       case SortType.RATING:
         if (this.movies[0]?.rating) {
           return this.movies
             .slice()
             .sort((a, b) => Number(b.rating) - Number(a.rating))
-        } else {
-          return this.movies
         }
+        return this.movies
+
       case SortType.YEAR:
         return this.movies
           .slice()

@@ -1,11 +1,10 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react';
 
 export default function useHover(target: HTMLElement | null): boolean {
   const [isHover, setHover] = useState<boolean>(false)
 
   useEffect(() => {
     if (target) {
-
       const on = () => setHover(true)
       const off = () => setHover(false)
 
@@ -17,8 +16,8 @@ export default function useHover(target: HTMLElement | null): boolean {
         target.removeEventListener('pointerleave', off)
       }
     }
+    return () => {}
   }, [target])
-
 
   return isHover
 }

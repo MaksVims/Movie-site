@@ -1,16 +1,16 @@
-import React, {FC, useEffect, useRef} from 'react';
-import {Form, Formik} from "formik";
-import {useAuth} from "@/contexts/AuthContext";
-import {FormInput} from "@/components/ui";
-import {EditUserDataFormValues} from 'types';
-import {validateEditUserDataForm} from 'helpers';
+import React, { FC, useEffect, useRef } from 'react';
+import { Form, Formik } from 'formik';
+import { EditUserDataFormValues } from 'types';
+import { validateEditUserDataForm } from 'helpers';
+import { useAuth } from '@/contexts/AuthContext';
+import { FormInput } from '@/components/ui';
 
 interface FormEditUserDataProps {
   submitHandler: (values: EditUserDataFormValues) => Promise<void> | void
 }
 
-const FormEditUserData: FC<FormEditUserDataProps> = ({submitHandler}) => {
-  const {user} = useAuth()
+const FormEditUserData: FC<FormEditUserDataProps> = ({ submitHandler }) => {
+  const { user } = useAuth()
   const focusRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {

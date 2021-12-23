@@ -1,21 +1,23 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
-import {useRouter} from "next/router";
-import {FirebaseAuthService} from "@/api";
-import {useAuth} from "@/contexts/AuthContext";
-import {useAlert} from '@/contexts/AlertContext';
-import {errorsMessage, successMessage} from "@/const";
-import {AlertType} from "types";
+import React, {
+  FC, useEffect, useRef, useState,
+} from 'react';
+import { useRouter } from 'next/router';
+import { AlertType } from 'types';
+import { FirebaseAuthService } from '@/api';
+import { useAuth } from '@/contexts/AuthContext';
+import { useAlert } from '@/contexts/AlertContext';
+import { errorsMessage, successMessage } from '@/const';
 
 interface FormRemoveAccountProps {
   onClose: () => void
 }
 
-const FormRemoveAccount: FC<FormRemoveAccountProps> = ({onClose}) => {
+const FormRemoveAccount: FC<FormRemoveAccountProps> = ({ onClose }) => {
   const focusRef = useRef<HTMLInputElement | null>(null)
   const [currentEmail, setCurrentEmail] = useState('')
   const router = useRouter()
-  const {user} = useAuth()
-  const {showAlert} = useAlert()
+  const { user } = useAuth()
+  const { showAlert } = useAlert()
 
   const isExact = currentEmail === user?.email
 
@@ -41,7 +43,7 @@ const FormRemoveAccount: FC<FormRemoveAccountProps> = ({onClose}) => {
           type="text"
           className="input w-full hover:border-red-400 focus:border-red-400"
           value={currentEmail}
-          onChange={e => setCurrentEmail(e.target.value)}
+          onChange={(e) => setCurrentEmail(e.target.value)}
           ref={focusRef}
         />
         <div className="space-x-4 flex justify-end">

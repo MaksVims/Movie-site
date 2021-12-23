@@ -1,5 +1,5 @@
-import {IStaffByMovie} from "#/staffTypes";
+import { IStaffByMovie } from 'types';
 
 export default function getProducerFromList(persons: IStaffByMovie[]) {
-  return persons.find(person => person.professionKey === "PRODUCER") || null
+  return persons.find((person) => person.professionKey === 'PRODUCER') || null
 }

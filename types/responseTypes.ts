@@ -1,4 +1,4 @@
-import {IMovieByFilterOrTop, IMoviePremier, IReview} from "#/movieTypes";
+import { IMovieByFilterOrTop, IMoviePremier, IReview } from 'types';
 
 export interface IResponseMoviesByFiltersOrTop {
   pagesCount: number,

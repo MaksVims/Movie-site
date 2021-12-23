@@ -1,7 +1,9 @@
-import React, {FC, useContext, useEffect, useMemo, useState} from 'react';
-import {onAuthStateChanged, User} from "@firebase/auth";
-import {auth} from "service/firebase";
-import {TOKEN} from '@/const';
+import React, {
+  FC, useContext, useEffect, useMemo, useState,
+} from 'react';
+import { onAuthStateChanged, User } from '@firebase/auth';
+import { auth } from 'service/firebase';
+import { TOKEN } from '@/const';
 
 interface IAuthContext {
   user: User | null,
@@ -10,14 +12,13 @@ interface IAuthContext {
 
 const AuthContext = React.createContext<IAuthContext>({} as IAuthContext)
 
-const AuthContextProvider: FC = ({children}) => {
+const AuthContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
   const [loadingUser, setLoadingUser] = useState(false)
 
   useEffect(() => {
     setLoadingUser(true)
-    return onAuthStateChanged(auth, user => {
-
+    return onAuthStateChanged(auth, (user) => {
       if (user) {
         document.cookie = `${TOKEN}=${user?.refreshToken};max-age=3600;path=/`
       } else {
@@ -29,7 +30,7 @@ const AuthContextProvider: FC = ({children}) => {
     })
   }, [])
 
-  const credentials: IAuthContext = useMemo(() => ({user, loadingUser}), [user, loadingUser])
+  const credentials: IAuthContext = useMemo(() => ({ user, loadingUser }), [user, loadingUser])
 
   return (
     <AuthContext.Provider value={credentials}>

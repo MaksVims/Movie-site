@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import Logo from 'public/images/logo.png'
-import Image from "next/image";
+import Image from 'next/image';
 import PopupTermsOfUsers from './PopupTermsOfUsers';
-import {useToggle} from '@/hooks';
+import { useToggle } from '@/hooks';
 
 const Footer: FC = () => {
   const [isOpenPopupTerms, setIsOpenPopupTerms, closePopupTerms] = useToggle()
@@ -19,6 +19,7 @@ const Footer: FC = () => {
         />
         <div className="flex flex-col items-center space-y-2">
           <button
+            type="button"
             className=" cursor-pointer hover:underline"
             onClick={() => setIsOpenPopupTerms(true)}
           >
@@ -26,16 +27,16 @@ const Footer: FC = () => {
           </button>
           <span className="text-xs">Не для коммерческого использования</span>
           <span className="text-xs">
-          Данные взяты с
+            Данные взяты с
             <a
               target="_blank"
               rel="noreferrer"
               href="https://kinopoiskapiunofficial.tech/"
               className="link-blur-color hover:underline ml-1"
             >
-           kinopoiskapiunofficial.tech
-          </a>
-        </span>
+              kinopoiskapiunofficial.tech
+            </a>
+          </span>
         </div>
       </div>
       <PopupTermsOfUsers

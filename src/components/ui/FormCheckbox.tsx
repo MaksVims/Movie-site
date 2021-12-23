@@ -1,6 +1,6 @@
-import React, {FC, InputHTMLAttributes} from 'react';
-import {BsCheck} from "react-icons/bs";
-import {useField} from "formik";
+import React, { FC, InputHTMLAttributes } from 'react';
+import { BsCheck } from 'react-icons/bs';
+import { useField } from 'formik';
 
 interface FormCheckbox extends InputHTMLAttributes<HTMLInputElement> {
   label: string,
@@ -9,15 +9,16 @@ interface FormCheckbox extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
 }
 
-const FormCheckbox: FC<FormCheckbox> = ({label, required, className, ...props}) => {
-
+const FormCheckbox: FC<FormCheckbox> = ({
+  label, required, className, ...props
+}) => {
   const [field, meta] = useField(props.name)
 
   return (
     <div className={`mb-5 relative space-y-1 ${className}`}>
       <label
         className="block text-sm text-gray-color cursor-pointer flex items-center"
-        onPointerDown={e => e.preventDefault()}
+        onPointerDown={(e) => e.preventDefault()}
       >
         <input
           value={field.value}
@@ -34,15 +35,14 @@ const FormCheckbox: FC<FormCheckbox> = ({label, required, className, ...props}) 
           <BsCheck
             className="flex-shrink-0"
             size={20}
-            color='#fff'
+            color="#fff"
           />
         </span>
         <span>Я принимаю условие пользовательского соглашения</span>
         {required && <span className="text-red-400"> *</span>}
       </label>
-      {meta.error && meta.touched ?
-        <span className="text-red-400 text-xs absolute">{meta.error}</span> : null
-      }
+      {meta.error && meta.touched
+        ? <span className="text-red-400 text-xs absolute">{meta.error}</span> : null}
     </div>
   );
 };

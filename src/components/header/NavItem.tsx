@@ -1,24 +1,26 @@
-import React, {FC} from 'react';
-import {INavItem} from "types";
+import React, { FC } from 'react';
+import { INavItem } from 'types';
 import Link from 'next/link'
 import cn from 'classnames'
-import {useAuth} from "@/contexts/AuthContext";
-import theme from "@/const/theme";
-import {BtnSearchHeader, BtnSignOut} from "@/components/header";
+import { useAuth } from '@/contexts/AuthContext';
+import theme from '@/const/theme';
+import { BtnSearchHeader, BtnSignOut } from '@/components/header';
 
 interface INavItemComponent {
   item: INavItem,
   active: boolean
 }
 
-const NavItem: FC<INavItemComponent> = ({item, active}) => {
-  const {path, Icon, title, redirect, isAuth} = item
-  const {user} = useAuth()
+const NavItem: FC<INavItemComponent> = ({ item, active }) => {
+  const {
+    path, Icon, title, redirect, isAuth,
+  } = item
+  const { user } = useAuth()
 
   if (item.path === '/search') {
     return (
       <li>
-        <BtnSearchHeader/>
+        <BtnSearchHeader />
       </li>
     )
   }
@@ -26,7 +28,7 @@ const NavItem: FC<INavItemComponent> = ({item, active}) => {
   if (user && item.path === '/auth/login') {
     return (
       <li>
-        <BtnSignOut/>
+        <BtnSignOut />
       </li>
     )
   }
@@ -41,8 +43,9 @@ const NavItem: FC<INavItemComponent> = ({item, active}) => {
             className="mb-2 h-6 group-hover:animate-bounce xs:h-10"
           />
           <span className={cn('text-sm uppercase tracking-widest opacity-0 group-hover:opacity-100 text-white', {
-            'text-primary-light': active
-          })}>
+            'text-primary-light': active,
+          })}
+          >
             {title}
           </span>
         </a>

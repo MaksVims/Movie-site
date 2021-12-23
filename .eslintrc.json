@@ -11,6 +11,15 @@
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx",
+          ".ts"
+        ]
+      }
+    ],
     "import/prefer-default-export": "off",
     "import/extensions": [
       "error",

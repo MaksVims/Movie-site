@@ -1,15 +1,15 @@
-import React, {FC} from 'react';
-import {User} from "@firebase/auth";
-import {useToggle} from "@/hooks";
-import {UserCard} from "@/components/ui";
-import {PopupEditUserData} from "@/components/profile";
+import React, { FC } from 'react';
+import { User } from '@firebase/auth';
+import { useToggle } from '@/hooks';
+import { UserCard } from '@/components/ui';
+import { PopupEditUserData } from '@/components/profile';
 
 interface UserCardProfileProps {
   user: User
   classNames?: string
 }
 
-const UserCardProfile: FC<UserCardProfileProps> = ({user, classNames}) => {
+const UserCardProfile: FC<UserCardProfileProps> = ({ user, classNames }) => {
   const [isOpenEditPopup, setIsOpenEditPopup, closeEditPopup] = useToggle()
 
   return (

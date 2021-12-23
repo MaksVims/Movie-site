@@ -1,8 +1,10 @@
-import {LoginFormValues, LoginValidationErrors} from "types";
-import {validationErrors} from "@/const/validationErrors";
-import {regexpForEmail} from "@/const/regexp";
+import { LoginFormValues, LoginValidationErrors } from 'types';
+import { validationErrors } from '@/const/validationErrors';
+import { regexpForEmail } from '@/const/regexp';
 
-export const validateLoginForm = function ({email, password}: LoginFormValues): LoginValidationErrors {
+export const validateLoginForm = (
+  { email, password }: LoginFormValues,
+): LoginValidationErrors => {
   const errors: LoginValidationErrors = {}
 
   if (!email.length) {

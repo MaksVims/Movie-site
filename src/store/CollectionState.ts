@@ -1,12 +1,12 @@
-import {makeAutoObservable} from "mobx";
-import FirebaseCollectionService from "@/api/FirebaseCollectionService";
-import {CustomError} from "@/factory/CustomError";
-import errorsMessage from "@/const/errorsMessage";
-import {TypeCollection, TypeMapRecordsToCollection} from "types";
+import { makeAutoObservable } from 'mobx';
+import { TypeCollection, TypeMapRecordsToCollection } from 'types';
+import FirebaseCollectionService from '@/api/FirebaseCollectionService';
+import { CustomError } from '@/factory/CustomError';
+import errorsMessage from '@/const/errorsMessage';
 
 class CollectionState {
-
   collection: TypeCollection
+
   loading: boolean
 
   constructor() {
@@ -60,11 +60,11 @@ class CollectionState {
     return Object.values(this.collection)
   }
 
-  get mapRecordsToCollection() {
+  get mapRecordsToCollection(): TypeMapRecordsToCollection {
     return Object.keys(this.collection)
       .reduce((map: TypeMapRecordsToCollection, recordID: string) => {
-        map[this.collection[recordID].movieId] = recordID
-        return map
+        const props = this.collection[recordID].movieId
+        return { ...map, [props]: recordID }
       }, {})
   }
 }

@@ -1,12 +1,10 @@
-import {validationErrors} from "@/const/validationErrors";
-import {regexpTel, regexpUsername} from "@/const/regexp";
-import {EditUserDataFormValues, EditUserDataValidationErrors} from "types";
+import { EditUserDataFormValues, EditUserDataValidationErrors } from 'types';
+import { validationErrors } from '@/const/validationErrors';
+import { regexpTel, regexpUsername } from '@/const/regexp';
 
-
-export const validateEditUserDataForm = function ({
-                                                    username,
-                                                    tel
-                                                  }: EditUserDataFormValues): EditUserDataValidationErrors {
+export const validateEditUserDataForm = (
+  { username, tel }: EditUserDataFormValues,
+): EditUserDataValidationErrors => {
   const errors: EditUserDataValidationErrors = {}
 
   if (username.length && !regexpUsername.test(username)) {

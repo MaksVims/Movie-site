@@ -1,9 +1,8 @@
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
-import {auth} from "service/firebase";
-import {deleteUser} from "@firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from 'service/firebase';
+import { deleteUser } from '@firebase/auth';
 
 export default class FirebaseAuthService {
-
   static async login(email: string, password: string) {
     const credential = await signInWithEmailAndPassword(auth, email, password)
     return credential.user
@@ -16,11 +15,11 @@ export default class FirebaseAuthService {
   static async register(
     email: string,
     password: string,
-    name?: string
+    name?: string,
   ) {
     const credential = await createUserWithEmailAndPassword(auth, email, password)
     await updateProfile(auth.currentUser!, {
-      displayName: name || email
+      displayName: name || email,
     })
     return credential.user
   }
@@ -28,16 +27,12 @@ export default class FirebaseAuthService {
   static async updateProfile(
     name: string,
     tel: string,
-    photoURL: string
+    photoURL: string,
   ) {
     await updateProfile(auth.currentUser!, {
       displayName: name,
       photoURL,
     })
-  }
-
-  static isLoggedIn() {
-    return !!auth.currentUser
   }
 
   static async deleteAccount() {
@@ -48,4 +43,3 @@ export default class FirebaseAuthService {
     return false
   }
 }
-

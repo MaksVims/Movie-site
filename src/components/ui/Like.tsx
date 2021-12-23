@@ -1,7 +1,7 @@
-import React, {FC, SyntheticEvent, useRef} from 'react';
-import {FaHeart} from "react-icons/fa";
-import theme from "@/const/theme";
-import {useHover} from "@/hooks";
+import React, { FC, SyntheticEvent, useRef } from 'react';
+import { FaHeart } from 'react-icons/fa';
+import theme from '@/const/theme';
+import { useHover } from '@/hooks';
 
 interface ILike {
   className: string,
@@ -10,7 +10,9 @@ interface ILike {
   active?: boolean
 }
 
-const Like: FC<ILike> = ({onClick, size, className, active = false}) => {
+const Like: FC<ILike> = ({
+  onClick, size, className, active = false,
+}) => {
   const likeRef = useRef(null)
   const isHover = useHover(likeRef.current)
 
@@ -20,7 +22,7 @@ const Like: FC<ILike> = ({onClick, size, className, active = false}) => {
   }
 
   return (
-    <div ref={likeRef} onClick={handlerClick}>
+    <div tabIndex={0} role="button" ref={likeRef} onClick={handlerClick}>
       <FaHeart
         className={`cursor-pointer ${className}`}
         color={active || isHover ? theme.colors.pink['300'] : theme.colors.gray['400']}

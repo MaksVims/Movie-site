@@ -1,16 +1,16 @@
-import {CollectionState} from "@/store";
-import {useCallback, useEffect, useState} from "react";
-import {useAlert} from "@/contexts/AlertContext";
-import successMessage from "@/const/successMessage";
-import {CustomError} from "@/factory/CustomError";
-import {isCollection} from "helpers";
-import {AlertType} from "types";
+import { useCallback, useEffect, useState } from 'react';
+import { isCollection } from 'helpers';
+import { AlertType } from 'types';
+import { CollectionState } from '@/store';
+import { useAlert } from '@/contexts/AlertContext';
+import successMessage from '@/const/successMessage';
+import { CustomError } from '@/factory/CustomError';
 
 export default function useMovieLike(movieId: number, title: string) {
   const collection = CollectionState.moviesToCollection
   const mapRecords = CollectionState.mapRecordsToCollection
   const [isActive, setIsActive] = useState(false)
-  const {showAlert} = useAlert()
+  const { showAlert } = useAlert()
 
   useEffect(() => {
     setIsActive(isCollection(movieId, collection))
@@ -38,5 +38,5 @@ export default function useMovieLike(movieId: number, title: string) {
     }
   }, [movieId, mapRecords])
 
-  return {isActive, addMovieToCollection, removeMovieToCollection}
+  return { isActive, addMovieToCollection, removeMovieToCollection }
 }

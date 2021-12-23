@@ -10,9 +10,8 @@ const months: Array<string> = [
   'September',
   'October',
   'November',
-  'December'
+  'December',
 ]
-
 
 export default function getStringMonth(month: number) {
   if (month > 0 && month < months.length) {

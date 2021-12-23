@@ -1,20 +1,20 @@
-import React, {FC, useEffect} from 'react';
-import {useAuth} from "@/contexts/AuthContext";
-import {CollectionState} from "@/store";
-import {useAlert} from "@/contexts/AlertContext";
-import {CustomError} from "@/factory/CustomError";
-import {AlertType} from "#/alertCtxTypes";
+import React, { FC, useEffect } from 'react';
+import { AlertType } from 'types';
+import { useAuth } from '@/contexts/AuthContext';
+import { CollectionState } from '@/store';
+import { useAlert } from '@/contexts/AlertContext';
+import { CustomError } from '@/factory/CustomError';
 
 const CollectionContext = React.createContext({})
 
-const CollectionProvider: FC = ({children}) => {
-  const {user} = useAuth()
-  const {showAlert} = useAlert()
+const CollectionProvider: FC = ({ children }) => {
+  const { user } = useAuth()
+  const { showAlert } = useAlert()
 
   useEffect(() => {
     const loadCollection = async () => {
       if (user) {
-         await CollectionState.loadCollection(user.uid)
+        await CollectionState.loadCollection(user.uid)
       }
     }
 

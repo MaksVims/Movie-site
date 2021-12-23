@@ -1,25 +1,26 @@
-import {auth, db} from 'service/firebase'
-import {DatabaseReference, get, onValue, push, ref, remove, set} from 'firebase/database'
-import {TypeCollection} from "types";
+import { auth, db } from 'service/firebase'
+import {
+  DatabaseReference, get, onValue, push, ref, remove, set,
+} from 'firebase/database'
+import { TypeCollection } from 'types';
 
-type updateResolver = (update: TypeCollection) => Promise<void>
+type updateResolverType = (update: TypeCollection) => Promise<void>
 
 export default class FirebaseCollectionService {
-
   static async loadCollection(
     userId: string,
-    updateResolver: updateResolver
+    updateResolver: updateResolverType,
   ) {
     const collectionListRef = ref(db, `/users/${userId}/collection`)
     await FirebaseCollectionService.createObserverUpdate(collectionListRef, updateResolver)
-    return await get(collectionListRef).then(snapshot => snapshot.val())
+    return get(collectionListRef).then((snapshot) => snapshot.val())
   }
 
   static async createObserverUpdate(
     observeRef: DatabaseReference,
-    updateResolver: updateResolver
+    updateResolver: updateResolverType,
   ) {
-    onValue(observeRef, snapshot => {
+    onValue(observeRef, (snapshot) => {
       const data = snapshot.val()
       updateResolver(data)
     })
@@ -28,19 +29,19 @@ export default class FirebaseCollectionService {
   static async removeMovieToCollection(recordId: string) {
     const userId = auth.currentUser?.uid
     const collectionListItemRef = ref(db, `/users/${userId}/collection/${recordId}`)
-    return await remove(collectionListItemRef)
+    return remove(collectionListItemRef)
   }
 
   static async addMovieToCollection(
     movieId: number,
-    title: string
+    title: string,
   ) {
     const userId = auth.currentUser?.uid
     const collectionListRef = ref(db, `/users/${userId}/collection`)
     const newCollectionItemRef = push(collectionListRef)
     await set(newCollectionItemRef, {
       movieId,
-      title
+      title,
     })
     return true
   }

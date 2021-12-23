@@ -1,7 +1,7 @@
-import React, {FC, useEffect, useState} from 'react';
-import {createPortal} from "react-dom";
+import { FC, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
-const Portal: FC = ({children}) => {
+const Portal: FC = ({ children }) => {
   const [container] = useState<HTMLDivElement>(() => document.createElement('div'))
 
   useEffect(() => {

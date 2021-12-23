@@ -1,15 +1,15 @@
-import React, {ChangeEvent, FC} from 'react';
-import {observer} from 'mobx-react-lite';
-import {SortType} from "types";
-import {MoviesState} from "@/store";
-import {useAuth} from "@/contexts/AuthContext";
+import React, { ChangeEvent, FC } from 'react';
+import { observer } from 'mobx-react-lite';
+import { SortType } from 'types';
+import { MoviesState } from '@/store';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface SelectSortFiltersMoviesProps {
   className?: string
 }
 
-const SelectSortFiltersMovies: FC<SelectSortFiltersMoviesProps> = ({className}) => {
-  const {user} = useAuth()
+const SelectSortFiltersMovies: FC<SelectSortFiltersMoviesProps> = ({ className }) => {
+  const { user } = useAuth()
   const changeFilter = (e: ChangeEvent<HTMLSelectElement>) => {
     MoviesState.setFilter(e.target.value as SortType)
   }
@@ -33,9 +33,11 @@ const SelectSortFiltersMovies: FC<SelectSortFiltersMoviesProps> = ({className}) 
       <option value={SortType.RATING}>
         По рейтингу
       </option>
-      {user && <option value={SortType.FAVORITE}>
+      {user && (
+      <option value={SortType.FAVORITE}>
         Избранные
-      </option>}
+      </option>
+      )}
     </select>
   );
 };

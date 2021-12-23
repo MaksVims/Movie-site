@@ -1,22 +1,22 @@
-import React, {FC, useCallback} from 'react';
-import {errorsMessage, successMessage} from "@/const";
-import {useAlert} from "@/contexts";
-import {AlertType, EditUserDataFormValues} from "types";
-import {FirebaseAuthService} from "@/api";
-import {MainPopup} from "@/components/ui/popup";
-import {FormEditUserData} from "@/components/profile";
+import React, { FC, useCallback } from 'react';
+import { AlertType, EditUserDataFormValues } from 'types';
+import { errorsMessage, successMessage } from '@/const';
+import { useAlert } from '@/contexts';
+import { FirebaseAuthService } from '@/api';
+import { MainPopup } from '@/components/ui/popup';
+import { FormEditUserData } from '@/components/profile';
 
 interface PopupEditUserData {
   onClose: () => void,
   isOpened: boolean
 }
 
-const PopupEditUserData: FC<PopupEditUserData> = ({isOpened, onClose}) => {
-  const {showAlert} = useAlert()
+const PopupEditUserData: FC<PopupEditUserData> = ({ isOpened, onClose }) => {
+  const { showAlert } = useAlert()
 
   const saveEditChanges = useCallback(async (values: EditUserDataFormValues) => {
     try {
-      const {url, tel, username} = values
+      const { url, tel, username } = values
       await FirebaseAuthService.updateProfile(username, tel, url)
       showAlert(successMessage.UPDATE_PROFILE, AlertType.SUCCESS)
       onClose()
@@ -31,7 +31,7 @@ const PopupEditUserData: FC<PopupEditUserData> = ({isOpened, onClose}) => {
       onClose={onClose}
       isOpened={isOpened}
     >
-      <FormEditUserData submitHandler={saveEditChanges}/>
+      <FormEditUserData submitHandler={saveEditChanges} />
     </MainPopup>
   );
 };

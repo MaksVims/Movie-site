@@ -1,4 +1,4 @@
-import {fetchMoviesOrStaff as fetchMovies, getStringMonth, getUrlFiltersMovies} from "helpers"
+import { fetchMoviesOrStaff as fetchMovies, getStringMonth, getUrlFiltersMovies } from 'helpers'
 import {
   IFilterOptions,
   IResponseMoviesByFiltersOrTop,
@@ -6,11 +6,10 @@ import {
   IResponseReviewsByMovie,
   IResponseSearchByKeyWord,
   IResponseTrailer,
-  ISingleMovie
-} from "types"
+  ISingleMovie,
+} from 'types'
 
 export default class MovieService {
-
   static async getPremiers() {
     const date = new Date()
     const year = date.getFullYear()

@@ -1,20 +1,22 @@
-import React, {FC} from 'react';
-import Image from "next/image";
-import {ISpecificStaff} from "types";
-import {PersonGridInfo} from "@/components/person";
+import React, { FC } from 'react';
+import Image from 'next/image';
+import { ISpecificStaff } from 'types';
+import { PersonGridInfo } from '@/components/person';
 
 interface PersonInfoProps {
   person: ISpecificStaff,
   countMovies: number
 }
 
-const PersonInfo: FC<PersonInfoProps> = ({person, countMovies}) => {
+const PersonInfo: FC<PersonInfoProps> = ({ person, countMovies }) => {
   const isFacts = !!person.facts.length
   return (
     <section
-      className="flex flex-col space-y-4 flex-wrap md:flex-row md:space-x-4 xl:!space-y-0 xl:flex-nowrap xl:!justify-center">
+      className="flex flex-col space-y-4 flex-wrap md:flex-row md:space-x-4 xl:!space-y-0 xl:flex-nowrap xl:!justify-center"
+    >
       <div
-        className="p-4 flex-shrink-0 self-center md:border-r-2 border-solid border-gray-300 md:py-0 md:mr-4">
+        className="p-4 flex-shrink-0 self-center md:border-r-2 border-solid border-gray-300 md:py-0 md:mr-4"
+      >
         <div className="drop-shadow-lg">
           <Image
             src={person.posterUrl}
@@ -48,8 +50,9 @@ const PersonInfo: FC<PersonInfoProps> = ({person, countMovies}) => {
             Знали ли вы что?
           </h3>
           <ul
-            className="space-y-2 text-gray-color leading-normal pr-2 max-h-[300px] xl:max-h-[200px] overflow-y-auto custom-scrollbar">
-            {person.facts.map(fact => (
+            className="space-y-2 text-gray-color leading-normal pr-2 max-h-[300px] xl:max-h-[200px] overflow-y-auto custom-scrollbar"
+          >
+            {person.facts.map((fact) => (
               <li
                 key={fact}
                 className="text-xs relative after:content-['-'] after:text-2xl after:-left-4 after:-top-2 after:absolute"

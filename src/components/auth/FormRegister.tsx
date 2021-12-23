@@ -1,14 +1,14 @@
-import React, {FC, useEffect, useRef} from 'react';
-import {Form, Formik} from "formik";
+import React, { FC, useEffect, useRef } from 'react';
+import { Form, Formik } from 'formik';
 import { RegisterFormValues } from 'types';
 import { validateRegisterForm } from 'helpers';
-import {FormCheckbox, FormInput } from '@/components/ui';
+import { FormCheckbox, FormInput } from '@/components/ui';
 
 interface IRegisterForm {
   submitHandler: (values: RegisterFormValues) => Promise<void> | void
 }
 
-const FormRegister: FC<IRegisterForm> = ({submitHandler}) => {
+const FormRegister: FC<IRegisterForm> = ({ submitHandler }) => {
   const focusRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
@@ -22,12 +22,12 @@ const FormRegister: FC<IRegisterForm> = ({submitHandler}) => {
         username: '',
         password: '',
         repeating: '',
-        isAgree: false
+        isAgree: false,
       }}
       validate={validateRegisterForm}
       onSubmit={submitHandler}
     >
-      {({isValid, dirty}) => (
+      {({ isValid, dirty }) => (
         <Form className="flex flex-col">
           <FormInput
             placeholder="Укажите Email"
@@ -48,7 +48,7 @@ const FormRegister: FC<IRegisterForm> = ({submitHandler}) => {
             label="Пароль:"
             name="password"
             type="password"
-            autoComplete='off'
+            autoComplete="off"
             required
           />
           <FormInput
@@ -57,7 +57,7 @@ const FormRegister: FC<IRegisterForm> = ({submitHandler}) => {
             label="Повтор:"
             name="repeating"
             type="password"
-            autoComplete='off'
+            autoComplete="off"
             required
           />
           <FormCheckbox

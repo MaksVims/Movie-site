@@ -1,14 +1,14 @@
-import React, {FC, useEffect, useRef} from 'react';
-import {Form, Formik} from "formik";
-import {LoginFormValues} from "types";
-import {FormInput} from '@/components/ui';
-import {validateLoginForm} from 'helpers';
+import React, { FC, useEffect, useRef } from 'react';
+import { Form, Formik } from 'formik';
+import { LoginFormValues } from 'types';
+import { validateLoginForm } from 'helpers';
+import { FormInput } from '@/components/ui';
 
 interface ILoginForm {
   handlerSubmit: (values: LoginFormValues) => Promise<void> | void
 }
 
-const FormLogin: FC<ILoginForm> = ({handlerSubmit}) => {
+const FormLogin: FC<ILoginForm> = ({ handlerSubmit }) => {
   const focusRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const FormLogin: FC<ILoginForm> = ({handlerSubmit}) => {
       validate={validateLoginForm}
       onSubmit={handlerSubmit}
     >
-      {({isValid, dirty}) => (
+      {({ isValid, dirty }) => (
         <Form className="flex flex-col">
           <FormInput
             placeholder="Введите свой email"
@@ -39,7 +39,7 @@ const FormLogin: FC<ILoginForm> = ({handlerSubmit}) => {
             label="Пароль:"
             name="password"
             type="password"
-            autoComplete='off'
+            autoComplete="off"
             required
           />
           <button

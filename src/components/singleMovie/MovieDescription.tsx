@@ -1,18 +1,18 @@
-import React, {FC} from 'react';
-import Link from "next/link";
-import {observer} from 'mobx-react-lite';
-import {FiltersState} from "@/store";
-import {ISingleMovie, IStaffByMovie} from 'types';
-import {getActorsFromList, getEnGenresMovie, getProducerFromList} from "helpers";
-import {ListActors, ListGenres} from "@/components/singleMovie";
+import React, { FC } from 'react';
+import Link from 'next/link';
+import { observer } from 'mobx-react-lite';
+import { ISingleMovie, IStaffByMovie } from 'types';
+import { getActorsFromList, getEnGenresMovie, getProducerFromList } from 'helpers';
+import { FiltersState } from '@/store';
+import { ListActors, ListGenres } from '@/components/singleMovie';
 
 interface MovieDescriptionProps {
   movie: ISingleMovie,
   staff: IStaffByMovie[],
 }
 
-const MovieDescription: FC<MovieDescriptionProps> = ({movie, staff,}) => {
-  const allGenres = FiltersState.allGenres
+const MovieDescription: FC<MovieDescriptionProps> = ({ movie, staff }) => {
+  const { allGenres } = FiltersState
   const producer = getProducerFromList(staff)
   const actors = getActorsFromList(staff, 15)
   const genres = getEnGenresMovie(allGenres, movie)
@@ -20,7 +20,7 @@ const MovieDescription: FC<MovieDescriptionProps> = ({movie, staff,}) => {
   return (
     <ul className="space-y-1">
       <li>
-        <ListGenres genres={genres}/>
+        <ListGenres genres={genres} />
       </li>
       <li className="flex items-center">
         <span className="font-medium mr-1">
@@ -33,7 +33,7 @@ const MovieDescription: FC<MovieDescriptionProps> = ({movie, staff,}) => {
         </Link>
       </li>
       <li>
-        <ListActors actors={actors}/>
+        <ListActors actors={actors} />
 
       </li>
       <li>

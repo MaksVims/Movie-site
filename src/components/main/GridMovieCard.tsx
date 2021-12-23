@@ -1,26 +1,32 @@
-import React, {FC} from 'react';
-import Image from "next/image";
-import {observer} from "mobx-react-lite";
+import React, { FC } from 'react';
+import Image from 'next/image';
+import { observer } from 'mobx-react-lite';
 import Link from 'next/link'
 import cn from 'classnames'
-import {IMovieForGrid} from "types";
-import {Like, MovieCardLoader, Play, RatingMovie} from "@/components/ui";
-import {CollectionState} from "@/store";
-import {useMovieLike} from "@/hooks";
-import {useAuth} from "@/contexts/AuthContext";
+import { IMovieForGrid } from 'types';
+import {
+  Like, MovieCardLoader, Play, RatingMovie,
+} from '@/components/ui';
+import { CollectionState } from '@/store';
+import { useMovieLike } from '@/hooks';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface IGridMoveItem {
   movie: IMovieForGrid
 }
 
-const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
-  const {user} = useAuth()
-  const {movieId} = movie
-  const {removeMovieToCollection, addMovieToCollection, isActive} = useMovieLike(movieId, movie.nameRu)
-  const loading = CollectionState.loading
+const GridMovieCard: FC<IGridMoveItem> = ({ movie }) => {
+  const { user } = useAuth()
+  const { movieId } = movie
+  const {
+    removeMovieToCollection,
+    addMovieToCollection,
+    isActive,
+  } = useMovieLike(movieId, movie.nameRu)
+  const { loading } = CollectionState
 
   if (loading) {
-    return <MovieCardLoader/>
+    return <MovieCardLoader />
   }
 
   return (
@@ -36,30 +42,35 @@ const GridMovieCard: FC<IGridMoveItem> = ({movie}) => {
               height={600}
               alt={movie.nameRu}
             />
-            <div className="absolute left-0 top-0 full bg-black group-hover:opacity-70 opacity-0">
-            </div>
-            <Play className="group-hover:opacity-100 opacity-0 flex-center"/>
+            <div className="absolute left-0 top-0 full bg-black group-hover:opacity-70 opacity-0" />
+            <Play className="group-hover:opacity-100 opacity-0 flex-center" />
             {
-              movie.year &&
+              movie.year
+              && (
               <span className="bubble top-2 left-2">
                 {movie.year}
               </span>
+              )
             }
             {
-              movie.rating && <RatingMovie
+              movie.rating && (
+              <RatingMovie
                 rating={movie.rating || ''}
                 size={20}
                 className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 text-xl"
               />
+              )
             }
-            {user && <Like
+            {user && (
+            <Like
               onClick={isActive ? removeMovieToCollection : addMovieToCollection}
               className={cn('hover:scale-110 opacity-0 group-hover:opacity-100 absolute right-2 top-2', {
-                'opacity-100': isActive
+                'opacity-100': isActive,
               })}
               size={32}
               active={isActive}
-            />}
+            />
+            )}
           </div>
         </a>
       </Link>

@@ -4,6 +4,6 @@ export default function getFormatDate(date: string) {
     month: 'long',
     day: 'numeric',
     hour: 'numeric',
-    minute: 'numeric'
+    minute: 'numeric',
   }).format(new Date(date))
 }

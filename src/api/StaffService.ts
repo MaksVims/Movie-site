@@ -1,8 +1,7 @@
-import {ISpecificStaff, IStaffByMovie} from "types"
-import {fetchMoviesOrStaff as fetchStaff} from "helpers";
+import { ISpecificStaff, IStaffByMovie } from 'types'
+import { fetchMoviesOrStaff as fetchStaff } from 'helpers';
 
 export default class StaffService {
-
   static async getStaffByMovie(movieId: number) {
     const url = `https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${movieId}`
     return await fetchStaff(url) as IStaffByMovie[]

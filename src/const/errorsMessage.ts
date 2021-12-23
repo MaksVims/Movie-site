@@ -7,5 +7,5 @@ export default {
   REMOVE_ACCOUNT: 'Ошибка удаления аккаунта',
   LOGOUT: 'Не удалось выйти',
   LOAD_NEXT_PAGE_MOVIES: 'Ошибка подгрузки данных',
-  UPDATE_PROFILE: 'Ошибка обновления профиля'
+  UPDATE_PROFILE: 'Ошибка обновления профиля',
 }

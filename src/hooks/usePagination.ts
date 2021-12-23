@@ -1,13 +1,15 @@
-import {useCallback, useState} from "react";
-import {useAlert} from "@/contexts";
-import errorsMessage from "@/const/errorsMessage";
-import {AlertType} from "types";
+import { useCallback, useState } from 'react';
+import { AlertType } from 'types';
+import { useAlert } from '@/contexts';
+import { errorsMessage } from '@/const';
 
-export default function usePagination(totalPage: number, callback: (page: number) => Promise<void>)
-  : [() => Promise<void>, boolean, number] {
+export default function usePagination(
+  totalPage: number,
+  callback: (page: number) => Promise<void>,
+): [() => Promise<void>, boolean, number] {
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
-  const {showAlert} = useAlert()
+  const { showAlert } = useAlert()
 
   const fetchData = useCallback(async () => {
     try {

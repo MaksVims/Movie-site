@@ -13,14 +13,14 @@ export interface IMoviePremier {
   posterUrlPreview: string,
 }
 
-export type MovieDB = IMoviePremier | IMovieByFilterOrTop | IPersonMovie
-
 export interface IPersonMovie {
   filmId: number,
   nameRu: string,
   year: string,
   rating: string,
 }
+
+export type MovieDB = IMoviePremier | IMovieByFilterOrTop | IPersonMovie
 
 export interface IMovieForGrid {
   movieId: number,
