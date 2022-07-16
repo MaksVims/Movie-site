@@ -1,4 +1,4 @@
-const { API_KEY } = process.env
+const API_KEY = process.env.API_KEY
 
 export default async function fetchMoviesOrStaff(url: string) {
   if (!API_KEY) throw new Error('api key not found')

@@ -8,7 +8,7 @@ import {
   Like, MovieCardLoader, Play, RatingMovie,
 } from '@/components/ui';
 import { CollectionState } from '@/store';
-import { useMovieLike } from '@/hooks';
+import { useMovieLike } from '@/hooks'; 
 import { useAuth } from '@/contexts/AuthContext';
 
 interface IGridMoveItem {
