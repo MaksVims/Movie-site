@@ -16,7 +16,7 @@ const ReviewItem: FC<ReviewItemProps> = ({ review }) => {
   useEffect(() => {
     if (containerRef.current) {
       // @ts-ignore
-      containerRef.current?.style?.maxHeight = isOpen ? `${containerRef.current?.scrollHeight + 20}px` : '0px'
+      containerRef.current?.style?.maxHeight = isOpen ? `${containerRef.current?.scrollHeight}px` : '0px'
     }
   }, [isOpen])
 
@@ -27,9 +27,8 @@ const ReviewItem: FC<ReviewItemProps> = ({ review }) => {
   })
 
   const contentClass = cn({
-    'space-y-4 smooth-height': true,
-    'p-4 !pt-0  sm:p-6': isOpen,
-    'px-4 sm:px-6 overflow-hidden max-h-0': !isOpen,
+    'space-y-4 smooth-height px-4 sm:px-6': true,
+    'overflow-hidden max-h-0': !isOpen,
   })
 
   return (
@@ -50,7 +49,7 @@ const ReviewItem: FC<ReviewItemProps> = ({ review }) => {
             <h4>
               <i>
                 Автор:
-                {review.reviewAutor}
+                {' ' + review.reviewAutor}
               </i>
             </h4>
             <data>
@@ -63,7 +62,7 @@ const ReviewItem: FC<ReviewItemProps> = ({ review }) => {
             likeValue={review.userPositiveRating}
           />
         </div>
-        <p className="text-gray-color text-xs text-justify">
+        <p className="text-gray-color text-xs text-justify pb-4">
           {review.reviewDescription}
         </p>
       </div>
