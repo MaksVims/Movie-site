@@ -1,11 +1,8 @@
 import React from 'react';
+import { Loader } from './'
 
 const BoxLoader = () => (
-  <div
-    className="absolute bg-black top-0 left-0 full opacity-60 z-40 flex-center"
-  >
-    <div className="lds-dual-ring" />
-  </div>
+  <Loader classes={'opacity-60 bg-black'} />
 );
 
 export default BoxLoader;
