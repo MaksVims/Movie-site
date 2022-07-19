@@ -2,16 +2,17 @@ import { useCallback, useEffect } from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { observer } from 'mobx-react-lite';
-import { IFilterGenre, IResponseMoviesByFiltersOrTop, SortType } from 'types';
-import { formatFirstToUppercase } from 'helpers';
+import { IFilterGenre, IResponseMoviesByFiltersOrTop } from 'types';
+import { formatFirstToUppercase, showPaginationButton } from 'helpers';
 import { DATA_FILTERS } from '@/const/dataFilters';
 import { MoviesState } from '@/store';
 import { usePagination } from '@/hooks';
 import { MovieService } from '@/api';
-import { BoxDisplayCenter, BoxLoader, BtnLoadNextPage } from '@/components/ui';
+import { BoxDisplayCenter, BtnLoadNextPage } from '@/components/ui';
 import { FooterLayout, MainLayout } from '@/components/layouts';
 import { BarSortFilters, GridMovies, ScrollBarGenre } from '@/components/main';
 import { Seo } from '@/hoc';
+import { PaginationBox } from '@/components/ui';
 
 interface IGenrePageProps {
   dataMovies: IResponseMoviesByFiltersOrTop,
@@ -38,7 +39,7 @@ const GenrePage: NextPage<IGenrePageProps> = ({ dataMovies, genre, genreId }) =>
     return () => MoviesState.resetMovies()
   }, [dataMovies.films])
 
-  const paginationView = currentPage < totalPages && filter !== SortType.FAVORITE && filteredMovies.length && (
+  const paginationView = showPaginationButton(currentPage, totalPages, filter, filteredMovies) && (
     <BtnLoadNextPage
       fetching={fetchNextPage}
       className="text-center my-8"
@@ -64,14 +65,13 @@ const GenrePage: NextPage<IGenrePageProps> = ({ dataMovies, genre, genreId }) =>
                   />
                 </div>
               )}
-            <div className="relative">
-              {loadNextPage ? <BoxLoader /> : paginationView}
-            </div>
+            <PaginationBox loading={loadNextPage} movies={filteredMovies}>
+              {paginationView}
+            </PaginationBox>
           </main>
         </FooterLayout>
       </MainLayout>
     </Seo>
-
   );
 };
 

@@ -1,14 +1,16 @@
 import React, {useCallback, useEffect} from 'react';
 import {GetStaticProps, NextPage} from "next";
 import {observer} from 'mobx-react-lite';
-import {IResponseMoviesByFiltersOrTop, SortType} from "types";
+import {IResponseMoviesByFiltersOrTop} from "types";
 import {MovieService} from "@/api";
 import {MoviesState} from "@/store";
 import {usePagination} from "@/hooks";
 import Seo from "@/hoc/Seo";
 import {GridMovies, ScrollBarGenre, BarSortFilters} from "@/components/main";
 import {MainLayout, FooterLayout} from "@/components/layouts";
-import {BtnLoadNextPage, BoxLoader, BoxDisplayCenter} from "@/components/ui";
+import {BtnLoadNextPage, BoxDisplayCenter} from "@/components/ui";
+import { PaginationBox } from '@/components/ui';
+import { showPaginationButton } from 'helpers/showPaginationButton';
 
 interface IHomePageProps {
   dataMovies: IResponseMoviesByFiltersOrTop
@@ -32,7 +34,7 @@ const Home: NextPage<IHomePageProps> = ({dataMovies}) => {
     return () => MoviesState.resetMovies()
   }, [dataMovies.films])
 
-  const paginationView = currentPage < totalPages && filter !== SortType.FAVORITE && filteredMovies.length && (
+  const paginationView = showPaginationButton(currentPage, totalPages, filter, filteredMovies) && (
     <BtnLoadNextPage
       fetching={fetchNextPage}
       className="text-center my-8"
@@ -58,9 +60,9 @@ const Home: NextPage<IHomePageProps> = ({dataMovies}) => {
                   />
                 </div>
               )}
-            <div className="relative">
-              {loadNextPage ? <BoxLoader/> : paginationView}
-            </div>
+           <PaginationBox loading={loadNextPage} movies={filteredMovies}>
+              {paginationView}
+            </PaginationBox>
           </main>
         </FooterLayout>
       </MainLayout>
