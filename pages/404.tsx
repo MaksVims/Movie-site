@@ -8,9 +8,9 @@ const FourOhFour = () => {
     <MainLayout>
       <div className="bg-white grow-1 flex-center">
         <div className="flex-center flex-col">
-          <h2 className="text-xl text-red-400 mb-4">Указанная страница не найдена</h2>
+          <h2 className="text-xl text-red-400 mb">Указанная страница не найдена</h2>
           <Link href='/' >
-            <span className="btn-success rounded-md px-4 py-2 text-xl cursor-pointer">Вернуться назад</span>
+            <span className="btn-success btn-big">Вернуться назад</span>
           </Link>
         </div>
       </div>

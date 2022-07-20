@@ -84,11 +84,15 @@ body {
   }
 
   .btn {
-    @apply py-2 rounded-md px-4 transition delay-100 text-white
+    @apply py-2 rounded-md px-4 transition delay-100 text-white cursor-pointer
   }
 
   .btn-success {
     @apply bg-primary-light hover:bg-primary focus:bg-primary
+  }
+
+  .btn-big {
+    @apply rounded-md px-4 py-2 text-xl cursor-pointer
   }
 
   .btn-danger {

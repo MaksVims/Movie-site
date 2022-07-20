@@ -10,7 +10,7 @@ const BtnLoadNextPage: FC<BtnLoadNextPageProps> = ({ fetching, className }) => (
     <button
       type="button"
       onClick={fetching}
-      className="btn-success rounded-md px-4 py-2 text-xl"
+      className="btn-success btn-big"
     >
       Показать еще
     </button>
